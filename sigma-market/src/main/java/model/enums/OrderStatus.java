@@ -1,5 +1,9 @@
 package model.enums;
 
 public enum OrderStatus {
-    Cancelled, Cancelled_by_customer, approved, out_for_delivery, delivered
+    CANCELLED,
+    CANCELLED_BY_CUSTOMER,
+    APPROVED,
+    OUT_FOR_DELIVERY,
+    DELIVERED
 }

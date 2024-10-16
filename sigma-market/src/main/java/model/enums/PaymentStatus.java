@@ -1,5 +1,7 @@
 package model.enums;
 
 public enum PaymentStatus {
-    Pendind, Paid, Expired
+    PENDIND,
+    PAID,
+    EXPIRED
 }

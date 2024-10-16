@@ -1,5 +1,8 @@
 package model.enums;
 
 public enum PaymentType {
-    Billet, Money, PIX, Bitcoin
+    BILLET,
+    MONEY,
+    PIX,
+    BITCOIN
 }
