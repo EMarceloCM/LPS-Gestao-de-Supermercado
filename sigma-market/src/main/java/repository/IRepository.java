@@ -1,8 +1,11 @@
 package repository;
 
+import java.util.List;
+
 public interface IRepository<T> {
-    void save(T obj);
     T find(int id);
+    List<T> findAll();
     void update(T obj);
-    void delete(int id);
+    void save(T obj);
+    boolean delete(int id);
 }
