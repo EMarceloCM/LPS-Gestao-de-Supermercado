@@ -1,9 +1,6 @@
 package model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import model.enums.OrderStatus;
 import model.enums.PaymentStatus;
@@ -21,11 +18,19 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int customer_id;
-    private int address_id;
     private LocalDateTime date;
     private float totalAmount;
     private OrderStatus orderStatus;
     private PaymentStatus paymentStatus;
     private PaymentType paymentType;
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name="costumer_id")
+    private Costumer costumer;
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Address address;
+
+    // @OneToOne(mappedBy = "order", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    // private Feedback feedback; //acho que não precisa nesse caso pq é 1 pra 1
 }

@@ -1,11 +1,9 @@
 package model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -25,4 +23,10 @@ public class Product {
     private float price;
     private int stock;
     private int sku;
+
+    @OneToMany(mappedBy = "product")
+    List<Promotion> promotions;
+
+    @OneToMany(mappedBy = "product")
+    List<ShoppingCart> shoppingCarts;
 }
