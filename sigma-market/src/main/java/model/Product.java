@@ -29,4 +29,10 @@ public class Product {
 
     @OneToMany(mappedBy = "product")
     List<ShoppingCart> shoppingCarts;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    List<ProductSupplier> productSuppliers;
+
+    @OneToMany(mappedBy = "product")
+    List<ItemOrder> itemOrders;
 }

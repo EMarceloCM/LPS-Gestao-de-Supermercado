@@ -6,6 +6,7 @@ import model.enums.OrderStatus;
 import model.enums.PaymentStatus;
 import model.enums.PaymentType;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -30,6 +31,9 @@ public class Order {
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Address address;
+
+    @OneToMany(mappedBy = "order")
+    List<ItemOrder> itemOrders;
 
     // @OneToOne(mappedBy = "order", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     // private Feedback feedback; //acho que não precisa nesse caso pq é 1 pra 1
