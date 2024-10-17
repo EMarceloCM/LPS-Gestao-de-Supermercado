@@ -3,12 +3,9 @@ package model;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Getter
-@Setter
-@ToString
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
 @Entity
 public class ShoppingCart {
     @Id

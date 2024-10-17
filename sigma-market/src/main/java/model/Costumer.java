@@ -6,12 +6,9 @@ import model.enums.Role;
 
 import java.util.List;
 
-@Getter
-@Setter
-@ToString
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
 @Entity
 public class Costumer {
     @Id
