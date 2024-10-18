@@ -3,53 +3,53 @@ package repository;
 import factory.DatabaseJPA;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
-import model.Costumer;
+import model.ShoppingCart;
 import repository.interfaces.IRepository;
 import java.util.List;
 
-public class CostumerRepository implements IRepository<Costumer> {
+public class ShoppingCartRepository implements IRepository<ShoppingCart> {
 
     private EntityManager entityManager;
     private Query qry;
     private String jpql;
 
-    public CostumerRepository() {}
+    public ShoppingCartRepository() {}
 
     @Override
-    public Costumer find(int id) {
+    public ShoppingCart find(int id) {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
-        Costumer c = this.entityManager.find(Costumer.class, id);
+        ShoppingCart sc = this.entityManager.find(ShoppingCart.class, id);
         this.entityManager.close();
 
-        return c;
+        return sc;
     }
 
     @Override
-    public Costumer find(Costumer obj) {
+    public ShoppingCart find(ShoppingCart obj) {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
 
-        Costumer c = this.entityManager.find(Costumer.class, obj.getId());
+        ShoppingCart sc = this.entityManager.find(ShoppingCart.class, obj.getId());
 
         this.entityManager.close();
 
-        return c;
+        return sc;
     }
 
     @Override
-    public List<Costumer> findAll() {
+    public List<ShoppingCart> findAll() {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
 
-        jpql = " SELECT c FROM Costumer c ";
+        jpql = " SELECT sc FROM ShoppingCart sc ";
         qry = this.entityManager.createQuery(jpql);
         List lst = qry.getResultList();
 
         this.entityManager.close();
 
-        return (List<Costumer>) lst;
+        return (List<ShoppingCart>) lst;
     }
 
     @Override
-    public void update(Costumer obj) {
+    public void update(ShoppingCart obj) {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
         this.entityManager.getTransaction().begin();
         this.entityManager.merge(obj);
@@ -58,7 +58,7 @@ public class CostumerRepository implements IRepository<Costumer> {
     }
 
     @Override
-    public void save(Costumer obj) {
+    public void save(ShoppingCart obj) {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
         this.entityManager.getTransaction().begin();
         this.entityManager.persist(obj);
@@ -71,17 +71,17 @@ public class CostumerRepository implements IRepository<Costumer> {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
         this.entityManager.getTransaction().begin();
 
-        Costumer c = this.entityManager.find(Costumer.class, id);
-        if (c != null) this.entityManager.remove(c);
+        ShoppingCart sc = this.entityManager.find(ShoppingCart.class, id);
+        if (sc != null) this.entityManager.remove(sc);
 
         this.entityManager.getTransaction().commit();
         this.entityManager.close();
 
-        return c != null;
+        return sc != null;
     }
 
     @Override
-    public boolean delete(Costumer obj) {
+    public boolean delete(ShoppingCart obj) {
         if (obj == null) return false;
 
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();

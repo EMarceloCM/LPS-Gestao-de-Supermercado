@@ -3,53 +3,53 @@ package repository;
 import factory.DatabaseJPA;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
-import model.Costumer;
+import model.ItemOrder;
 import repository.interfaces.IRepository;
 import java.util.List;
 
-public class CostumerRepository implements IRepository<Costumer> {
+public class ItemOrderRepository implements IRepository<ItemOrder> {
 
     private EntityManager entityManager;
     private Query qry;
     private String jpql;
 
-    public CostumerRepository() {}
+    public ItemOrderRepository() {}
 
     @Override
-    public Costumer find(int id) {
+    public ItemOrder find(int id) {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
-        Costumer c = this.entityManager.find(Costumer.class, id);
+        ItemOrder i = this.entityManager.find(ItemOrder.class, id);
         this.entityManager.close();
 
-        return c;
+        return i;
     }
 
     @Override
-    public Costumer find(Costumer obj) {
+    public ItemOrder find(ItemOrder obj) {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
 
-        Costumer c = this.entityManager.find(Costumer.class, obj.getId());
+        ItemOrder i = this.entityManager.find(ItemOrder.class, obj.getId());
 
         this.entityManager.close();
 
-        return c;
+        return i;
     }
 
     @Override
-    public List<Costumer> findAll() {
+    public List<ItemOrder> findAll() {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
 
-        jpql = " SELECT c FROM Costumer c ";
+        jpql = " SELECT i FROM ItemOrder i ";
         qry = this.entityManager.createQuery(jpql);
         List lst = qry.getResultList();
 
         this.entityManager.close();
 
-        return (List<Costumer>) lst;
+        return (List<ItemOrder>) lst;
     }
 
     @Override
-    public void update(Costumer obj) {
+    public void update(ItemOrder obj) {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
         this.entityManager.getTransaction().begin();
         this.entityManager.merge(obj);
@@ -58,7 +58,7 @@ public class CostumerRepository implements IRepository<Costumer> {
     }
 
     @Override
-    public void save(Costumer obj) {
+    public void save(ItemOrder obj) {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
         this.entityManager.getTransaction().begin();
         this.entityManager.persist(obj);
@@ -71,17 +71,17 @@ public class CostumerRepository implements IRepository<Costumer> {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
         this.entityManager.getTransaction().begin();
 
-        Costumer c = this.entityManager.find(Costumer.class, id);
-        if (c != null) this.entityManager.remove(c);
+        ItemOrder i = this.entityManager.find(ItemOrder.class, id);
+        if (i != null) this.entityManager.remove(i);
 
         this.entityManager.getTransaction().commit();
         this.entityManager.close();
 
-        return c != null;
+        return i != null;
     }
 
     @Override
-    public boolean delete(Costumer obj) {
+    public boolean delete(ItemOrder obj) {
         if (obj == null) return false;
 
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
