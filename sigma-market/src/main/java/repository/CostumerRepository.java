@@ -2,54 +2,53 @@ package repository;
 
 import factory.DatabaseJPA;
 import jakarta.persistence.EntityManager;
-import model.Supplier;
 import jakarta.persistence.Query;
+import model.Costumer;
+import model.Supplier;
 import repository.interfaces.IRepository;
 import java.util.List;
 
-public class SupplierRepository implements IRepository<Supplier> {
+public class CostumerRepository implements IRepository<Costumer> {
 
     private EntityManager entityManager;
     private Query qry;
     private String jpql;
 
-    public SupplierRepository () {}
-
     @Override
-    public Supplier find(int id) {
+    public Costumer find(int id) {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
-        Supplier s = this.entityManager.find(Supplier.class, id);
+        Costumer c = this.entityManager.find(Costumer.class, id);
         this.entityManager.close();
 
-        return s;
+        return c;
     }
 
     @Override
-    public Supplier find(Supplier obj) {
+    public Costumer find(Costumer obj) {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
 
-        Supplier s = this.entityManager.find(Supplier.class, obj.getId());
+        Costumer c = this.entityManager.find(Costumer.class, obj.getId());
 
         this.entityManager.close();
 
-        return s;
+        return c;
     }
 
     @Override
-    public List<Supplier> findAll() {
+    public List<Costumer> findAll() {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
 
-        jpql = " SELECT s FROM Supplier s ";
+        jpql = " SELECT c FROM Costumer c ";
         qry = this.entityManager.createQuery(jpql);
         List lst = qry.getResultList();
 
         this.entityManager.close();
 
-        return (List<Supplier>) lst;
+        return (List<Costumer>) lst;
     }
 
     @Override
-    public void update(Supplier obj) {
+    public void update(Costumer obj) {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
         this.entityManager.getTransaction().begin();
         this.entityManager.merge(obj);
@@ -58,7 +57,7 @@ public class SupplierRepository implements IRepository<Supplier> {
     }
 
     @Override
-    public void save(Supplier obj) {
+    public void save(Costumer obj) {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
         this.entityManager.getTransaction().begin();
         this.entityManager.persist(obj);
@@ -81,7 +80,7 @@ public class SupplierRepository implements IRepository<Supplier> {
     }
 
     @Override
-    public boolean delete(Supplier obj) {
+    public boolean delete(Costumer obj) {
         if (obj == null) return false;
 
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
@@ -91,24 +90,4 @@ public class SupplierRepository implements IRepository<Supplier> {
 
         return true;
     }
-
-    public Supplier findByCNPJ(String cnpj) {
-        this.entityManager = DatabaseJPA.getInstance().getEntityManager();
-
-        jpql = " SELECT s "
-                + " FROM Supplier s "
-                + " WHERE s.cnpj like :cnpj ";
-        qry = this.entityManager.createQuery(jpql);
-        qry.setParameter("cnpj", cnpj);
-        List lst = qry.getResultList();
-
-        this.entityManager.close();
-
-        if (lst.isEmpty()) {
-            return null;
-        } else {
-            return (Supplier) lst.get(0);
-        }
-    }
-
 }
