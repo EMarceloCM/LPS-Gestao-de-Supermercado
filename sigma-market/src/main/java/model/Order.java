@@ -38,6 +38,6 @@ public class Order {
     @OneToMany(mappedBy = "order")
     List<ItemOrder> itemOrders;
 
-    // @OneToOne(mappedBy = "order", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    // private Feedback feedback; //acho que não precisa nesse caso pq é 1 pra 1
+    @OneToOne(mappedBy = "order", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private Feedback feedback;
 }
