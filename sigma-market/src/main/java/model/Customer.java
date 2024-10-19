@@ -10,7 +10,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Costumer {
+public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -18,6 +18,8 @@ public class Costumer {
     private String password;
     private String cpf;
     private String email;
+
+    @Enumerated(EnumType.STRING)
     private Role Role;
 
     @OneToMany(mappedBy = "costumer")

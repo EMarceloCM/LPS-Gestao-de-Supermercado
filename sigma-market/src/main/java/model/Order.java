@@ -18,13 +18,19 @@ public class Order {
     private int id;
     private LocalDateTime date;
     private float totalAmount;
+
+    @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
+
+    @Enumerated(EnumType.STRING)
     private PaymentStatus paymentStatus;
+
+    @Enumerated(EnumType.STRING)
     private PaymentType paymentType;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name="costumer_id")
-    private Costumer costumer;
+    private Customer customer;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Address address;

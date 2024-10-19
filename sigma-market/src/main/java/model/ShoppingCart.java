@@ -18,7 +18,7 @@ public class ShoppingCart {
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name="costumer_id")
-    private Costumer costumer;
+    private Customer customer;
 
     private int quantity;
     private float totalAmount;

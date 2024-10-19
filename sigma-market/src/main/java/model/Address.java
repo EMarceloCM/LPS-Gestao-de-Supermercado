@@ -18,5 +18,5 @@ public class Address {
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name="costumer_id")
-    private Costumer costumer;
+    private Customer customer;
 }

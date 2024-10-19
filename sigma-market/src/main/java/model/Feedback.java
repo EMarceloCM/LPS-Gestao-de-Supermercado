@@ -15,7 +15,7 @@ public class Feedback {
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name="costumer_id")
-    private Costumer costumer;
+    private Customer customer;
 
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name="order_id", unique = true)
