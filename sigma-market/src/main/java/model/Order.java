@@ -29,7 +29,7 @@ public class Order {
     private PaymentType paymentType;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(name="costumer_id")
+    @JoinColumn(name="customer_id")
     private Customer customer;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})

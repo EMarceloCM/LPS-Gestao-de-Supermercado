@@ -22,15 +22,15 @@ public class Customer {
     @Enumerated(EnumType.STRING)
     private Role Role;
 
-    @OneToMany(mappedBy = "costumer")
+    @OneToMany(mappedBy = "customer")
     List<Address> addresses;
 
-    @OneToMany(mappedBy = "costumer")
+    @OneToMany(mappedBy = "customer")
     List<Feedback> feedbacks;
 
-    @OneToMany(mappedBy = "costumer")
+    @OneToMany(mappedBy = "customer")
     List<Order> orders;
 
-    @OneToMany(mappedBy = "costumer", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     List<ShoppingCart> shoppingCarts;
 }

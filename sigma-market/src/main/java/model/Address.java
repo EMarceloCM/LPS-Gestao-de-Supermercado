@@ -17,6 +17,6 @@ public class Address {
     private String neighborhood;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(name="costumer_id")
+    @JoinColumn(name="customer_id")
     private Customer customer;
 }
