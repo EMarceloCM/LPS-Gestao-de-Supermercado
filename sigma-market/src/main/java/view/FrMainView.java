@@ -2,6 +2,8 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
@@ -36,7 +38,7 @@ public class FrMainView extends JFrame {
         setContentPane(panMain);
         setTitle("Supermercado Sigma");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(800, 500);
+        setSize(1280, 720);
         setLocationRelativeTo(null);
         setVisible(true);
 
@@ -59,6 +61,14 @@ public class FrMainView extends JFrame {
                 }
 
                 super.mouseClicked(e);
+            }
+        });
+        btnFornecedor.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                FrSupplier dlgSupplier = new FrSupplier(FrMainView.this, true);
+                dlgSupplier.setLocationRelativeTo(FrMainView.this);
+                dlgSupplier.setVisible(true);
             }
         });
     }
