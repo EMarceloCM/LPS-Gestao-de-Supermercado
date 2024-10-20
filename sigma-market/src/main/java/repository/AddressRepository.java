@@ -3,7 +3,7 @@ package repository;
 import factory.DatabaseJPA;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
-import model.Address;
+import model.entities.Address;
 import repository.interfaces.IRepository;
 import java.util.List;
 

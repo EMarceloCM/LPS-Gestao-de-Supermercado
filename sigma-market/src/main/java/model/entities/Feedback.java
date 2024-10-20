@@ -1,4 +1,4 @@
-package model;
+package model.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -7,16 +7,17 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Address {
+public class Feedback {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String street;
-    private int number;
-    private String complement;
-    private String neighborhood;
+    private String review;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name="customer_id")
     private Customer customer;
+
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name="order_id", unique = true)
+    private Order order;
 }

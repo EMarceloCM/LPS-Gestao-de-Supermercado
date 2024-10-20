@@ -1,25 +1,23 @@
-package model;
+package model.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class ItemOrder {
+public class Promotion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private float discountPercentage;
+    private LocalDateTime creationDate;
+    private int durationMinutes;
+    private boolean isActive;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name="product_id")
     private Product product;
-
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(name = "order_id")
-    private Order order;
-
-    private int quantity;
-    private float totalAmount;
 }

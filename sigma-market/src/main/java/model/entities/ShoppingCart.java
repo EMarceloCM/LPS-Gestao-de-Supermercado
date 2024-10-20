@@ -1,4 +1,4 @@
-package model;
+package model.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -7,17 +7,19 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Feedback {
+public class ShoppingCart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String review;
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name="product_id")
+    private Product product;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name="customer_id")
     private Customer customer;
 
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(name="order_id", unique = true)
-    private Order order;
+    private int quantity;
+    private float totalAmount;
 }

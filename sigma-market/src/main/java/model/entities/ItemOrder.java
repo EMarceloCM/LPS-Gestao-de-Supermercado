@@ -1,4 +1,4 @@
-package model;
+package model.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -7,18 +7,18 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class ShoppingCart {
+public class ItemOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(name="product_id")
+    @JoinColumn(name = "product_id")
     private Product product;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinColumn(name="customer_id")
-    private Customer customer;
+    @JoinColumn(name = "order_id")
+    private Order order;
 
     private int quantity;
     private float totalAmount;
