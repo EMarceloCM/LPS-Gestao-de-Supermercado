@@ -21,6 +21,6 @@ public class FrSupplier extends JDialog {
         // window info
         setContentPane(panMain);
         setTitle("Fornecedor");
-        setSize(1000, 680);
+        setSize(1280, 680);
     }
 }

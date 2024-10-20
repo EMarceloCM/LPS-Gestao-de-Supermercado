@@ -28,7 +28,11 @@
             <properties>
               <font name="Arial" size="12"/>
               <foreground color="-16777216"/>
+              <updateSelectionOnSort value="true"/>
             </properties>
+            <clientProperties>
+              <Table.isFileList class="java.lang.Boolean" value="false"/>
+            </clientProperties>
           </component>
         </children>
       </scrollpane>
