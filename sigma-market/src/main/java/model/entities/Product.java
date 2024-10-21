@@ -19,7 +19,7 @@ public class Product {
     private LocalDateTime expiredDate;
     private float price;
     private int stock;
-    private int sku;
+    private String sku;
 
     @OneToMany(mappedBy = "product")
     List<Promotion> promotions;
