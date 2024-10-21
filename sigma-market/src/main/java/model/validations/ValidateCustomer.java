@@ -1,7 +1,9 @@
 package model.validations;
 
 import model.entities.Customer;
+import model.enums.Role;
 import model.exceptions.CustomerException;
+import model.utils.EnumUtils;
 
 public class ValidateCustomer{
     public static Customer Validate(String name, String password, String cpf, String email, String role) throws CustomerException {
@@ -32,10 +34,12 @@ public class ValidateCustomer{
         if(role.isEmpty() || role.isBlank())
             throw new CustomerException("Error - Campo vazio: 'role'.");
 
-        if(ValidateEnum.ValidateRole(role) == null)
+        EnumUtils.EnumConverter<Role> converter = new EnumUtils.EnumConverter<>(Role.class);
+        Role r = (Role) converter.convert(role);
+        if(r == null)
             throw new CustomerException("Error - Campo inválido: 'role'.");
 
-        c.setRole(ValidateEnum.ValidateRole(role));
+        c.setRole(r);
 
         return c;
     }
