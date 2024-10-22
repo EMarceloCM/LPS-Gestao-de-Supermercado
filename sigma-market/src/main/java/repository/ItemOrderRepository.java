@@ -91,4 +91,15 @@ public class ItemOrderRepository implements IRepository<ItemOrder> {
 
         return true;
     }
+
+    public List<ItemOrder> findByOrder(int order_id) {
+        this.entityManager = DatabaseJPA.getInstance().getEntityManager();
+        jpql = " SELECT i FROM ItemOrder i WHERE i.order_id = :order_id ";
+        qry = this.entityManager.createQuery(jpql);
+        qry.setParameter("order_id", order_id);
+        List lst = qry.getResultList();
+        this.entityManager.close();
+
+        return (List<ItemOrder>) lst;
+    }
 }

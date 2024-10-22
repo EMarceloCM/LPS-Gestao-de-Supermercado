@@ -91,4 +91,15 @@ public class AddressRepository implements IRepository<Address> {
 
         return true;
     }
+
+    public List<Address> findByCostumer(int customer_id) {
+        this.entityManager = DatabaseJPA.getInstance().getEntityManager();
+        jpql = "SELECT a FROM Address a WHERE a.customer_id = :customer_id";
+        qry = this.entityManager.createQuery(jpql);
+        qry.setParameter("customer_id", customer_id);
+        List lst = qry.getResultList();
+        this.entityManager.close();
+
+        return (List<Address>) lst;
+    }
 }

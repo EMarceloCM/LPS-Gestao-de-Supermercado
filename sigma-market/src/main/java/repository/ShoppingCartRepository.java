@@ -91,4 +91,15 @@ public class ShoppingCartRepository implements IRepository<ShoppingCart> {
 
         return true;
     }
+
+    public List<ShoppingCart> findByCustomer(int customerId) {
+        this.entityManager = DatabaseJPA.getInstance().getEntityManager();
+        jpql = " SELECT sc FROM ShoppingCart sc WHERE sc.customer.id = :customerId ";
+        qry = this.entityManager.createQuery(jpql);
+        qry.setParameter("customerId", customerId);
+        List lst = qry.getResultList();
+        this.entityManager.close();
+
+        return (List<ShoppingCart>) lst;
+    }
 }

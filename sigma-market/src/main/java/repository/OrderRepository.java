@@ -91,4 +91,15 @@ public class OrderRepository implements IRepository<Order> {
 
         return true;
     }
+
+    public List<Order> findByCustomer(int customer_id) {
+        this.entityManager = DatabaseJPA.getInstance().getEntityManager();
+        jpql = " SELECT o FROM Order o WHERE o.customer.id = :customer_id ";
+        qry = this.entityManager.createQuery(jpql);
+        qry.setParameter("customer_id", customer_id);
+        List lst = qry.getResultList();
+        this.entityManager.close();
+
+        return (List<Order>) lst;
+    }
 }

@@ -52,6 +52,8 @@ public class FrMainView extends JFrame {
 
         productController.refreshTable(grdProducts);
 
+        // TODO campos de pesquisa de itens
+
         lblReference.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {

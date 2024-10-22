@@ -91,4 +91,15 @@ public class PromotionRepository implements IRepository<Promotion> {
 
         return true;
     }
+
+    public Promotion findByProduct(int product_id) {
+        this.entityManager = DatabaseJPA.getInstance().getEntityManager();
+        jpql = " SELECT p FROM Promotion p WHERE p.product.id = :product_id";
+        qry = this.entityManager.createQuery(jpql);
+        qry.setParameter("product_id", product_id);
+        List lst = qry.getResultList();
+        this.entityManager.close();
+
+        return (Promotion) lst.get(0);
+    }
 }

@@ -91,4 +91,26 @@ public class FeedbackRepository implements IRepository<Feedback> {
 
         return true;
     }
+
+    public List<Feedback> findByCustomer(int customerId) {
+        this.entityManager = DatabaseJPA.getInstance().getEntityManager();
+        jpql = " SELECT f FROM Feedback f WHERE f.customer.id = :customerId ";
+        qry = this.entityManager.createQuery(jpql);
+        qry.setParameter("customerId", customerId);
+        List lst = qry.getResultList();
+        this.entityManager.close();
+
+        return (List<Feedback>) lst;
+    }
+
+    public Feedback findByOrder(int orderId) {
+        this.entityManager = DatabaseJPA.getInstance().getEntityManager();
+        jpql = " SELECT f FROM Feedback f WHERE f.order.id = :orderId ";
+        qry = this.entityManager.createQuery(jpql);
+        qry.setParameter("orderId", orderId);
+        List lst = qry.getResultList();
+        this.entityManager.close();
+
+        return (Feedback) lst.get(0);
+    }
 }

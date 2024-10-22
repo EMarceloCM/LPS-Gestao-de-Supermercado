@@ -39,7 +39,7 @@ public class CostumerRepository implements IRepository<Customer> {
     public List<Customer> findAll() {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
 
-        jpql = " SELECT c FROM Costumer c ";
+        jpql = " SELECT c FROM Customer c ";
         qry = this.entityManager.createQuery(jpql);
         List lst = qry.getResultList();
 
@@ -90,5 +90,27 @@ public class CostumerRepository implements IRepository<Customer> {
         this.entityManager.getTransaction().commit();
 
         return true;
+    }
+
+    public Customer findByCPF(String cpf) {
+        this.entityManager = DatabaseJPA.getInstance().getEntityManager();
+        jpql = "SELECT c FROM Customer c WHERE c.cpf = :cpf";
+        qry = this.entityManager.createQuery(jpql);
+        qry.setParameter("cpf", cpf);
+        List lst = qry.getResultList();
+        this.entityManager.close();
+
+        return (Customer) lst.get(0);
+    }
+
+    public Customer findByEmail(String email) {
+        this.entityManager = DatabaseJPA.getInstance().getEntityManager();
+        jpql = "SELECT c FROM Customer c WHERE c.email = :email";
+        qry = this.entityManager.createQuery(jpql);
+        qry.setParameter("email", email);
+        List lst = qry.getResultList();
+        this.entityManager.close();
+
+        return (Customer) lst.get(0);
     }
 }
