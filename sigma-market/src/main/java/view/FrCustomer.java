@@ -100,7 +100,7 @@ public class FrCustomer extends JDialog {
                 }
 
                 int response = JOptionPane.showConfirmDialog(null,
-                        "Tem certeza que deseja excluir a pessoa '" + marked.getName() + "'?",
+                        "Tem certeza que deseja excluir o fornecedor '" + marked.getName() + "'?",
                         "Confirmar exclusão",
                         JOptionPane.OK_CANCEL_OPTION,
                         JOptionPane.QUESTION_MESSAGE);
@@ -115,9 +115,10 @@ public class FrCustomer extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 try {
                     if (editingId == -1)
-                        controller.createCustomer(edtCpf.getText(), edtEmail.getText(), edtNome.getText(), Arrays.toString(pswUserPassword.getPassword()), comboBoxRole.getSelectedIndex());
-//                    else
-//                        supplierController.updateSupplier(editingId, edtCnpj.getText(), edtNome.getText());
+                        controller.createCustomer(edtCpf.getText(), edtEmail.getText(), edtNome.getText(), new String(pswUserPassword.getPassword()), comboBoxRole.getSelectedIndex());
+                    else
+                        controller.updateCustomer(editingId, edtCpf.getText(), edtEmail.getText(), edtNome.getText(), new String(pswUserPassword.getPassword()), comboBoxRole.getSelectedIndex());
+
                     controller.refreshTable(grd);
                     swapForm();
                     cleanForm();

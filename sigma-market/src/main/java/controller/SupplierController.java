@@ -37,9 +37,14 @@ public class SupplierController {
         repository.save(newObj);
     }
 
-    public void updateSupplier(int editingId, String cnpj, String nome) {
+    public void updateSupplier(int id, String cnpj, String nome) {
         Supplier o = ValidateSupplier.Validate(cnpj, nome);
-        o.setId(editingId);
+        o.setId(id);
+
+        // se um outro objeto sem ser 'o' possui o cnpj...
+        if (repository.findByCNPJ(o.getCnpj()).getId() != id) {
+            throw new SupplierException("[ERROR] - O Fornecedor com esse CPF já foi cadastrado");
+        }
 
         repository.update(o);
     }
