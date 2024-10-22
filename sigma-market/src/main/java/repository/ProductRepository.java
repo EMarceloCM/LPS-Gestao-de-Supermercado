@@ -94,4 +94,17 @@ public class ProductRepository implements IRepository<Product> {
 
         return true;
     }
+
+    public List<Product> findWithFilter(String filter) {
+        this.entityManager = DatabaseJPA.getInstance().getEntityManager();
+        String jpql = " SELECT p "
+                + " FROM Product p "
+                + " WHERE p.name LIKE :filter OR p.description LIKE :filter ";
+        qry = this.entityManager.createQuery(jpql);
+        qry.setParameter("filter", "%" + filter + "%");
+        List lst = qry.getResultList();
+        this.entityManager.close();
+
+        return (List<Product>) lst;
+    }
 }

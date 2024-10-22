@@ -7,13 +7,13 @@ import model.entities.Customer;
 import repository.interfaces.IRepository;
 import java.util.List;
 
-public class CostumerRepository implements IRepository<Customer> {
+public class CustomerRepository implements IRepository<Customer> {
 
     private EntityManager entityManager;
     private Query qry;
     private String jpql;
 
-    public CostumerRepository() {}
+    public CustomerRepository() {}
 
     @Override
     public Customer find(int id) {
@@ -112,5 +112,18 @@ public class CostumerRepository implements IRepository<Customer> {
         this.entityManager.close();
 
         return (Customer) lst.get(0);
+    }
+
+    public List<Customer> findWithFilter(String filter) {
+        this.entityManager = DatabaseJPA.getInstance().getEntityManager();
+        String jpql = " SELECT c "
+                + " FROM Customer c"
+                + " WHERE c.name LIKE :filter OR c.email LIKE :filter ";
+        qry = this.entityManager.createQuery(jpql);
+        qry.setParameter("filter", "%" + filter + "%");
+        List lst = qry.getResultList();
+        this.entityManager.close();
+
+        return (List<Customer>) lst;
     }
 }

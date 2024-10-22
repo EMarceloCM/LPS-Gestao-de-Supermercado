@@ -102,4 +102,17 @@ public class PromotionRepository implements IRepository<Promotion> {
 
         return (Promotion) lst.get(0);
     }
+
+    public List<Promotion> findActive(boolean isActive) {
+        this.entityManager = DatabaseJPA.getInstance().getEntityManager();
+        String jpql = " SELECT p "
+                + " FROM Promotion p "
+                + " WHERE p.isActive = :isActive ";
+        qry = this.entityManager.createQuery(jpql);
+        qry.setParameter("isActive", isActive);
+        List lst = qry.getResultList();
+        this.entityManager.close();
+
+        return (List<Promotion>) lst;
+    }
 }

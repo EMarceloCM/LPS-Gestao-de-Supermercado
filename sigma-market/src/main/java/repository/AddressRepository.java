@@ -102,4 +102,17 @@ public class AddressRepository implements IRepository<Address> {
 
         return (List<Address>) lst;
     }
+
+    public List<Address> findWithFilter(String filter) {
+        this.entityManager = DatabaseJPA.getInstance().getEntityManager();
+        String jpql = " SELECT a "
+                + " FROM Address a"
+                + " WHERE a.street LIKE :filter OR a.complement LIKE :filter OR a.neighborhood LIKE :filter ";
+        qry = this.entityManager.createQuery(jpql);
+        qry.setParameter("filter", "%" + filter + "%");
+        List lst = qry.getResultList();
+        this.entityManager.close();
+
+        return (List<Address>) lst;
+    }
 }

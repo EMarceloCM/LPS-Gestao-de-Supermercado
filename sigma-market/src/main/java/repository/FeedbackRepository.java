@@ -113,4 +113,17 @@ public class FeedbackRepository implements IRepository<Feedback> {
 
         return (Feedback) lst.get(0);
     }
+
+    public List<Feedback> findWithFilter(String filter) {
+        this.entityManager = DatabaseJPA.getInstance().getEntityManager();
+        String jpql = " SELECT f "
+                + " FROM Feedback f"
+                + " WHERE f.review LIKE :filter ";
+        qry = this.entityManager.createQuery(jpql);
+        qry.setParameter("filter", "%" + filter + "%");
+        List lst = qry.getResultList();
+        this.entityManager.close();
+
+        return (List<Feedback>) lst;
+    }
 }
