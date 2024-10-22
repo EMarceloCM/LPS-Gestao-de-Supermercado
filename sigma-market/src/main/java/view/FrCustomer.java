@@ -100,13 +100,13 @@ public class FrCustomer extends JDialog {
                 }
 
                 int response = JOptionPane.showConfirmDialog(null,
-                        "Tem certeza que deseja excluir o fornecedor '" + marked.getName() + "'?",
+                        "Tem certeza que deseja excluir '" + marked.getName() + "'?",
                         "Confirmar exclusão",
                         JOptionPane.OK_CANCEL_OPTION,
                         JOptionPane.QUESTION_MESSAGE);
                 if (response == JOptionPane.OK_OPTION) {
-                    // supplierController.deleteSupplier(marked.getId());
-                    // supplierController.refreshTable(grd);
+                    controller.deleteCustomer(marked.getId());
+                    controller.refreshTable(grd);
                 }
             }
         });

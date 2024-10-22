@@ -48,4 +48,8 @@ public class CustomerController {
 
         repository.update(o);
     }
+
+    public void deleteCustomer(int id) {
+        repository.delete(id);
+    }
 }
