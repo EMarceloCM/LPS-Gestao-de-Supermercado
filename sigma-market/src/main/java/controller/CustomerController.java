@@ -27,6 +27,12 @@ public class CustomerController {
         t.setModel(model);
     }
 
+    public void filterTable(JTable t, String filter) {
+        List<Customer> list = repository.findWithFilter(filter);
+        TMCustomer model = new TMCustomer(list);
+        t.setModel(model);
+    }
+
     public void createCustomer(String cpf, String name, String email, String psw, int role) {
         Customer o = ValidateCustomer.Validate(name, psw, cpf, email, Role.values()[role].name());
 

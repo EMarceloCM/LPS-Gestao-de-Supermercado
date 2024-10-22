@@ -10,6 +10,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Arrays;
 
 public class FrCustomer extends JDialog {
@@ -128,6 +130,12 @@ public class FrCustomer extends JDialog {
 
             }
         });
+        lblSearchImg.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                controller.filterTable(grd, edtSearch.getText());
+            }
+        });
     }
 
     private void initCustomComponents() {
@@ -162,6 +170,7 @@ public class FrCustomer extends JDialog {
         edtCpf.setText("");
         edtNome.setText("");
         edtEmail.setText("");
+        pswUserPassword.setText("");
         comboBoxRole.setSelectedIndex(0);
     }
 
