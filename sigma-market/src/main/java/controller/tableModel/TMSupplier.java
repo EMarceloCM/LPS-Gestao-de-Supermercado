@@ -1,16 +1,19 @@
 package controller.tableModel;
 
+import lombok.Getter;
 import model.entities.Supplier;
 import javax.swing.table.AbstractTableModel;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TMSupplier extends AbstractTableModel {
-    private List list;
+    @Getter
+    private List<Supplier> list;
 
     private final int COL_NAME = 0;
     private final int COL_CNPJ = 1;
 
-    public TMSupplier(List list) {
+    public TMSupplier(List<Supplier> list) {
         this.list = list;
     }
 

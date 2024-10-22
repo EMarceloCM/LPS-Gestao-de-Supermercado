@@ -16,7 +16,13 @@ public class SupplierController {
     }
 
     public void refreshTable(JTable t) {
-        List list = repository.findAll();
+        List<Supplier> list = repository.findAll();
+        TMSupplier model = new TMSupplier(list);
+        t.setModel(model);
+    }
+
+    public void filterTable(JTable t, String filter) {
+        List<Supplier> list = repository.findWithFilter(filter);
         TMSupplier model = new TMSupplier(list);
         t.setModel(model);
     }

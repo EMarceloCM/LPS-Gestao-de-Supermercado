@@ -124,6 +124,12 @@ public class FrSupplier extends JDialog {
                 super.mouseClicked(e);
             }
         });
+        lblSearchImg.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                supplierController.filterTable(grd, edtSearch.getText());
+            }
+        });
     }
 
     private void initCustomComponents() {

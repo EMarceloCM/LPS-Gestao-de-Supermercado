@@ -111,4 +111,16 @@ public class SupplierRepository implements IRepository<Supplier> {
         }
     }
 
+    public List<Supplier> findWithFilter(String filter) {
+        this.entityManager = DatabaseJPA.getInstance().getEntityManager();
+        String jpql = " SELECT s "
+                + " FROM Supplier s "
+                + " WHERE s.cnpj LIKE :filter OR s.name LIKE :filter ";
+        qry = this.entityManager.createQuery(jpql);
+        qry.setParameter("filter", "%" + filter + "%");
+        List lst = qry.getResultList();
+        this.entityManager.close();
+
+        return (List<Supplier>) lst;
+    }
 }
