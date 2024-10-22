@@ -166,7 +166,7 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="fe289" class="javax.swing.JTable" binding="table1" default-binding="true">
+          <component id="fe289" class="javax.swing.JTable" binding="grd">
             <constraints/>
             <properties>
               <font name="Arial"/>

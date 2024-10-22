@@ -4,7 +4,7 @@ import model.entities.Supplier;
 import model.exceptions.SupplierException;
 
 public class ValidateSupplier {
-    public static Supplier Validate(String name, String cnpj) throws SupplierException {
+    public static Supplier Validate(String cnpj, String name) throws SupplierException {
         Supplier s = new Supplier();
 
         if(name.isEmpty() || name.isBlank())
