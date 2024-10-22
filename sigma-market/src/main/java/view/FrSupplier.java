@@ -4,6 +4,7 @@ import controller.ProductController;
 import controller.SupplierController;
 import model.entities.Product;
 import model.entities.Supplier;
+import model.exceptions.SupplierException;
 import model.utils.TableUtils;
 
 import javax.swing.*;
@@ -77,10 +78,14 @@ public class FrSupplier extends JDialog {
         btnSalvar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (editingId == -1)
-                    supplierController.createSupplier(edtCnpj.getText(), edtNome.getText());
-                else
-                    supplierController.updateSupplier(editingId,edtCnpj.getText(), edtNome.getText());
+                try {
+                    if (editingId == -1)
+                        supplierController.createSupplier(edtCnpj.getText(), edtNome.getText());
+                    else
+                        supplierController.updateSupplier(editingId, edtCnpj.getText(), edtNome.getText());
+                } catch (SupplierException ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro!", JOptionPane.ERROR_MESSAGE);
+                }
 
                 supplierController.refreshTable(grd);
                 swapForm();
