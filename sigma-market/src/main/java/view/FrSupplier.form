@@ -9,6 +9,7 @@
       <background color="-16048293"/>
       <font name="Arial"/>
       <foreground color="-16048293"/>
+      <minimumSize width="819" height="461"/>
     </properties>
     <border type="none"/>
     <children>

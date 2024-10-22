@@ -63,10 +63,9 @@ public class FrSupplier extends JDialog {
         btnEdit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 Supplier marked = (Supplier) TableUtils.getObjectSelected(grd);
                 if (marked == null) {
-                    JOptionPane.showMessageDialog(null, "Selecione um registro para edição", "Erro!", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Selecione um registro para edição.", "Erro!", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 editingId = marked.getId();
@@ -115,11 +114,9 @@ public class FrSupplier extends JDialog {
 
         btnCancel.setVisible(isFormActive);
         btnSalvar.setVisible(isFormActive);
-
         btnDelete.setVisible(!isFormActive);
         btnEdit.setVisible(!isFormActive);
         btnNew.setVisible(!isFormActive);
-
         panForm.setVisible(isFormActive);
     }
 

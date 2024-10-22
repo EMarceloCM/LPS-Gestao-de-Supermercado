@@ -24,6 +24,7 @@ public class SupplierController {
     public void createSupplier(String cnpj, String nome) {
         Supplier newObj = ValidateSupplier.Validate(cnpj, nome);
 
+        // TODO
         if (repository.findByCNPJ(newObj.getCnpj()) != null) {
             throw new SupplierException("[ERROR] - O Fornecedor com esse CPF já foi cadastrado");
         }
