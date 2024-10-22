@@ -1,8 +1,6 @@
 package view;
 
-import controller.ProductController;
 import controller.SupplierController;
-import model.entities.Product;
 import model.entities.Supplier;
 import model.exceptions.SupplierException;
 import model.utils.TableUtils;
@@ -11,6 +9,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class FrSupplier extends JDialog {
 
@@ -29,6 +29,12 @@ public class FrSupplier extends JDialog {
     private JLabel lblCnpj;
     private JTextField edtCnpj;
     private JButton btnSalvar;
+    private javax.swing.JScrollPane JScrollPane;
+    private JPanel panBot;
+    private JPanel panSearch;
+    private JTextField edtSearch;
+    private JLabel lblSearch;
+    private JLabel lblSearchImg;
 
     private SupplierController supplierController;
     private boolean isFormActive;
@@ -36,13 +42,13 @@ public class FrSupplier extends JDialog {
 
     public FrSupplier(Frame parent, boolean modal) {
         super(parent, modal);
-
         setContentPane(panMain);
         setTitle("Fornecedor");
         setSize(1280, 680);
 
         supplierController = new SupplierController();
         isFormActive = true;
+        initCustomComponents();
         swapForm();
         supplierController.refreshTable(grd);
 
@@ -112,6 +118,23 @@ public class FrSupplier extends JDialog {
                 }
             }
         });
+        lblSearchImg.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+            }
+        });
+    }
+
+    private void initCustomComponents() {
+        // set clickable buttons
+        Cursor hand = new Cursor(Cursor.HAND_CURSOR);
+        lblSearchImg.setCursor(hand);
+
+        // set table layout
+        grd.setDefaultEditor(Object.class, null);
+        grd.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        grd.getTableHeader().setReorderingAllowed(false);
     }
 
     private void swapForm() {
@@ -123,6 +146,7 @@ public class FrSupplier extends JDialog {
         btnEdit.setVisible(!isFormActive);
         btnNew.setVisible(!isFormActive);
         panForm.setVisible(isFormActive);
+        panBot.setVisible(!isFormActive);
     }
 
     private void cleanForm() {
