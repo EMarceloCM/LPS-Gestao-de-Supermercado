@@ -100,7 +100,7 @@ public class CustomerRepository implements IRepository<Customer> {
         List lst = qry.getResultList();
         this.entityManager.close();
 
-        return (Customer) lst.get(0);
+        return lst.isEmpty() ? null : (Customer) lst.get(0);
     }
 
     public Customer findByEmail(String email) {
@@ -111,7 +111,7 @@ public class CustomerRepository implements IRepository<Customer> {
         List lst = qry.getResultList();
         this.entityManager.close();
 
-        return (Customer) lst.get(0);
+        return lst.isEmpty() ? null : (Customer) lst.get(0);
     }
 
     public List<Customer> findWithFilter(String filter) {
