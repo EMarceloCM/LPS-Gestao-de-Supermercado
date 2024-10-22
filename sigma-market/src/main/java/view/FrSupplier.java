@@ -36,7 +36,6 @@ public class FrSupplier extends JDialog {
     public FrSupplier(Frame parent, boolean modal) {
         super(parent, modal);
 
-        // window info
         setContentPane(panMain);
         setTitle("Fornecedor");
         setSize(1280, 680);
@@ -64,7 +63,6 @@ public class FrSupplier extends JDialog {
         btnEdit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
 
                 Supplier marked = (Supplier) TableUtils.getObjectSelected(grd);
                 if (marked == null) {

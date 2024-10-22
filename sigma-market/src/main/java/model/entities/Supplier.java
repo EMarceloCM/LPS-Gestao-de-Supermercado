@@ -15,6 +15,6 @@ public class Supplier {
     private String name;
     private String cnpj;
 
-    @OneToMany(mappedBy = "supplier", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "supplier", cascade = CascadeType.ALL)
     List<ProductSupplier> productSuppliers;
 }

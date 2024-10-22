@@ -1,7 +1,6 @@
 package controller.tableModel;
 
 import model.entities.Product;
-
 import javax.swing.table.AbstractTableModel;
 import java.util.List;
 

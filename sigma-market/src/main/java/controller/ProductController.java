@@ -2,7 +2,6 @@ package controller;
 
 import controller.tableModel.TMProduct;
 import repository.ProductRepository;
-
 import javax.swing.*;
 import java.util.List;
 

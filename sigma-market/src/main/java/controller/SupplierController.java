@@ -1,12 +1,10 @@
 package controller;
 
-import controller.tableModel.TMProduct;
 import controller.tableModel.TMSupplier;
 import model.entities.Supplier;
 import model.exceptions.SupplierException;
 import model.validations.ValidateSupplier;
 import repository.SupplierRepository;
-
 import javax.swing.*;
 import java.util.List;
 
@@ -26,10 +24,9 @@ public class SupplierController {
     public void createSupplier(String cnpj, String nome) {
         Supplier newObj = ValidateSupplier.Validate(cnpj, nome);
 
-//        TODO: buscar o CNPJ e verificar se já foi cadastrado
-//        if (repository.find(newObj.getCnpj()) {
-//            throw new SupplierException("[ERROR] - O Fornecedor com esse CPF já foi cadastrado");
-//        }
+        if (repository.findByCNPJ(newObj.getCnpj()) != null) {
+            throw new SupplierException("[ERROR] - O Fornecedor com esse CPF já foi cadastrado");
+        }
 
         repository.save(newObj);
     }
@@ -37,6 +34,7 @@ public class SupplierController {
     public void updateSupplier(int editingId, String cnpj, String nome) {
         Supplier o = ValidateSupplier.Validate(cnpj, nome);
         o.setId(editingId);
+
         repository.update(o);
     }
 
