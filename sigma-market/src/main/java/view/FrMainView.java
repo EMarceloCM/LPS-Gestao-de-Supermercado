@@ -72,9 +72,17 @@ public class FrMainView extends JFrame {
         btnFornecedor.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                FrSupplier dlgSupplier = new FrSupplier(FrMainView.this, true);
-                dlgSupplier.setLocationRelativeTo(FrMainView.this);
-                dlgSupplier.setVisible(true);
+                FrSupplier dlg = new FrSupplier(FrMainView.this, true);
+                dlg.setLocationRelativeTo(FrMainView.this);
+                dlg.setVisible(true);
+            }
+        });
+        btnUsuario.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                FrCustomer dlg = new FrCustomer(FrMainView.this, true);
+                dlg.setLocationRelativeTo(FrMainView.this);
+                dlg.setVisible(true);
             }
         });
     }

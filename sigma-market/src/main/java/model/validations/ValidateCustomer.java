@@ -27,7 +27,7 @@ public class ValidateCustomer{
         if(email.isEmpty() || email.isBlank())
             throw new CustomerException("Error - Campo vazio: 'email'.");
 
-        if(!ValidateEmail.Validate(email))
+        if(!ValidateEmail.isValidEmailAddress(email))
             throw new CustomerException("Error - Campo inválido: 'email'.");
         c.setEmail(email.strip());
 

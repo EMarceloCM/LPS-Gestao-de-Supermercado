@@ -1,56 +1,65 @@
 package view;
 
-import controller.SupplierController;
-import model.entities.Supplier;
-import model.exceptions.SupplierException;
+import controller.CustomerController;
+import model.entities.Customer;
+import model.enums.Role;
+import model.exceptions.CustomerException;
 import model.utils.TableUtils;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.util.Arrays;
 
-public class FrSupplier extends JDialog {
-
-    private JPanel panMain;
-    private JTable grd;
-    private JPanel panButtons;
+public class FrCustomer extends JDialog {
     private JPanel panTop;
     private JLabel lblTitle;
+    private JPanel panButtons;
     private JButton btnNew;
     private JButton btnCancel;
     private JButton btnEdit;
     private JButton btnDelete;
-    private JPanel panForm;
-    private JLabel lblNome;
-    private JTextField edtNome;
-    private JLabel lblCnpj;
-    private JTextField edtCnpj;
     private JButton btnSalvar;
     private javax.swing.JScrollPane JScrollPane;
+    private JTable grd;
+    private JPanel panForm;
     private JPanel panBot;
     private JPanel panSearch;
     private JTextField edtSearch;
     private JLabel lblSearch;
     private JLabel lblSearchImg;
+    private JPanel panFormCore;
+    private JLabel lblPassword;
+    private JLabel lblEmail;
+    private JTextField edtCnpj;
+    private JPanel panMain;
+    private JLabel lblNome;
+    private JTextField edtNome;
+    private JLabel lblCpf;
+    private JTextField edtCpf;
+    private JPasswordField pswUserPassword;
+    private JComboBox comboBoxRole;
+    private JLabel lblRole;
+    private JTextField edtEmail;
 
-    private SupplierController supplierController;
-    private boolean isFormActive;
-    private int editingId;
+    private CustomerController controller;
+    boolean isFormActive;
+    int editingId;
 
-    public FrSupplier(Frame parent, boolean modal) {
+
+    public FrCustomer(Frame parent, boolean modal) {
         super(parent, modal);
         setContentPane(panMain);
-        setTitle("Fornecedor");
+        setTitle("Usuario");
         setSize(1280, 680);
 
-        supplierController = new SupplierController();
+        controller = new CustomerController();
         isFormActive = true;
         initCustomComponents();
         swapForm();
-        supplierController.refreshTable(grd);
+
+        controller.refreshTable(grd);
 
         btnNew.addActionListener(new ActionListener() {
             @Override
@@ -70,7 +79,7 @@ public class FrSupplier extends JDialog {
         btnEdit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Supplier marked = (Supplier) TableUtils.getObjectSelected(grd);
+                Customer marked = (Customer) TableUtils.getObjectSelected(grd);
                 if (marked == null) {
                     JOptionPane.showMessageDialog(null, "Selecione um registro para edição.", "Erro!", JOptionPane.ERROR_MESSAGE);
                     return;
@@ -81,27 +90,10 @@ public class FrSupplier extends JDialog {
                 swapForm();
             }
         });
-        btnSalvar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    if (editingId == -1)
-                        supplierController.createSupplier(edtCnpj.getText(), edtNome.getText());
-                    else
-                        supplierController.updateSupplier(editingId, edtCnpj.getText(), edtNome.getText());
-
-                    supplierController.refreshTable(grd);
-                    swapForm();
-                    cleanForm();
-                } catch (SupplierException ex) {
-                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro!", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-        });
         btnDelete.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Supplier marked = (Supplier) TableUtils.getObjectSelected(grd);
+                Customer marked = (Customer) TableUtils.getObjectSelected(grd);
                 if (marked == null) {
                     JOptionPane.showMessageDialog(null, "Selecione um registro para exclusão!", "Erro!", JOptionPane.ERROR_MESSAGE);
                     return;
@@ -113,15 +105,26 @@ public class FrSupplier extends JDialog {
                         JOptionPane.OK_CANCEL_OPTION,
                         JOptionPane.QUESTION_MESSAGE);
                 if (response == JOptionPane.OK_OPTION) {
-                    supplierController.deleteSupplier(marked.getId());
-                    supplierController.refreshTable(grd);
+                    // supplierController.deleteSupplier(marked.getId());
+                    // supplierController.refreshTable(grd);
                 }
             }
         });
-        lblSearchImg.addMouseListener(new MouseAdapter() {
+        btnSalvar.addActionListener(new ActionListener() {
             @Override
-            public void mouseClicked(MouseEvent e) {
-                supplierController.filterTable(grd, edtSearch.getText());
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    if (editingId == -1)
+                        controller.createCustomer(edtCpf.getText(), edtEmail.getText(), edtNome.getText(), Arrays.toString(pswUserPassword.getPassword()), comboBoxRole.getSelectedIndex());
+//                    else
+//                        supplierController.updateSupplier(editingId, edtCnpj.getText(), edtNome.getText());
+//                    supplierController.refreshTable(grd);
+                    swapForm();
+                    cleanForm();
+                } catch (CustomerException ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro!", JOptionPane.ERROR_MESSAGE);
+                }
+
             }
         });
     }
@@ -130,6 +133,11 @@ public class FrSupplier extends JDialog {
         // set clickable buttons
         Cursor hand = new Cursor(Cursor.HAND_CURSOR);
         lblSearchImg.setCursor(hand);
+
+        // fill combobox with the enum string
+        for (Role role : Role.values()) {
+            comboBoxRole.addItem(role.name());
+        }
 
         // set table layout
         grd.setDefaultEditor(Object.class, null);
@@ -150,12 +158,17 @@ public class FrSupplier extends JDialog {
     }
 
     private void cleanForm() {
-        edtCnpj.setText("");
+        edtCpf.setText("");
         edtNome.setText("");
+        edtEmail.setText("");
+        comboBoxRole.setSelectedIndex(0);
     }
 
-    private void loadForm(Supplier o) {
-        edtCnpj.setText(o.getCnpj());
+    private void loadForm(Customer o) {
+        edtCpf.setText(o.getCpf());
         edtNome.setText(o.getName());
+        edtEmail.setText(o.getEmail());
+        comboBoxRole.setSelectedIndex(o.getRole().ordinal());
     }
+
 }

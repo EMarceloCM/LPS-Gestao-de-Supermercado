@@ -1,7 +1,8 @@
 package model.validations;
 
 public class ValidateEmail {
-    public static boolean Validate(String email){
-        return !email.isEmpty() && !email.isBlank() && email.matches("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$");
+    public static boolean isValidEmailAddress(String email) {
+        //TODO: FAZER UM VALIDADOR DE EMAIL QUE FUNCIONE
+        return true;
     }
 }
