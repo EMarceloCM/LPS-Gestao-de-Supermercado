@@ -1,16 +1,11 @@
 package controller;
 
 import controller.tableModel.TMCustomer;
-import controller.tableModel.TMSupplier;
 import model.entities.Customer;
-import model.entities.Supplier;
 import model.enums.Role;
 import model.exceptions.CustomerException;
-import model.exceptions.SupplierException;
 import model.validations.ValidateCustomer;
-import model.validations.ValidateSupplier;
 import repository.CustomerRepository;
-
 import javax.swing.*;
 import java.util.List;
 
@@ -33,11 +28,15 @@ public class CustomerController {
         t.setModel(model);
     }
 
-    public void createCustomer(String cpf, String name, String email, String psw, int role) {
+    public void createCustomer(String cpf, String email, String name, String psw, int role) {
         Customer o = ValidateCustomer.Validate(name, psw, cpf, email, Role.values()[role].name());
 
         if (repository.findByCPF(o.getCpf()) != null) {
-            throw new CustomerException("[ERROR] - CPF já foi cadastrado");
+            throw new CustomerException("[ERROR] - Este CPF já foi cadastrado!");
+        }
+
+        if (repository.findByEmail(o.getEmail()) != null) {
+            throw new CustomerException("[ERROR] - Este E-mail já foi cadastrado!");
         }
 
         repository.save(o);
@@ -47,9 +46,12 @@ public class CustomerController {
         Customer o = ValidateCustomer.Validate(name, psw, cpf, email, Role.values()[role].name());
         o.setId(id);
 
-        // se um outro objeto sem ser 'o' possui o cpf...
         if (repository.findByCPF(o.getCpf()).getId() != id) {
-            throw new CustomerException("[ERROR] - CPF já foi cadastrado");
+            throw new CustomerException("[ERROR] - Este CPF já foi cadastrado");
+        }
+
+        if (repository.findByEmail(o.getEmail()) != null) {
+            throw new CustomerException("[ERROR] - Este E-mail já foi cadastrado!");
         }
 
         repository.update(o);

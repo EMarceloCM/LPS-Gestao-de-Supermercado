@@ -5,14 +5,12 @@ import model.entities.Customer;
 import model.enums.Role;
 import model.exceptions.CustomerException;
 import model.utils.TableUtils;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Arrays;
 
 public class FrCustomer extends JDialog {
     private JPanel panTop;
@@ -53,7 +51,7 @@ public class FrCustomer extends JDialog {
     public FrCustomer(Frame parent, boolean modal) {
         super(parent, modal);
         setContentPane(panMain);
-        setTitle("Usuario");
+        setTitle("Usuário");
         setSize(1280, 680);
 
         controller = new CustomerController();
@@ -127,7 +125,6 @@ public class FrCustomer extends JDialog {
                 } catch (CustomerException ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro!", JOptionPane.ERROR_MESSAGE);
                 }
-
             }
         });
         lblSearchImg.addMouseListener(new MouseAdapter() {
@@ -139,16 +136,13 @@ public class FrCustomer extends JDialog {
     }
 
     private void initCustomComponents() {
-        // set clickable buttons
         Cursor hand = new Cursor(Cursor.HAND_CURSOR);
         lblSearchImg.setCursor(hand);
 
-        // fill combobox with the enum string
         for (Role role : Role.values()) {
             comboBoxRole.addItem(role.name());
         }
 
-        // set table layout
         grd.setDefaultEditor(Object.class, null);
         grd.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         grd.getTableHeader().setReorderingAllowed(false);
@@ -180,5 +174,4 @@ public class FrCustomer extends JDialog {
         edtEmail.setText(o.getEmail());
         comboBoxRole.setSelectedIndex(o.getRole().ordinal());
     }
-
 }
