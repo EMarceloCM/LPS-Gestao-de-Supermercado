@@ -1,6 +1,7 @@
 package controller;
 
 import controller.tableModel.TMSupplier;
+import model.entities.Customer;
 import model.entities.Supplier;
 import model.exceptions.SupplierException;
 import model.validations.ValidateSupplier;
@@ -31,7 +32,7 @@ public class SupplierController {
         Supplier newObj = ValidateSupplier.Validate(cnpj, nome);
 
         if (repository.findByCNPJ(newObj.getCnpj()) != null) {
-            throw new SupplierException("[ERROR] - O Fornecedor com esse CPF já foi cadastrado");
+            throw new SupplierException("[ERROR] - O Fornecedor com esse CNPJ já foi cadastrado");
         }
 
         repository.save(newObj);
@@ -41,9 +42,9 @@ public class SupplierController {
         Supplier o = ValidateSupplier.Validate(cnpj, nome);
         o.setId(id);
 
-        // se um outro objeto sem ser 'o' possui o cnpj...
-        if (repository.findByCNPJ(o.getCnpj()).getId() != id) {
-            throw new SupplierException("[ERROR] - O Fornecedor com esse CPF já foi cadastrado");
+        Supplier r = repository.findByCNPJ(o.getCnpj());
+        if (r != null && r.getId() != id) {
+            throw new SupplierException("[ERROR] - O Fornecedor com esse CNPJ já foi cadastrado");
         }
 
         repository.update(o);

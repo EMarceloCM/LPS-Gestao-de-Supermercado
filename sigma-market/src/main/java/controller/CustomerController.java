@@ -46,11 +46,13 @@ public class CustomerController {
         Customer o = ValidateCustomer.Validate(name, psw, cpf, email, Role.values()[role].name());
         o.setId(id);
 
-        if (repository.findByCPF(o.getCpf()).getId() != id) {
+        Customer r = repository.findByCPF(o.getCpf());
+        if (r != null && r.getId() != id) {
             throw new CustomerException("[ERROR] - Este CPF já foi cadastrado");
         }
 
-        if (repository.findByEmail(o.getEmail()).getId() != id) {
+        r = repository.findByEmail(o.getEmail());
+        if (r != null && r.getId() != id) {
             throw new CustomerException("[ERROR] - Este E-mail já foi cadastrado!");
         }
 
