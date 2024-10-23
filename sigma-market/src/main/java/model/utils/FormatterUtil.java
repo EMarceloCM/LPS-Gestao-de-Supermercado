@@ -10,6 +10,10 @@ public class FormatterUtil {
         applyMask(field, "##/##/####", '_');
     }
 
+    public static void applyCpfMask(JFormattedTextField field) {
+        applyMask(field, "###.###.###-##", '_');
+    }
+
     public static void applyMask(JFormattedTextField field, String mask, char placeholder) {
         try {
             MaskFormatter mascara = new MaskFormatter(mask);

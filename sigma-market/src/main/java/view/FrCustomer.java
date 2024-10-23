@@ -4,6 +4,7 @@ import controller.CustomerController;
 import model.entities.Customer;
 import model.enums.Role;
 import model.exceptions.CustomerException;
+import model.utils.FormatterUtil;
 import model.utils.TableUtils;
 import javax.swing.*;
 import java.awt.*;
@@ -37,11 +38,11 @@ public class FrCustomer extends JDialog {
     private JLabel lblNome;
     private JTextField edtNome;
     private JLabel lblCpf;
-    private JTextField edtCpf;
     private JPasswordField pswUserPassword;
     private JComboBox comboBoxRole;
     private JLabel lblRole;
     private JTextField edtEmail;
+    private JFormattedTextField fEdtCpf;
 
     private CustomerController controller;
     boolean isFormActive;
@@ -115,9 +116,9 @@ public class FrCustomer extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 try {
                     if (editingId == -1)
-                        controller.createCustomer(edtCpf.getText(), edtEmail.getText(), edtNome.getText(), new String(pswUserPassword.getPassword()), comboBoxRole.getSelectedIndex());
+                        controller.createCustomer(fEdtCpf.getText(), edtEmail.getText(), edtNome.getText(), new String(pswUserPassword.getPassword()), comboBoxRole.getSelectedIndex());
                     else
-                        controller.updateCustomer(editingId, edtCpf.getText(), edtEmail.getText(), edtNome.getText(), new String(pswUserPassword.getPassword()), comboBoxRole.getSelectedIndex());
+                        controller.updateCustomer(editingId, fEdtCpf.getText(), edtEmail.getText(), edtNome.getText(), new String(pswUserPassword.getPassword()), comboBoxRole.getSelectedIndex());
 
                     controller.refreshTable(grd);
                     swapForm();
@@ -138,6 +139,8 @@ public class FrCustomer extends JDialog {
     private void initCustomComponents() {
         Cursor hand = new Cursor(Cursor.HAND_CURSOR);
         lblSearchImg.setCursor(hand);
+
+        FormatterUtil.applyCpfMask(fEdtCpf);
 
         for (Role role : Role.values()) {
             comboBoxRole.addItem(role.name());
@@ -161,7 +164,7 @@ public class FrCustomer extends JDialog {
     }
 
     private void cleanForm() {
-        edtCpf.setText("");
+        fEdtCpf.setText("");
         edtNome.setText("");
         edtEmail.setText("");
         pswUserPassword.setText("");
@@ -169,7 +172,7 @@ public class FrCustomer extends JDialog {
     }
 
     private void loadForm(Customer o) {
-        edtCpf.setText(o.getCpf());
+        fEdtCpf.setText(o.getCpf());
         edtNome.setText(o.getName());
         edtEmail.setText(o.getEmail());
         comboBoxRole.setSelectedIndex(o.getRole().ordinal());
