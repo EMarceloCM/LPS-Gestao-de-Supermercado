@@ -111,7 +111,7 @@ public class FeedbackRepository implements IRepository<Feedback> {
         List lst = qry.getResultList();
         this.entityManager.close();
 
-        return (Feedback) lst.get(0);
+        return lst.isEmpty() ? null : (Feedback) lst.getFirst();
     }
 
     public List<Feedback> findWithFilter(String filter) {

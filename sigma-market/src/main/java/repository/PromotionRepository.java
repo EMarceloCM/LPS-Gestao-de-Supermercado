@@ -100,7 +100,7 @@ public class PromotionRepository implements IRepository<Promotion> {
         List lst = qry.getResultList();
         this.entityManager.close();
 
-        return (Promotion) lst.get(0);
+        return lst.isEmpty() ? null : (Promotion) lst.getFirst();
     }
 
     public List<Promotion> findActive(boolean isActive) {

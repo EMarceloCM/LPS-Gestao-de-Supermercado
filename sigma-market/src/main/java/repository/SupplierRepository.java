@@ -104,11 +104,7 @@ public class SupplierRepository implements IRepository<Supplier> {
 
         this.entityManager.close();
 
-        if (lst.isEmpty()) {
-            return null;
-        } else {
-            return (Supplier) lst.get(0);
-        }
+        return lst.isEmpty() ? null : (Supplier) lst.getFirst();
     }
 
     public List<Supplier> findWithFilter(String filter) {
