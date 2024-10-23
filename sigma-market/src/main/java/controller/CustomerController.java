@@ -50,7 +50,7 @@ public class CustomerController {
             throw new CustomerException("[ERROR] - Este CPF já foi cadastrado");
         }
 
-        if (repository.findByEmail(o.getEmail()) != null) {
+        if (repository.findByEmail(o.getEmail()).getId() != id) {
             throw new CustomerException("[ERROR] - Este E-mail já foi cadastrado!");
         }
 
