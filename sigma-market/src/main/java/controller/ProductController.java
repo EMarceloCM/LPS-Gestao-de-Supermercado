@@ -12,7 +12,7 @@ public class ProductController {
         repository = new ProductRepository();
     }
 
-    public void refreshTable(JTable t) {
+    public void refreshBuyTable(JTable t) {
         List list = repository.findAll();
         TMProduct model = new TMProduct(list);
         t.setModel(model);
