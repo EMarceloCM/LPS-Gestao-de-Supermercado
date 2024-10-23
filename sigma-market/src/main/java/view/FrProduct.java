@@ -1,8 +1,12 @@
 package view;
 
-import javax.swing.*;
+import controller.CustomerController;
+import model.utils.FormatterUtil;
 
-public class FrProduct {
+import javax.swing.*;
+import java.awt.*;
+
+public class FrProduct extends  JDialog {
     private JPanel panTop;
     private JLabel lblTitle;
     private JPanel panButtons;
@@ -35,4 +39,13 @@ public class FrProduct {
     private JTextArea textArea1;
     private JLabel lblImgUrl;
     private JTextField edtImgUrl;
+
+    public FrProduct(Frame parent, boolean modal) {
+        super(parent, modal);
+        setContentPane(panMain);
+        setTitle("Produtos");
+        setSize(1280, 680);
+
+        FormatterUtil.applyDateMask(fEdtData);
+    }
 }
