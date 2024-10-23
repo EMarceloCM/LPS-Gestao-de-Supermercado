@@ -4,7 +4,7 @@ import model.entities.Product;
 import javax.swing.table.AbstractTableModel;
 import java.util.List;
 
-public class TMProduct extends AbstractTableModel {
+public class TMProductBuy extends AbstractTableModel {
     private List list;
 
     private final int COL_IMAGE = 0;
@@ -13,7 +13,7 @@ public class TMProduct extends AbstractTableModel {
     private final int COL_PRICE = 3;
     private final int COL_DISCOUNT = 4;
 
-    public TMProduct(List list) {
+    public TMProductBuy(List list) {
         this.list = list;
     }
 

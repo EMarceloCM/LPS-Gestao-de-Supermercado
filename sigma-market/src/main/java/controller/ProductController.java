@@ -1,6 +1,6 @@
 package controller;
 
-import controller.tableModel.TMProduct;
+import controller.tableModel.TMProductBuy;
 import repository.ProductRepository;
 import javax.swing.*;
 import java.util.List;
@@ -14,7 +14,7 @@ public class ProductController {
 
     public void refreshBuyTable(JTable t) {
         List list = repository.findAll();
-        TMProduct model = new TMProduct(list);
+        TMProductBuy model = new TMProductBuy(list);
         t.setModel(model);
     }
 }
