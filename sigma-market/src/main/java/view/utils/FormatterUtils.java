@@ -1,11 +1,11 @@
-package model.utils;
+package view.utils;
 
 import javax.swing.*;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 import java.text.ParseException;
 
-public class FormatterUtil {
+public class FormatterUtils {
     public static void applyDateMask(JFormattedTextField field) {
         applyMask(field, "##/##/####", '_');
     }

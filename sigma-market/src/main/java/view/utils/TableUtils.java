@@ -1,4 +1,4 @@
-package model.utils;
+package view.utils;
 
 import javax.swing.*;
 

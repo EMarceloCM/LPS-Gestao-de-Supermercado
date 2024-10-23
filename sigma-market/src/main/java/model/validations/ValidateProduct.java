@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
 public class ValidateProduct {
-    public static Product Valdidate(String name, String description, String imgUrl, String expiredDate, String price, String stock, String sku) throws ProductException, DateTimeParseException, NumberFormatException {
+    public static Product Validate(String name, String description, String imgUrl, String price, int stock, String sku) throws ProductException, DateTimeParseException, NumberFormatException {
         Product p = new Product();
 
         if (name.isBlank() || name.isEmpty())
@@ -21,14 +21,6 @@ public class ValidateProduct {
             throw new ProductException("Error - Campo vazio: 'ULR da imagem'.");
         p.setImgUrl(imgUrl);
 
-        LocalDateTime localDate = null;
-        try {
-            localDate = LocalDateTime.parse(expiredDate);
-        } catch (DateTimeParseException ex) {
-            throw new DateTimeParseException("Error - Campo inválido: 'data de validade'.", ex.getParsedString(), ex.getErrorIndex());
-        }
-        p.setExpiredDate(localDate);
-
         float floatValue = 0.0f;
         try {
             floatValue = Float.parseFloat(price);
@@ -39,15 +31,10 @@ public class ValidateProduct {
             throw new ProductException("Error - Campo inválido: 'preço' não pode ser 0.");
         p.setPrice(floatValue);
 
-        int intValue = 0;
-        try {
-            intValue = Integer.parseInt(stock);
-        } catch (NumberFormatException ex) {
+        if (stock < 0) {
             throw new NumberFormatException("Error - Campo inválido: 'estoque'.");
         }
-        if(intValue == 0)
-            throw new ProductException("Error - Campo inválido: 'estoque' não pode ser 0.");
-        p.setStock(intValue);
+        p.setStock(stock);
 
         if(sku.isBlank() || sku.isEmpty())
             throw new ProductException("Error - Campo vazio: 'sku'.");

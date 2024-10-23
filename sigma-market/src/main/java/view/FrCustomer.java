@@ -4,8 +4,8 @@ import controller.CustomerController;
 import model.entities.Customer;
 import model.enums.Role;
 import model.exceptions.CustomerException;
-import model.utils.FormatterUtil;
-import model.utils.TableUtils;
+import view.utils.FormatterUtils;
+import view.utils.TableUtils;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -140,7 +140,7 @@ public class FrCustomer extends JDialog {
         Cursor hand = new Cursor(Cursor.HAND_CURSOR);
         lblSearchImg.setCursor(hand);
 
-        FormatterUtil.applyCpfMask(fEdtCpf);
+        FormatterUtils.applyCpfMask(fEdtCpf);
 
         for (Role role : Role.values()) {
             comboBoxRole.addItem(role.name());

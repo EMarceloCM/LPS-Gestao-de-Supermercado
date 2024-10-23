@@ -3,8 +3,8 @@ package view;
 import controller.SupplierController;
 import model.entities.Supplier;
 import model.exceptions.SupplierException;
-import model.utils.FormatterUtil;
-import model.utils.TableUtils;
+import view.utils.FormatterUtils;
+import view.utils.TableUtils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -132,7 +132,7 @@ public class FrSupplier extends JDialog {
         Cursor hand = new Cursor(Cursor.HAND_CURSOR);
         lblSearchImg.setCursor(hand);
 
-        FormatterUtil.applyCnpjMask(fEdtCnpj);
+        FormatterUtils.applyCnpjMask(fEdtCnpj);
 
         // set table layout
         grd.setDefaultEditor(Object.class, null);
