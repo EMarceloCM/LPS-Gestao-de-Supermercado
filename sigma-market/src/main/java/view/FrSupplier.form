@@ -224,28 +224,26 @@
               <text value="CNPJ:"/>
             </properties>
           </component>
-          <hspacer id="28e0b">
-            <constraints>
-              <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-          </hspacer>
           <hspacer id="3f764">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
           </hspacer>
-          <component id="42c33" class="javax.swing.JTextField" binding="edtCnpj">
+          <component id="724eb" class="javax.swing.JFormattedTextField" binding="fEdtCnpj">
             <constraints>
               <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <minimum-size width="-1" height="25"/>
-                <preferred-size width="150" height="-1"/>
-                <maximum-size width="350" height="-1"/>
+                <minimum-size width="100" height="25"/>
               </grid>
             </constraints>
             <properties>
               <font name="Arial" size="12"/>
             </properties>
           </component>
+          <hspacer id="7094">
+            <constraints>
+              <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
         </children>
       </grid>
       <grid id="c4f2f" binding="panBot" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">

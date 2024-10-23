@@ -3,6 +3,7 @@ package view;
 import controller.SupplierController;
 import model.entities.Supplier;
 import model.exceptions.SupplierException;
+import model.utils.FormatterUtil;
 import model.utils.TableUtils;
 
 import javax.swing.*;
@@ -27,7 +28,6 @@ public class FrSupplier extends JDialog {
     private JLabel lblNome;
     private JTextField edtNome;
     private JLabel lblCnpj;
-    private JTextField edtCnpj;
     private JButton btnSalvar;
     private javax.swing.JScrollPane JScrollPane;
     private JPanel panBot;
@@ -35,6 +35,7 @@ public class FrSupplier extends JDialog {
     private JTextField edtSearch;
     private JLabel lblSearch;
     private JLabel lblSearchImg;
+    private JFormattedTextField fEdtCnpj;
 
     private SupplierController supplierController;
     private boolean isFormActive;
@@ -86,9 +87,9 @@ public class FrSupplier extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 try {
                     if (editingId == -1)
-                        supplierController.createSupplier(edtCnpj.getText(), edtNome.getText());
+                        supplierController.createSupplier(fEdtCnpj.getText(), edtNome.getText());
                     else
-                        supplierController.updateSupplier(editingId, edtCnpj.getText(), edtNome.getText());
+                        supplierController.updateSupplier(editingId, fEdtCnpj.getText(), edtNome.getText());
 
                     supplierController.refreshTable(grd);
                     swapForm();
@@ -131,6 +132,8 @@ public class FrSupplier extends JDialog {
         Cursor hand = new Cursor(Cursor.HAND_CURSOR);
         lblSearchImg.setCursor(hand);
 
+        FormatterUtil.applyCnpjMask(fEdtCnpj);
+
         // set table layout
         grd.setDefaultEditor(Object.class, null);
         grd.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -150,12 +153,12 @@ public class FrSupplier extends JDialog {
     }
 
     private void cleanForm() {
-        edtCnpj.setText("");
+        fEdtCnpj.setText("");
         edtNome.setText("");
     }
 
     private void loadForm(Supplier o) {
-        edtCnpj.setText(o.getCnpj());
+        fEdtCnpj.setText(o.getCnpj());
         edtNome.setText(o.getName());
     }
 }
