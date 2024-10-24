@@ -1,14 +1,10 @@
 package view;
 
 import controller.ProductController;
-import controller.SupplierController;
-import model.entities.Customer;
 import model.entities.Product;
-import model.exceptions.SupplierException;
+import model.exceptions.ProductException;
 import view.utils.DecimalInputValidator;
-import view.utils.FormatterUtils;
 import view.utils.TableUtils;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -130,7 +126,7 @@ public class FrProduct extends  JDialog {
                     controller.refreshTable(grd);
                     swapForm();
                     cleanForm();
-                } catch (SupplierException ex) {
+                } catch (ProductException ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro!", JOptionPane.ERROR_MESSAGE);
                 }
             }

@@ -48,5 +48,4 @@ public class DecimalInputValidator extends KeyAdapter {
             }
         }
     }
-
 }
