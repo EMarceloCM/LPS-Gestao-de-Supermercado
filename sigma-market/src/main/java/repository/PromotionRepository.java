@@ -111,20 +111,22 @@ public class PromotionRepository implements IRepository<Promotion> {
         return true;
     }
 
-    public Promotion findByProduct(int product_id) {
+    public List<Promotion> findByProduct(int product_id) {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
         jpql = " SELECT p FROM Promotion p WHERE p.product.id = :product_id";
         qry = this.entityManager.createQuery(jpql);
         qry.setParameter("product_id", product_id);
-        List lst = qry.getResultList();
+        List<Promotion> lst = qry.getResultList();
         this.entityManager.close();
 
-        if(verifyDate(((Promotion) lst.getFirst()).getCreationDate(), ((Promotion) lst.getFirst()).getDurationMinutes())) {
-            deactivatePromotion(((Promotion) lst.getFirst()).getId());
-            ((Promotion) lst.getFirst()).setActive(false);
+        for(int i = 0; i < lst.size(); i++) {
+            if(verifyDate(lst.get(i).getCreationDate(), lst.get(i).getDurationMinutes())) {
+                deactivatePromotion(lst.get(i).getId());
+                lst.get(i).setActive(false);
+            }
         }
 
-        return lst.isEmpty() ? null : (Promotion) lst.getFirst();
+        return lst.isEmpty() ? null : lst;
     }
 
     public List<Promotion> findActive(boolean isActive) {
