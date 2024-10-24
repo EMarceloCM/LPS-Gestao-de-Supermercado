@@ -115,4 +115,6 @@ public class PromotionRepository implements IRepository<Promotion> {
 
         return (List<Promotion>) lst;
     }
+
+    // TODO método findActiveByCustomer que retorna apenas a promocao ativa de um produto (só pode haver uma)
 }

@@ -1,6 +1,7 @@
 package controller.tableModel;
 
 import model.entities.Product;
+import repository.PromotionRepository;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.List;
@@ -44,7 +45,7 @@ public class TMProduct extends AbstractTableModel {
             case COL_NAME -> o.getName();
             case COL_DESC -> o.getDescription();
             case COL_PRICE -> o.getPrice();
-            case COL_DISCOUNT -> o.getPrice();
+            case COL_DISCOUNT -> new PromotionRepository().findByProduct(o.getId()).getDiscountPercentage();
             case COL_SKU -> o.getSku();
             case COL_STOCK -> o.getStock();
             default -> o;

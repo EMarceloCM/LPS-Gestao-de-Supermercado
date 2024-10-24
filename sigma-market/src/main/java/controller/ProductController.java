@@ -1,13 +1,8 @@
 package controller;
 
-import controller.tableModel.TMCustomer;
 import controller.tableModel.TMProduct;
 import controller.tableModel.TMProductBuy;
-import model.entities.Customer;
 import model.entities.Product;
-import model.enums.Role;
-import model.exceptions.CustomerException;
-import model.validations.ValidateCustomer;
 import model.validations.ValidateProduct;
 import repository.ProductRepository;
 import javax.swing.*;
