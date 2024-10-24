@@ -117,4 +117,5 @@ public class PromotionRepository implements IRepository<Promotion> {
     }
 
     // TODO método findActiveByCustomer que retorna apenas a promocao ativa de um produto (só pode haver uma)
+    // TODO método para desativar uma promoção_id
 }
