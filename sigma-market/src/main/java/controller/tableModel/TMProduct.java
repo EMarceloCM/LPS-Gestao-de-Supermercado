@@ -45,7 +45,7 @@ public class TMProduct extends AbstractTableModel {
             case COL_NAME -> o.getName();
             case COL_DESC -> o.getDescription();
             case COL_PRICE -> o.getPrice();
-            case COL_DISCOUNT -> new PromotionRepository().findByProduct(o.getId()).getDiscountPercentage();
+            case COL_DISCOUNT -> new PromotionRepository().findActiveByProduct(o.getId()).getDiscountPercentage();
             case COL_SKU -> o.getSku();
             case COL_STOCK -> o.getStock();
             default -> o;

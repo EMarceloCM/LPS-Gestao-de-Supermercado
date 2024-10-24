@@ -43,7 +43,7 @@ public class TMProductBuy extends AbstractTableModel {
             case COL_NAME -> o.getName();
             case COL_DESC -> o.getDescription();
             case COL_PRICE -> o.getPrice();
-            case COL_DISCOUNT -> o.getPrice() - new PromotionRepository().findByProduct(o.getId()).getDiscountPercentage();
+            case COL_DISCOUNT -> o.getPrice() - (new PromotionRepository().findActiveByProduct(o.getId()).getDiscountPercentage());
             default -> o;
         };
     }
