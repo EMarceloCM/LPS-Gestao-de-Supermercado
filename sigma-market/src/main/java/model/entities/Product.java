@@ -21,7 +21,7 @@ public class Product {
     private int stock;
     private String sku;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
     List<Promotion> promotions;
 
     @OneToMany(mappedBy = "product")

@@ -1,16 +1,11 @@
 package controller.tableModel;
 
-import controller.PromotionController;
 import model.entities.Product;
-import model.entities.Promotion;
-import repository.PromotionRepository;
-
 import javax.swing.table.AbstractTableModel;
 import java.util.List;
 
 public class TMProduct extends AbstractTableModel {
-    private List list;
-    private List<Promotion> promotionList;
+    private List<Product> list;
 
     private final int COL_IMAGE = 0;
     private final int COL_NAME = 1;
@@ -20,10 +15,7 @@ public class TMProduct extends AbstractTableModel {
     private final int COL_SKU = 5;
     private final int COL_STOCK = 6;
 
-    public TMProduct(List list, List<Promotion> promotionList) {
-        this.list = list;
-        this.promotionList = promotionList;
-    }
+    public TMProduct(List<Product> list) { this.list = list; }
 
     @Override
     public int getRowCount() {
@@ -42,22 +34,16 @@ public class TMProduct extends AbstractTableModel {
         if (list.isEmpty())
             return o;
 
-        o = (Product) list.get(rowIndex);
+        o = list.get(rowIndex);
 
-        for(int i = 0; i < promotionList.size(); i++)
-        {
-           if (promotionList.get(i).getId() == o.getId()) {
-               o.setPromotions(promotionList);
-               break;
-           }
-        }
+        boolean hasPromotion = o.getPromotions() != null && !o.getPromotions().isEmpty();
 
         return switch (columnIndex) {
             case COL_IMAGE -> o.getImgUrl();
             case COL_NAME -> o.getName();
             case COL_DESC -> o.getDescription();
             case COL_PRICE -> o.getPrice();
-            case COL_DISCOUNT -> o.getPromotions() == null || o.getPromotions().isEmpty() ? 0 : o.getPromotions().getFirst().getDiscountPercentage();
+            case COL_DISCOUNT -> !hasPromotion ? 0 : o.getPromotions().getFirst().getDiscountPercentage();
             case COL_SKU -> o.getSku();
             case COL_STOCK -> o.getStock();
             default -> o;
