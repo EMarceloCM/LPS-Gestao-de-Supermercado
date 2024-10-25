@@ -31,7 +31,7 @@ public class TMSupplier extends AbstractTableModel {
         if (list.isEmpty())
             return o;
 
-        o = (Supplier) list.get(rowIndex);
+        o = list.get(rowIndex);
 
         return switch (columnIndex) {
             case COL_NAME -> o.getName();

@@ -1,7 +1,6 @@
 package controller;
 
 import controller.tableModel.TMSupplier;
-import model.entities.Customer;
 import model.entities.Supplier;
 import model.exceptions.SupplierException;
 import model.validations.ValidateSupplier;

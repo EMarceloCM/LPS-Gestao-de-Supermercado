@@ -1,9 +1,6 @@
 package controller.tableModel;
 
-import lombok.Getter;
 import model.entities.Customer;
-import model.entities.Customer;
-
 import javax.swing.table.AbstractTableModel;
 import java.util.List;
 

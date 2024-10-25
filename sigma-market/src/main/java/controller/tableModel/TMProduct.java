@@ -2,9 +2,7 @@ package controller.tableModel;
 
 import model.entities.Product;
 import model.entities.Promotion;
-
 import javax.swing.table.AbstractTableModel;
-import java.time.LocalDateTime;
 import java.util.List;
 
 public class TMProduct extends AbstractTableModel {

@@ -3,10 +3,8 @@ package controller;
 import controller.tableModel.TMProduct;
 import controller.tableModel.TMProductBuy;
 import model.entities.Product;
-import model.entities.Promotion;
 import model.validations.ValidateProduct;
 import repository.ProductRepository;
-import repository.PromotionRepository;
 import javax.swing.*;
 import java.util.List;
 
@@ -17,15 +15,15 @@ public class ProductController {
         repository = new ProductRepository();
     }
 
-    // tabela da página inicial de compras
+    // main view table
     public void refreshBuyTable(JTable t) {
-        List list = repository.findAll();
+        List<Product> list = repository.findAll();
         TMProductBuy model = new TMProductBuy(list);
         t.setModel(model);
     }
 
     public void refreshTable(JTable t) {
-        List list = repository.findAll();
+        List<Product> list = repository.findAll();
         TMProduct model = new TMProduct(list);
         t.setModel(model);
     }
