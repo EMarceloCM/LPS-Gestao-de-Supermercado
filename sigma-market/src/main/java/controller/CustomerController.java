@@ -1,5 +1,6 @@
 package controller;
 
+import controller.tableModel.TMAdminCustomer;
 import controller.tableModel.TMCustomer;
 import model.entities.Customer;
 import model.enums.Role;
@@ -18,13 +19,20 @@ public class CustomerController {
 
     public void refreshTable(JTable t) {
         List<Customer> list = repository.findAll();
-        TMCustomer model = new TMCustomer(list);
+        TMAdminCustomer model = new TMAdminCustomer(list);
+        t.setModel(model);
+    }
+
+    //quando o consumidor que está logado
+    public void refreshCustomerTable(JTable t, int customer_id) {
+        Customer c = repository.find(customer_id);
+        TMCustomer model = new TMCustomer(c);
         t.setModel(model);
     }
 
     public void filterTable(JTable t, String filter) {
         List<Customer> list = repository.findWithFilter(filter);
-        TMCustomer model = new TMCustomer(list);
+        TMAdminCustomer model = new TMAdminCustomer(list);
         t.setModel(model);
     }
 
