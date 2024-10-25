@@ -1,6 +1,8 @@
 package controller.tableModel;
 
 import model.entities.Product;
+import model.entities.Promotion;
+
 import javax.swing.table.AbstractTableModel;
 import java.util.List;
 
@@ -36,14 +38,24 @@ public class TMProductBuy extends AbstractTableModel {
 
         o = list.get(rowIndex);
 
+        Promotion p = null;
         boolean hasPromotion = o.getPromotions() != null && !o.getPromotions().isEmpty();
+        if(hasPromotion){
+            for(int i = 0; i < o.getPromotions().size(); i++) {
+                if(!o.getPromotions().get(i).isActive()){
+                    p = o.getPromotions().get(i);
+                    break;
+                }
+            }
+        }
+        hasPromotion = p != null;
 
         return switch (columnIndex) {
             case COL_IMAGE -> o.getImgUrl();
             case COL_NAME -> o.getName();
             case COL_DESC -> o.getDescription();
             case COL_PRICE -> o.getPrice();
-            case COL_DISCOUNT -> !hasPromotion ? 0 : o.getPrice() - o.getPromotions().getFirst().getDiscountPercentage();
+            case COL_DISCOUNT -> !hasPromotion ? 0 : o.getPrice() - p.getDiscountPercentage();
             default -> o;
         };
     }
