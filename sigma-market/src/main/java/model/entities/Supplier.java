@@ -1,17 +1,12 @@
-package model;
+package model.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+import java.util.List;
 
-@Getter
-@Setter
-@ToString
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
 @Entity
 public class Supplier {
     @Id
@@ -19,4 +14,7 @@ public class Supplier {
     private int id;
     private String name;
     private String cnpj;
+
+    @OneToMany(mappedBy = "supplier", cascade = CascadeType.ALL)
+    List<ProductSupplier> productSuppliers;
 }
