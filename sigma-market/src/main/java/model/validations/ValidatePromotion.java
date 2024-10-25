@@ -2,9 +2,7 @@ package model.validations;
 
 import model.entities.Product;
 import model.entities.Promotion;
-import model.exceptions.ProductException;
 import model.exceptions.PromotionException;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 

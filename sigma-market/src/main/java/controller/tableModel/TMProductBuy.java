@@ -64,8 +64,8 @@ public class TMProductBuy extends AbstractTableModel {
         return switch (column) {
             case COL_IMAGE -> "Imagem";
             case COL_NAME -> "Nome";
-            case COL_DESC -> "Desc";
-            case COL_PRICE -> "Preco";
+            case COL_DESC -> "Descrição";
+            case COL_PRICE -> "Preço";
             case COL_DISCOUNT -> "Desconto";
             default -> "";
         };
