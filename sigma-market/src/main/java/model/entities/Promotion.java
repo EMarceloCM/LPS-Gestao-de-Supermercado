@@ -20,4 +20,8 @@ public class Promotion {
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name="product_id")
     private Product product;
+
+    public float getFinalPrice() {
+        return (1 - (this.getDiscountPercentage()/100)) * product.getPrice();
+    }
 }

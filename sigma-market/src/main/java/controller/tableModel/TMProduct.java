@@ -41,7 +41,7 @@ public class TMProduct extends AbstractTableModel {
         boolean hasPromotion = o.getPromotions() != null && !o.getPromotions().isEmpty();
         if(hasPromotion){
             for(int i = 0; i < o.getPromotions().size(); i++) {
-                if(!o.getPromotions().get(i).isActive()){
+                if(o.getPromotions().get(i).isActive()){
                     p = o.getPromotions().get(i);
                     break;
                 }
@@ -54,7 +54,7 @@ public class TMProduct extends AbstractTableModel {
             case COL_NAME -> o.getName();
             case COL_DESC -> o.getDescription();
             case COL_PRICE -> o.getPrice();
-            case COL_DISCOUNT -> !hasPromotion ? 0 : p.getDiscountPercentage();
+            case COL_DISCOUNT -> !hasPromotion ? 0 : p.getFinalPrice();
             case COL_SKU -> o.getSku();
             case COL_STOCK -> o.getStock();
             default -> o;
@@ -68,7 +68,7 @@ public class TMProduct extends AbstractTableModel {
             case COL_NAME -> "Nome";
             case COL_DESC -> "Desc";
             case COL_PRICE -> "Preco";
-            case COL_DISCOUNT -> "Desconto";
+            case COL_DISCOUNT -> "Preço c/ Desconto";
             case COL_SKU -> "SKU";
             case COL_STOCK -> "Estoque";
             default -> "";
