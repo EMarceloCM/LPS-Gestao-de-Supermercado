@@ -20,16 +20,16 @@ public class PromotionController {
         t.setModel(model);
     }
 
-    public void createPromotion(String discountPercentage, String creationDate, String durationMinutes, boolean isActive, Product product) {
-        Promotion p = ValidatePromotion.Validate(discountPercentage, creationDate, durationMinutes, isActive, product);
+    public void createPromotion(String discountPercentage, String durationMinutes, boolean isActive, Product product) {
+        Promotion p = ValidatePromotion.Validate(discountPercentage, durationMinutes, isActive, product);
 
         if(isActive) verifyActivatedPromotions(product.getId());
 
         repository.save(p);
     }
 
-    public void updatePromotion(int id, String discountPercentage, String creationDate, String durationMinutes, boolean isActive, Product product) {
-        Promotion p = ValidatePromotion.Validate(discountPercentage, creationDate, durationMinutes, isActive, product);
+    public void updatePromotion(int id, String discountPercentage, String durationMinutes, boolean isActive, Product product) {
+        Promotion p = ValidatePromotion.Validate(discountPercentage, durationMinutes, isActive, product);
         p.setId(id);
 
         if(isActive) verifyActivatedPromotions(product.getId());

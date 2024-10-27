@@ -3,11 +3,12 @@ package model.validations;
 import model.entities.Product;
 import model.entities.Promotion;
 import model.exceptions.PromotionException;
-import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeParseException;
 
 public class ValidatePromotion {
-    public static Promotion Validate(String discountPercentage, String creationDate, String durationMinutes, boolean isActive, Product product) throws PromotionException, NumberFormatException, DateTimeParseException {
+    public static Promotion Validate(String discountPercentage, String durationMinutes, boolean isActive, Product product) throws PromotionException, NumberFormatException, DateTimeParseException {
         Promotion p = new Promotion();
 
         float floatValue = 0.0f;
@@ -20,13 +21,7 @@ public class ValidatePromotion {
             throw new PromotionException("Error - Campo inválido: 'percentual de desconto' não pode ser 0.");
         p.setDiscountPercentage(floatValue);
 
-        LocalDateTime localDate = null;
-        try {
-            localDate = LocalDateTime.parse(creationDate);
-        } catch (DateTimeParseException ex) {
-            throw new DateTimeParseException("Error - Campo inválido: 'data de criação'.", ex.getParsedString(), ex.getErrorIndex());
-        }
-        p.setCreationDate(localDate);
+        p.setCreationDate(ZonedDateTime.now(ZoneId.of("America/Sao_Paulo")).toLocalDateTime());
 
         int intValue = 0;
         try {
