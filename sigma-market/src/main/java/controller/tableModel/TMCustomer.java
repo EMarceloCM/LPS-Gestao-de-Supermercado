@@ -2,7 +2,7 @@ package controller.tableModel;
 
 import model.entities.Customer;
 import javax.swing.table.AbstractTableModel;
-
+//TODO deletar se nao for utilizar
 public class TMCustomer extends AbstractTableModel {
     private Customer c;
 
