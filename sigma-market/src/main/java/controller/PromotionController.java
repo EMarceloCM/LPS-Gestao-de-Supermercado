@@ -12,7 +12,7 @@ import java.util.List;
 public class PromotionController {
     private PromotionRepository repository;
 
-    PromotionController() { repository = new PromotionRepository(); }
+    public PromotionController() { repository = new PromotionRepository(); }
 
     public void refreshTable(JTable t) {
         List<Promotion> list = repository.findAll();

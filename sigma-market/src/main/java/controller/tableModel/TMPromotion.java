@@ -11,7 +11,7 @@ public class TMPromotion extends AbstractTableModel {
     private final int COL_CREATION = 1;
     private final int COL_DURATION = 2;
     private final int COL_ACTIVE = 3;
-    private final int COL_PROD_ID = 4;
+    private final int COL_PROD_NAME = 4;
 
     public TMPromotion(List<Promotion> list) { this.list = list; }
 
@@ -39,7 +39,7 @@ public class TMPromotion extends AbstractTableModel {
             case COL_CREATION -> p.getCreationDate();
             case COL_DURATION -> p.getDurationMinutes();
             case COL_ACTIVE -> p.isActive() ? "Ativo" : "Desativada";
-            case COL_PROD_ID -> p.getProduct().getId();
+            case COL_PROD_NAME -> p.getProduct().getName();
             default -> p;
         };
     }
@@ -51,7 +51,7 @@ public class TMPromotion extends AbstractTableModel {
             case COL_CREATION -> "Data da Criação";
             case COL_DURATION -> "Tempo de Duração (min.)";
             case COL_ACTIVE -> "Ativo";
-            case COL_PROD_ID -> "Id do Produto";
+            case COL_PROD_NAME -> "Produto";
             default -> "";
         };
     }

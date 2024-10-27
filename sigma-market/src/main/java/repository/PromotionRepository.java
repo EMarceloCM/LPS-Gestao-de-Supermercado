@@ -162,12 +162,15 @@ public class PromotionRepository implements IRepository<Promotion> {
         List<Promotion> lst = qry.getResultList();
         this.entityManager.close();
 
+        if (lst == null || lst.isEmpty())
+            return null;
+
         if(verifyDate(lst.getFirst().getCreationDate(), lst.getFirst().getDurationMinutes())) {
             deactivatePromotion(lst.getFirst().getId());
             lst.getFirst().setActive(false);
         }
 
-        return lst.isEmpty() ? null : lst.getFirst();
+        return lst.getFirst();
     }
 
     public void deactivatePromotion(int promotion_id) {
