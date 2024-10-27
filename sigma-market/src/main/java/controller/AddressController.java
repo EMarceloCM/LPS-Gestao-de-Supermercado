@@ -35,6 +35,12 @@ public class AddressController {
         t.setModel(model);
     }
 
+    public void filterCustomerTable(JTable t, String filter) {
+        List<Address> list = repository.findWithFilter(filter);
+        TMCustomerAddress model = new TMCustomerAddress(list);
+        t.setModel(model);
+    }
+
     public void createAddress(String street, String number, String complement, String neighborhood, Customer customer) {
         Address a = ValidateAddress.Validate(street, number, complement, neighborhood, customer);
         repository.save(a);

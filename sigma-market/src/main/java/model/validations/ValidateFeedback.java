@@ -4,11 +4,14 @@ import model.entities.Customer;
 import model.entities.Feedback;
 import model.entities.Order;
 import model.exceptions.FeedbackException;
+
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeParseException;
 
 public class ValidateFeedback {
-    public static Feedback Validate(String review, Customer customer, Order order) throws FeedbackException {
+    public static Feedback Validate(String review, Customer customer, Order order) throws FeedbackException, DateTimeParseException {
         Feedback f = new Feedback();
 
         if(review.isBlank() || review.isEmpty())
