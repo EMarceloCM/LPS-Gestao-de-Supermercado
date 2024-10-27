@@ -23,7 +23,7 @@ public class PromotionController {
     public void createPromotion(String discountPercentage, String durationMinutes, boolean isActive, Product product) {
         Promotion p = ValidatePromotion.Validate(discountPercentage, durationMinutes, isActive, product);
 
-        if(isActive) verifyActivatedPromotions(product.getId());
+        // if(isActive) verifyActivatedPromotions(product.getId());
 
         repository.save(p);
     }
@@ -32,7 +32,7 @@ public class PromotionController {
         Promotion p = ValidatePromotion.Validate(discountPercentage, durationMinutes, isActive, product);
         p.setId(id);
 
-        if(isActive) verifyActivatedPromotions(product.getId());
+        // if(isActive) verifyActivatedPromotions(product.getId());
 
         repository.update(p);
     }

@@ -91,4 +91,23 @@ public class ProductSupplierRepository implements IRepository<ProductSupplier> {
 
         return true;
     }
+
+    public List<ProductSupplier> findWithFilter(String filter) {
+        this.entityManager = DatabaseJPA.getInstance().getEntityManager();
+
+        String jpql = "SELECT ps " +
+                "FROM ProductSupplier ps " +
+                "JOIN ps.product p " +
+                "JOIN ps.supplier s " +
+                "WHERE LOWER(p.name) LIKE LOWER(:filter) " +
+                "OR LOWER(s.name) LIKE LOWER(:filter)";
+
+        Query qry = this.entityManager.createQuery(jpql);
+        qry.setParameter("filter", "%" + filter + "%");
+
+        List<ProductSupplier> result = qry.getResultList();
+        this.entityManager.close();
+
+        return result;
+    }
 }

@@ -120,6 +120,26 @@ public class FrPromotion extends JDialog {
                     edtProductId.setText(selectedProduct.getName() + " (" + selectedProduct.getId() +  ")");
             }
         });
+        btnDelete.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Promotion marked = (Promotion) TableUtils.getObjectSelected(grd);
+                if (marked == null) {
+                    JOptionPane.showMessageDialog(null, "Selecione um registro para exclusão!", "Erro!", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                int response = JOptionPane.showConfirmDialog(null,
+                        "Tem certeza que deseja excluir a promoção '" + marked.getProduct().getName() + " (" + marked.getDiscountPercentage() + "%) '?",
+                        "Confirmar exclusão",
+                        JOptionPane.OK_CANCEL_OPTION,
+                        JOptionPane.QUESTION_MESSAGE);
+                if (response == JOptionPane.OK_OPTION) {
+                    controller.deletePromotion(marked.getId());
+                    controller.refreshTable(grd);
+                }
+            }
+        });
     }
 
     private void initCustomComponents() {
@@ -159,7 +179,7 @@ public class FrPromotion extends JDialog {
 
     private void loadForm(Promotion o) {
         edtProductId.setText(o.getProduct().getName() + " (" + o.getId() +  ")");
-        fEdtDiscount.setText(String.format("%.2f", o.getDiscountPercentage()));
+        fEdtDiscount.setText(String.format("%.2f", o.getDiscountPercentage()).replace(',', '.'));
         spnDuration.setValue(o.getDurationMinutes());
         chkActive.setSelected(o.isActive());
     }

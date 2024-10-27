@@ -3,6 +3,7 @@ package repository;
 import factory.DatabaseJPA;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
+import model.entities.Product;
 import model.entities.Promotion;
 import repository.interfaces.IRepository;
 
@@ -71,6 +72,8 @@ public class PromotionRepository implements IRepository<Promotion> {
     public void update(Promotion obj) {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
         this.entityManager.getTransaction().begin();
+        //TODO ??????:
+        obj.setActive(true);
         this.entityManager.merge(obj);
         this.entityManager.getTransaction().commit();
         this.entityManager.close();
@@ -80,6 +83,13 @@ public class PromotionRepository implements IRepository<Promotion> {
     public void save(Promotion obj) {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
         this.entityManager.getTransaction().begin();
+
+        Product product = entityManager.find(Product.class, obj.getProduct().getId());
+        if (product == null) {
+            throw new IllegalArgumentException("Produto com o ID fornecido não encontrado.");
+        }
+        obj.setProduct(product);
+
         this.entityManager.persist(obj);
         this.entityManager.getTransaction().commit();
         this.entityManager.close();

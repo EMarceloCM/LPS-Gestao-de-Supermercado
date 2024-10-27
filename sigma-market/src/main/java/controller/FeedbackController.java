@@ -58,7 +58,7 @@ public class FeedbackController {
     }
 
     //TODO confirmar que não irá deletar o pedido junto
-    public void deleteAddress(int id) {
+    public void deleteFeedback(int id) {
         repository.delete(id);
     }
 

@@ -50,7 +50,7 @@ public class ProductController {
         repository.update(o);
     }
 
-    public void deleteCustomer(int id) {
+    public void deleteProduct(int id) {
         repository.delete(id);
     }
 }

@@ -111,7 +111,7 @@ public class FrProduct extends  JDialog {
                         JOptionPane.OK_CANCEL_OPTION,
                         JOptionPane.QUESTION_MESSAGE);
                 if (response == JOptionPane.OK_OPTION) {
-                    controller.deleteCustomer(marked.getId());
+                    controller.deleteProduct(marked.getId());
                     controller.refreshTable(grd);
                 }
             }
