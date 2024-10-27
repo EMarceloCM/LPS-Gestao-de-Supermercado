@@ -42,8 +42,10 @@ public class FrProduct extends  JDialog {
     private JLabel lblDescription;
     private JTextArea txtDesc;
     private JLabel lblImgUrl;
-    private JTextField edtImgUrl;
     private JTextField edtPrice;
+    private JTextArea txtImgUrl;
+    private JTextArea txtName;
+    private JTextArea txtSKU;
 
     private ProductController controller;
     private boolean isFormActive;
@@ -119,9 +121,9 @@ public class FrProduct extends  JDialog {
             public void actionPerformed(ActionEvent e) {
                 try {
                     if (editingId == -1)
-                        controller.createProduct(edtName.getText(), txtDesc.getText(), edtImgUrl.getText(), edtPrice.getText(),(Integer) spnStock.getValue(), edtSKU.getText());
+                        controller.createProduct(txtName.getText(), txtDesc.getText(), txtImgUrl.getText(), edtPrice.getText(),(Integer) spnStock.getValue(), txtSKU.getText());
                     else
-                        controller.updateProduct(editingId, edtName.getText(), txtDesc.getText(), edtImgUrl.getText(), edtPrice.getText(),(Integer) spnStock.getValue(), edtSKU.getText());
+                        controller.updateProduct(editingId, txtName.getText(), txtDesc.getText(), txtImgUrl.getText(), edtPrice.getText(),(Integer) spnStock.getValue(), txtSKU.getText());
 
                     controller.refreshTable(grd);
                     swapForm();
@@ -163,20 +165,20 @@ public class FrProduct extends  JDialog {
     }
 
     private void cleanForm() {
-        edtName.setText("");
-        edtSKU.setText("");
+        txtName.setText("");
+        txtSKU.setText("");
         spnStock.setValue(0);
         txtDesc.setText("");
-        edtImgUrl.setText("");
+        txtImgUrl.setText("");
         edtPrice.setText("");
     }
 
     private void loadForm(Product o) {
-        edtName.setText(o.getName());
-        edtSKU.setText(o.getSku());
+        txtName.setText(o.getName());
+        txtSKU.setText(o.getSku());
         spnStock.setValue(o.getStock());
         txtDesc.setText(o.getDescription());
-        edtImgUrl.setText(o.getImgUrl());
+        txtImgUrl.setText(o.getImgUrl());
         edtPrice.setText(String.format("%.2f", o.getPrice()));
     }
 }
