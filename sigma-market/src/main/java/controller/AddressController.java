@@ -41,13 +41,13 @@ public class AddressController {
         t.setModel(model);
     }
 
-    public void createAddress(String street, String number, String complement, String neighborhood, Customer customer) {
-        Address a = ValidateAddress.Validate(street, number, complement, neighborhood, customer);
+    public void createAddress(String street, String number, String complement, String neighborhood, String zipcode, Customer customer) {
+        Address a = ValidateAddress.Validate(street, number, complement, neighborhood, zipcode, customer);
         repository.save(a);
     }
 
-    public void updateAddress(int id, String street, String number, String complement, String neighborhood, Customer customer) {
-        Address a = ValidateAddress.Validate(street, number, complement, neighborhood, customer);
+    public void updateAddress(int id, String street, String number, String complement, String neighborhood, String zipcode, Customer customer) {
+        Address a = ValidateAddress.Validate(street, number, complement, neighborhood, zipcode, customer);
         a.setId(id);
 
         repository.update(a);

@@ -11,6 +11,7 @@ public class TMCustomerAddress extends AbstractTableModel {
     private final int COL_NUMBER = 1;
     private final int COL_COMPLEMENT = 2;
     private final int COL_NEIGHBORHOOD = 3;
+    private final int COL_ZIPCODE = 4;
 
     public TMCustomerAddress(List<Address> list) {
         this.list = list;
@@ -23,7 +24,7 @@ public class TMCustomerAddress extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 4;
+        return 5;
     }
 
     @Override
@@ -40,6 +41,7 @@ public class TMCustomerAddress extends AbstractTableModel {
             case COL_NUMBER -> a.getNumber();
             case COL_COMPLEMENT -> a.getComplement();
             case COL_NEIGHBORHOOD -> a.getNeighborhood();
+            case COL_ZIPCODE -> a.getZipcode();
             default -> a;
         };
     }
@@ -51,6 +53,7 @@ public class TMCustomerAddress extends AbstractTableModel {
             case COL_NUMBER -> "Número";
             case COL_COMPLEMENT -> "Complemento";
             case COL_NEIGHBORHOOD -> "Bairro";
+            case COL_ZIPCODE -> "CEP";
             default -> "";
         };
     }

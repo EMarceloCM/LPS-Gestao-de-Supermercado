@@ -10,6 +10,7 @@ public class TMCustomerFeedback extends AbstractTableModel {
     private final int COL_ORDER_ID = 0;
     private final int COL_DATE = 1;
     private final int COL_REVIEW = 2;
+    private final int COL_STARS = 3;
 
     public TMCustomerFeedback(List<Feedback> list) {
         this.list = list;
@@ -22,7 +23,7 @@ public class TMCustomerFeedback extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 3;
+        return 4;
     }
 
     @Override
@@ -38,6 +39,7 @@ public class TMCustomerFeedback extends AbstractTableModel {
             case COL_ORDER_ID -> f.getOrder().getId();
             case COL_DATE -> f.getDate();
             case COL_REVIEW -> f.getReview();
+            case COL_STARS -> f.getStars();
             default -> f;
         };
     }
@@ -48,6 +50,7 @@ public class TMCustomerFeedback extends AbstractTableModel {
             case COL_ORDER_ID -> "Id do Pedido";
             case COL_DATE -> "Data";
             case COL_REVIEW -> "Avaliação";
+            case COL_STARS -> "Estrelas";
             default -> "";
         };
     }

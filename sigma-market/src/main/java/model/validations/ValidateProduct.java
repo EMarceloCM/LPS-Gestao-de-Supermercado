@@ -2,7 +2,6 @@ package model.validations;
 
 import model.entities.Product;
 import model.exceptions.ProductException;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
 public class ValidateProduct {

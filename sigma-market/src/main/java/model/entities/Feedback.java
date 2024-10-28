@@ -15,6 +15,7 @@ public class Feedback {
     private int id;
     private String review;
     private LocalDateTime date;
+    private int stars;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name="customer_id")

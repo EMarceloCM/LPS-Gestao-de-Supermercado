@@ -41,13 +41,13 @@ public class FeedbackController {
         t.setModel(model);
     }
 
-    public void createFeedback(String review, Customer customer, Order order) {
-        Feedback f = ValidateFeedback.Validate(review, customer, order);
+    public void createFeedback(String review, String stars, Customer customer, Order order) {
+        Feedback f = ValidateFeedback.Validate(review, stars, customer, order);
         repository.save(f);
     }
 
-    public void updateFeedback(int id, String review, Customer customer, Order order) {
-        Feedback f = ValidateFeedback.Validate(review, customer, order);
+    public void updateFeedback(int id, String review, String stars, Customer customer, Order order) {
+        Feedback f = ValidateFeedback.Validate(review, stars, customer, order);
         f.setId(id);
 
         repository.update(f);
