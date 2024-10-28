@@ -7,13 +7,12 @@ import java.util.List;
 public class TMAddress extends AbstractTableModel {
     private List<Address> list;
 
-    private final int COL_ID = 0;
-    private final int COL_STREET = 1;
-    private final int COL_NUMBER = 2;
-    private final int COL_COMPLEMENT = 3;
-    private final int COL_NEIGHBORHOOD = 4;
-    private final int COL_ZIPCODE = 5;
-    private final int COL_CUSTOMER_ID = 6;
+    private final int COL_STREET = 0;
+    private final int COL_NUMBER = 1;
+    private final int COL_COMPLEMENT = 2;
+    private final int COL_NEIGHBORHOOD = 3;
+    private final int COL_ZIPCODE = 4;
+    private final int COL_CUSTOMER = 5;
 
     public TMAddress(List<Address> list) {
         this.list = list;
@@ -26,7 +25,7 @@ public class TMAddress extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 7;
+        return 6;
     }
 
     @Override
@@ -39,13 +38,12 @@ public class TMAddress extends AbstractTableModel {
         a = list.get(rowIndex);
 
         return switch (columnIndex) {
-            case COL_ID -> a.getId();
             case COL_STREET -> a.getStreet();
             case COL_NUMBER -> a.getNumber();
             case COL_COMPLEMENT -> a.getComplement();
             case COL_NEIGHBORHOOD -> a.getNeighborhood();
             case COL_ZIPCODE -> a.getZipcode();
-            case COL_CUSTOMER_ID -> a.getCustomer().getId();
+            case COL_CUSTOMER -> a.getCustomer().getName() + " ("  + a.getCustomer().getId() + ")";
             default -> a;
         };
     }
@@ -53,13 +51,12 @@ public class TMAddress extends AbstractTableModel {
     @Override
     public String getColumnName(int column) {
         return switch (column) {
-            case COL_ID -> "Id";
             case COL_STREET -> "Rua";
             case COL_NUMBER -> "Número";
             case COL_COMPLEMENT -> "Complemento";
             case COL_NEIGHBORHOOD -> "Bairro";
             case COL_ZIPCODE -> "CEP";
-            case COL_CUSTOMER_ID -> "Id do Cliente";
+            case COL_CUSTOMER -> "Cliente";
             default -> "";
         };
     }

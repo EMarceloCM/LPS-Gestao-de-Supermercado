@@ -1,4 +1,4 @@
-package view;
+package view.dialogs;
 
 import controller.ProductController;
 import lombok.Getter;
@@ -34,7 +34,7 @@ public class DlgChooseProduct extends JDialog {
         super(parent, modal);
         setContentPane(panMain);
         setTitle("Produtos");
-        setSize(1280, 680);
+        setSize(500, 700);
 
         controller = new ProductController();
         selected = null;

@@ -4,6 +4,8 @@ import factory.DatabaseJPA;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import model.entities.Address;
+import model.entities.Customer;
+import model.entities.Product;
 import repository.interfaces.IRepository;
 import java.util.List;
 
@@ -61,6 +63,13 @@ public class AddressRepository implements IRepository<Address> {
     public void save(Address obj) {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
         this.entityManager.getTransaction().begin();
+
+        Customer c = entityManager.find(Customer.class, obj.getCustomer().getId());
+        if (c == null) {
+            throw new IllegalArgumentException("ID do usuario não encontrado.");
+        }
+        obj.setCustomer(c);
+
         this.entityManager.persist(obj);
         this.entityManager.getTransaction().commit();
         this.entityManager.close();
