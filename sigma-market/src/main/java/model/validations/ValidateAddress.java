@@ -23,7 +23,7 @@ public class ValidateAddress {
         a.setZipcode(zipcode.strip());
 
         if(customer == null)
-            throw new AddressException("Error - Campo inválido: 'costumer_id'.");
+            throw new AddressException("Error - Campo inválido: 'customer_id'.");
         a.setCustomer(customer);
 
         return a;

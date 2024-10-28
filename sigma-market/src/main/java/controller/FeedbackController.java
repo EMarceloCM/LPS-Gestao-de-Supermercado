@@ -24,7 +24,7 @@ public class FeedbackController {
             List<Feedback> list = repository.findAll();
             TMFeedback model = new TMFeedback(list);
             t.setModel(model);
-        } else if(SessionManager.getLoggedUserRole() == Role.COSTUMER) {
+        } else if(SessionManager.getLoggedUserRole() == Role.CUSTOMER) {
             List<Feedback> list = repository.findByCustomer(SessionManager.getLoggedUserId());
             TMCustomerFeedback model = new TMCustomerFeedback(list);
             t.setModel(model);
@@ -36,7 +36,7 @@ public class FeedbackController {
             List<Feedback> list = repository.findWithFilter(filter);
             TMFeedback model = new TMFeedback(list);
             t.setModel(model);
-        } else if(SessionManager.getLoggedUserRole() == Role.COSTUMER) {
+        } else if(SessionManager.getLoggedUserRole() == Role.CUSTOMER) {
             List<Feedback> list = repository.findWithFilter(filter);
             TMCustomerFeedback model = new TMCustomerFeedback(list);
             t.setModel(model);

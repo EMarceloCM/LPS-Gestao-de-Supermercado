@@ -47,7 +47,7 @@ public class ValidateOrder {
         o.setPaymentType(pt);
 
         if(customer == null)
-            throw new OrderException("Error - Campo inválido: 'costumer_id'.");
+            throw new OrderException("Error - Campo inválido: 'customer_id'.");
         o.setCustomer(customer);
 
         if(address == null)

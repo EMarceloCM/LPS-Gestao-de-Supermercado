@@ -23,7 +23,7 @@ public class AddressController {
             List<Address> list = repository.findAll();
             TMAddress model = new TMAddress(list);
             t.setModel(model);
-        } else if(SessionManager.getLoggedUserRole() == Role.COSTUMER){
+        } else if(SessionManager.getLoggedUserRole() == Role.CUSTOMER){
             List<Address> list = repository.findByCostumer(SessionManager.getLoggedUserId());
             TMCustomerAddress model = new TMCustomerAddress(list);
             t.setModel(model);
@@ -35,7 +35,7 @@ public class AddressController {
             List<Address> list = repository.findWithFilter(filter);
             TMAddress model = new TMAddress(list);
             t.setModel(model);
-        } else if(SessionManager.getLoggedUserRole() == Role.COSTUMER){
+        } else if(SessionManager.getLoggedUserRole() == Role.CUSTOMER){
             List<Address> list = repository.findWithFilter(filter);
             TMCustomerAddress model = new TMCustomerAddress(list);
             t.setModel(model);
