@@ -60,6 +60,7 @@ public class FrLogin extends JDialog {
                         dispose();
                     } else {
                         controller.createCustomer(fEdtCpf.getText(), edtEmail.getText(), edtNome.getText(), new String(pswUserPassword.getPassword()), 1);
+                        Auth.SessionManager.Login(edtEmail.getText(), new String(pswUserPassword.getPassword()));
                         dispose();
                     }
                 } catch (AuthException | CustomerException ex) {
