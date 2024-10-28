@@ -72,8 +72,6 @@ public class PromotionRepository implements IRepository<Promotion> {
     public void update(Promotion obj) {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
         this.entityManager.getTransaction().begin();
-        //TODO ??????:
-        obj.setActive(true);
         this.entityManager.merge(obj);
         this.entityManager.getTransaction().commit();
         this.entityManager.close();

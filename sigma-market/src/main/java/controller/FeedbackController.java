@@ -1,14 +1,10 @@
 package controller;
 
-import controller.tableModel.TMAddress;
-import controller.tableModel.TMCustomerAddress;
 import controller.tableModel.TMCustomerFeedback;
 import controller.tableModel.TMFeedback;
-import model.entities.Address;
 import model.entities.Customer;
 import model.entities.Feedback;
 import model.entities.Order;
-import model.validations.ValidateAddress;
 import model.validations.ValidateFeedback;
 import repository.FeedbackRepository;
 import javax.swing.*;
