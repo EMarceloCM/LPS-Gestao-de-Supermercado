@@ -1,10 +1,12 @@
 package controller;
 
+import Auth.SessionManager;
 import controller.tableModel.TMCustomerFeedback;
 import controller.tableModel.TMFeedback;
 import model.entities.Customer;
 import model.entities.Feedback;
 import model.entities.Order;
+import model.enums.Role;
 import model.validations.ValidateFeedback;
 import repository.FeedbackRepository;
 import javax.swing.*;
@@ -18,27 +20,27 @@ public class FeedbackController {
     }
 
     public void refreshTable(JTable t) {
-        List<Feedback> list = repository.findAll();
-        TMFeedback model = new TMFeedback(list);
-        t.setModel(model);
-    }
-    
-    public void refreshCustomerTable(JTable t, int customer_id) {
-        List<Feedback> list = repository.findByCustomer(customer_id);
-        TMCustomerFeedback model = new TMCustomerFeedback(list);
-        t.setModel(model);
+        if(SessionManager.getLoggedUserRole() == Role.ADMIN) {
+            List<Feedback> list = repository.findAll();
+            TMFeedback model = new TMFeedback(list);
+            t.setModel(model);
+        } else if(SessionManager.getLoggedUserRole() == Role.COSTUMER) {
+            List<Feedback> list = repository.findByCustomer(SessionManager.getLoggedUserId());
+            TMCustomerFeedback model = new TMCustomerFeedback(list);
+            t.setModel(model);
+        }
     }
 
     public void filterTable(JTable t, String filter) {
-        List<Feedback> list = repository.findWithFilter(filter);
-        TMFeedback model = new TMFeedback(list);
-        t.setModel(model);
-    }
-
-    public void filterCustomerTable(JTable t, String filter) {
-        List<Feedback> list = repository.findWithFilter(filter);
-        TMCustomerFeedback model = new TMCustomerFeedback(list);
-        t.setModel(model);
+        if(SessionManager.getLoggedUserRole() == Role.ADMIN) {
+            List<Feedback> list = repository.findWithFilter(filter);
+            TMFeedback model = new TMFeedback(list);
+            t.setModel(model);
+        } else if(SessionManager.getLoggedUserRole() == Role.COSTUMER) {
+            List<Feedback> list = repository.findWithFilter(filter);
+            TMCustomerFeedback model = new TMCustomerFeedback(list);
+            t.setModel(model);
+        }
     }
 
     public void createFeedback(String review, String stars, Customer customer, Order order) {

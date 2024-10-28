@@ -1,5 +1,6 @@
 package controller;
 
+import Auth.SessionManager;
 import controller.tableModel.TMAdminCustomer;
 import controller.tableModel.TMCustomer;
 import model.entities.Customer;
@@ -18,16 +19,11 @@ public class CustomerController {
     }
 
     public void refreshTable(JTable t) {
-        List<Customer> list = repository.findAll();
-        TMAdminCustomer model = new TMAdminCustomer(list);
-        t.setModel(model);
-    }
-
-    //quando o consumidor que está logado
-    public void refreshCustomerTable(JTable t, int customer_id) {
-        Customer c = repository.find(customer_id);
-        TMCustomer model = new TMCustomer(c);
-        t.setModel(model);
+        if(SessionManager.getLoggedUserRole() == Role.ADMIN) {
+            List<Customer> list = repository.findAll();
+            TMAdminCustomer model = new TMAdminCustomer(list);
+            t.setModel(model);
+        }
     }
 
     public void filterTable(JTable t, String filter) {
