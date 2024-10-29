@@ -38,7 +38,7 @@ public class TMPromotion extends AbstractTableModel {
             case COL_DISCOUNT -> String.format("%.2f", p.getDiscountPercentage());
             case COL_CREATION -> p.getCreationDate();
             case COL_DURATION -> p.getDurationMinutes();
-            case COL_ACTIVE -> p.isActive() ? "Ativo" : "Desativada";
+            case COL_ACTIVE -> p.getActive() == 1 ? "Ativo" : "Desativada";
             case COL_PROD_NAME -> p.getProduct().getName();
             default -> p;
         };

@@ -23,8 +23,6 @@ public class PromotionController {
     public void createPromotion(String discountPercentage, String durationMinutes, boolean isActive, Product product) {
         Promotion p = ValidatePromotion.Validate(discountPercentage, durationMinutes, isActive, product);
 
-        // if(isActive) verifyActivatedPromotions(product.getId());
-
         repository.save(p);
     }
 
@@ -32,13 +30,10 @@ public class PromotionController {
         Promotion p = ValidatePromotion.Validate(discountPercentage, durationMinutes, isActive, product);
         p.setId(id);
 
-        // if(isActive) verifyActivatedPromotions(product.getId());
-
         repository.update(p);
     }
 
     public void deletePromotion(int id) {
-        // TODO confirmar se não irá deletar um produto ao deletar sua promoção
         repository.delete(id);
     }
 

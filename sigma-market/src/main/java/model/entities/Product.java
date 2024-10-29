@@ -21,10 +21,10 @@ public class Product {
     private int stock;
     private String sku;
 
-    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     List<Promotion> promotions;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     List<ShoppingCart> shoppingCarts;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)

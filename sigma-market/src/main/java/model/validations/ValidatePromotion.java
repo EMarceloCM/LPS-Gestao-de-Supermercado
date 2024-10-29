@@ -33,7 +33,7 @@ public class ValidatePromotion {
             throw new PromotionException("Error - Campo inválido: 'duração em minutos' não pode ser 0.");
         p.setDurationMinutes(intValue);
 
-        p.setActive(isActive);
+        p.setActive(isActive ? 1 : 0);
 
         if(product == null)
             throw new PromotionException("Error - Campo inválido: 'product_id'.");

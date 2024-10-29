@@ -179,6 +179,6 @@ public class FrPromotion extends JDialog {
         edtProductId.setText(o.getProduct().getName() + " (" + o.getId() +  ")");
         fEdtDiscount.setText(String.format("%.2f", o.getDiscountPercentage()).replace(',', '.'));
         spnDuration.setValue(o.getDurationMinutes());
-        chkActive.setSelected(o.isActive());
+        chkActive.setSelected(o.getActive() == 1);
     }
 }

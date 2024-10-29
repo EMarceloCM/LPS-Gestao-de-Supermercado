@@ -15,7 +15,7 @@ public class Promotion {
     private float discountPercentage;
     private LocalDateTime creationDate;
     private int durationMinutes;
-    private boolean isActive;
+    private int active;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name="product_id")

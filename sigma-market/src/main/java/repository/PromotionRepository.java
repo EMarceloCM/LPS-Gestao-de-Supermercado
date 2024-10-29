@@ -25,12 +25,6 @@ public class PromotionRepository implements IRepository<Promotion> {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
         Promotion p = this.entityManager.find(Promotion.class, id);
         this.entityManager.close();
-
-        if(verifyDate(p.getCreationDate(), p.getDurationMinutes())) {
-            deactivatePromotion(p.getId());
-            p.setActive(false);
-        }
-
         return p;
     }
 
@@ -39,32 +33,16 @@ public class PromotionRepository implements IRepository<Promotion> {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
         Promotion p = this.entityManager.find(Promotion.class, obj.getId());
         this.entityManager.close();
-
-        if(verifyDate(p.getCreationDate(), p.getDurationMinutes())) {
-            deactivatePromotion(p.getId());
-            p.setActive(false);
-        }
-
         return p;
     }
 
     @Override
     public List<Promotion> findAll() {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
-
         jpql = " SELECT p FROM Promotion p ";
         qry = this.entityManager.createQuery(jpql);
         List<Promotion> lst = qry.getResultList();
-
         this.entityManager.close();
-
-        for(int i = 0; i < lst.size(); i++) {
-            if(verifyDate(lst.get(i).getCreationDate(), lst.get(i).getDurationMinutes())) {
-                deactivatePromotion(lst.get(i).getId());
-                lst.get(i).setActive(false);
-            }
-        }
-
         return lst;
     }
 
@@ -127,13 +105,6 @@ public class PromotionRepository implements IRepository<Promotion> {
         List<Promotion> lst = qry.getResultList();
         this.entityManager.close();
 
-        for(int i = 0; i < lst.size(); i++) {
-            if(verifyDate(lst.get(i).getCreationDate(), lst.get(i).getDurationMinutes())) {
-                deactivatePromotion(lst.get(i).getId());
-                lst.get(i).setActive(false);
-            }
-        }
-
         return lst.isEmpty() ? null : lst;
     }
 
@@ -146,13 +117,6 @@ public class PromotionRepository implements IRepository<Promotion> {
         qry.setParameter("isActive", isActive);
         List<Promotion> lst = qry.getResultList();
         this.entityManager.close();
-
-        for(int i = 0; i < lst.size(); i++) {
-            if(verifyDate(lst.get(i).getCreationDate(), lst.get(i).getDurationMinutes())) {
-                deactivatePromotion(lst.get(i).getId());
-                lst.get(i).setActive(false);
-            }
-        }
 
         return lst;
     }
@@ -173,11 +137,6 @@ public class PromotionRepository implements IRepository<Promotion> {
         if (lst == null || lst.isEmpty())
             return null;
 
-        if(verifyDate(lst.getFirst().getCreationDate(), lst.getFirst().getDurationMinutes())) {
-            deactivatePromotion(lst.getFirst().getId());
-            lst.getFirst().setActive(false);
-        }
-
         return lst.getFirst();
     }
 
@@ -188,7 +147,7 @@ public class PromotionRepository implements IRepository<Promotion> {
         Promotion promotion = this.entityManager.find(Promotion.class, promotion_id);
 
         if (promotion != null) {
-            promotion.setActive(false);
+            promotion.setActive(0);
             this.entityManager.merge(promotion);
         }
 

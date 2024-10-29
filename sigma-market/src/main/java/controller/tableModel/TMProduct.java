@@ -41,7 +41,7 @@ public class TMProduct extends AbstractTableModel {
         boolean hasPromotion = o.getPromotions() != null && !o.getPromotions().isEmpty();
         if(hasPromotion){
             for(int i = 0; i < o.getPromotions().size(); i++) {
-                if(o.getPromotions().get(i).isActive()){
+                if(o.getPromotions().get(i).getActive() == 1){
                     p = o.getPromotions().get(i);
                     break;
                 }
