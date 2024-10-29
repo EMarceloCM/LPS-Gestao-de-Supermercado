@@ -20,10 +20,13 @@ public class SessionManager {
         try {
             Customer customer = new CustomerRepository().findByEmail(email);
 
-            if(customer != null && Objects.equals(customer.getPassword(), psw)){
-                SessionManager.customer = customer;
-                SessionManager.isLoggedIn = true;
-            } else throw new CustomerException("[Error] - Usuário informado não existe.");
+            if(customer == null)
+                throw new CustomerException("[Error] - Usuário informado não existe.");
+            if(!Objects.equals(customer.getPassword(), psw))
+                throw new CustomerException("[Error] - Credenciais incorretas.");
+
+            SessionManager.customer = customer;
+            SessionManager.isLoggedIn = true;
         }catch (CustomerException ex){
             throw new AuthException(ex.getMessage());
         }

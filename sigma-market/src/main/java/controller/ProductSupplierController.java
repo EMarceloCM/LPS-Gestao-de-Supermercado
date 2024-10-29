@@ -33,10 +33,7 @@ public class ProductSupplierController {
         repository.update(ps);
     }
 
-    public void deleteProductSupplier(int id) {
-        // TODO confirmar se não irá deletar producto/fornecedor juntos
-        repository.delete(id);
-    }
+    public void deleteProductSupplier(int id) { repository.delete(id); }
 
     public void filterTable(JTable t, String filter) {
         List<ProductSupplier> list = repository.findWithFilter(filter);
