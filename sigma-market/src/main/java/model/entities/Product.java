@@ -21,7 +21,7 @@ public class Product {
     private int stock;
     private String sku;
 
-    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @ToString.Exclude
     List<Promotion> promotions;
 
