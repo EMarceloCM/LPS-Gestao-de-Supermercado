@@ -17,7 +17,7 @@ public class Promotion {
     private int durationMinutes;
     private int active;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name="product_id")
     private Product product;
 

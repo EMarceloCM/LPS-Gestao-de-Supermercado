@@ -19,6 +19,7 @@ public class SupplierRepository implements IRepository<Supplier> {
     public Supplier find(int id) {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
         Supplier s = this.entityManager.find(Supplier.class, id);
+        this.entityManager.clear();
         this.entityManager.close();
 
         return s;
@@ -30,6 +31,7 @@ public class SupplierRepository implements IRepository<Supplier> {
 
         Supplier s = this.entityManager.find(Supplier.class, obj.getId());
 
+        this.entityManager.clear();
         this.entityManager.close();
 
         return s;
@@ -43,6 +45,7 @@ public class SupplierRepository implements IRepository<Supplier> {
         qry = this.entityManager.createQuery(jpql);
         List lst = qry.getResultList();
 
+        this.entityManager.clear();
         this.entityManager.close();
 
         return (List<Supplier>) lst;
@@ -54,6 +57,7 @@ public class SupplierRepository implements IRepository<Supplier> {
         this.entityManager.getTransaction().begin();
         this.entityManager.merge(obj);
         this.entityManager.getTransaction().commit();
+        this.entityManager.clear();
         this.entityManager.close();
     }
 
@@ -63,6 +67,7 @@ public class SupplierRepository implements IRepository<Supplier> {
         this.entityManager.getTransaction().begin();
         this.entityManager.persist(obj);
         this.entityManager.getTransaction().commit();
+        this.entityManager.clear();
         this.entityManager.close();
     }
 
@@ -75,6 +80,7 @@ public class SupplierRepository implements IRepository<Supplier> {
         if (supplier != null) this.entityManager.remove(supplier);
 
         this.entityManager.getTransaction().commit();
+        this.entityManager.clear();
         this.entityManager.close();
 
         return supplier != null;
@@ -88,6 +94,8 @@ public class SupplierRepository implements IRepository<Supplier> {
         this.entityManager.getTransaction().begin();
         this.entityManager.remove(obj);
         this.entityManager.getTransaction().commit();
+        this.entityManager.clear();
+        this.entityManager.close();
 
         return true;
     }
@@ -102,6 +110,7 @@ public class SupplierRepository implements IRepository<Supplier> {
         qry.setParameter("cnpj", cnpj);
         List lst = qry.getResultList();
 
+        this.entityManager.clear();
         this.entityManager.close();
 
         return lst.isEmpty() ? null : (Supplier) lst.getFirst();
@@ -115,6 +124,7 @@ public class SupplierRepository implements IRepository<Supplier> {
         qry = this.entityManager.createQuery(jpql);
         qry.setParameter("filter", "%" + filter + "%");
         List lst = qry.getResultList();
+        this.entityManager.clear();
         this.entityManager.close();
 
         return (List<Supplier>) lst;

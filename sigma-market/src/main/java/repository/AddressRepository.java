@@ -5,7 +5,6 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import model.entities.Address;
 import model.entities.Customer;
-import model.entities.Product;
 import repository.interfaces.IRepository;
 import java.util.List;
 
@@ -21,6 +20,7 @@ public class AddressRepository implements IRepository<Address> {
     public Address find(int id) {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
         Address a = this.entityManager.find(Address.class, id);
+        this.entityManager.clear();
         this.entityManager.close();
 
         return a;
@@ -32,6 +32,7 @@ public class AddressRepository implements IRepository<Address> {
 
         Address a = this.entityManager.find(Address.class, obj.getId());
 
+        this.entityManager.clear();
         this.entityManager.close();
 
         return a;
@@ -43,11 +44,12 @@ public class AddressRepository implements IRepository<Address> {
 
         jpql = " SELECT a FROM Address a ";
         qry = this.entityManager.createQuery(jpql);
-        List lst = qry.getResultList();
+        List<Address> lst = qry.getResultList();
 
+        this.entityManager.clear();
         this.entityManager.close();
 
-        return (List<Address>) lst;
+        return lst;
     }
 
     @Override
@@ -56,6 +58,7 @@ public class AddressRepository implements IRepository<Address> {
         this.entityManager.getTransaction().begin();
         this.entityManager.merge(obj);
         this.entityManager.getTransaction().commit();
+        this.entityManager.clear();
         this.entityManager.close();
     }
 
@@ -72,6 +75,7 @@ public class AddressRepository implements IRepository<Address> {
 
         this.entityManager.persist(obj);
         this.entityManager.getTransaction().commit();
+        this.entityManager.clear();
         this.entityManager.close();
     }
 
@@ -84,6 +88,7 @@ public class AddressRepository implements IRepository<Address> {
         if (a != null) this.entityManager.remove(a);
 
         this.entityManager.getTransaction().commit();
+        this.entityManager.clear();
         this.entityManager.close();
 
         return a != null;
@@ -97,6 +102,8 @@ public class AddressRepository implements IRepository<Address> {
         this.entityManager.getTransaction().begin();
         this.entityManager.remove(obj);
         this.entityManager.getTransaction().commit();
+        this.entityManager.clear();
+        this.entityManager.close();
 
         return true;
     }
@@ -106,10 +113,11 @@ public class AddressRepository implements IRepository<Address> {
         jpql = "SELECT a FROM Address a WHERE a.customer.id = :customer_id";
         qry = this.entityManager.createQuery(jpql);
         qry.setParameter("customer_id", customer_id);
-        List lst = qry.getResultList();
+        List<Address> lst = qry.getResultList();
+        this.entityManager.clear();
         this.entityManager.close();
 
-        return (List<Address>) lst;
+        return lst;
     }
 
     public List<Address> findWithFilter(String filter) {
@@ -119,9 +127,10 @@ public class AddressRepository implements IRepository<Address> {
                 + " WHERE a.street LIKE :filter OR a.complement LIKE :filter OR a.neighborhood LIKE :filter ";
         qry = this.entityManager.createQuery(jpql);
         qry.setParameter("filter", "%" + filter + "%");
-        List lst = qry.getResultList();
+        List<Address> lst = qry.getResultList();
+        this.entityManager.clear();
         this.entityManager.close();
 
-        return (List<Address>) lst;
+        return lst;
     }
 }

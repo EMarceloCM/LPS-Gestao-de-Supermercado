@@ -21,15 +21,17 @@ public class Product {
     private int stock;
     private String sku;
 
-    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ToString.Exclude
     List<Promotion> promotions;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<ShoppingCart> shoppingCarts;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ToString.Exclude
     List<ProductSupplier> productSuppliers;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
     List<ItemOrder> itemOrders;
 }

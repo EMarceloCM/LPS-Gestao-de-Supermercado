@@ -19,6 +19,7 @@ public class ProductSupplierRepository implements IRepository<ProductSupplier> {
     public ProductSupplier find(int id) {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
         ProductSupplier ps = this.entityManager.find(ProductSupplier.class, id);
+        this.entityManager.clear();
         this.entityManager.close();
 
         return ps;
@@ -30,6 +31,7 @@ public class ProductSupplierRepository implements IRepository<ProductSupplier> {
 
         ProductSupplier ps = this.entityManager.find(ProductSupplier.class, obj.getId());
 
+        this.entityManager.clear();
         this.entityManager.close();
 
         return ps;
@@ -43,6 +45,7 @@ public class ProductSupplierRepository implements IRepository<ProductSupplier> {
         qry = this.entityManager.createQuery(jpql);
         List lst = qry.getResultList();
 
+        this.entityManager.clear();
         this.entityManager.close();
 
         return (List<ProductSupplier>) lst;
@@ -54,6 +57,7 @@ public class ProductSupplierRepository implements IRepository<ProductSupplier> {
         this.entityManager.getTransaction().begin();
         this.entityManager.merge(obj);
         this.entityManager.getTransaction().commit();
+        this.entityManager.clear();
         this.entityManager.close();
     }
 
@@ -63,6 +67,7 @@ public class ProductSupplierRepository implements IRepository<ProductSupplier> {
         this.entityManager.getTransaction().begin();
         this.entityManager.persist(obj);
         this.entityManager.getTransaction().commit();
+        this.entityManager.clear();
         this.entityManager.close();
     }
 
@@ -75,6 +80,7 @@ public class ProductSupplierRepository implements IRepository<ProductSupplier> {
         if (ps != null) this.entityManager.remove(ps);
 
         this.entityManager.getTransaction().commit();
+        this.entityManager.clear();
         this.entityManager.close();
 
         return ps != null;
@@ -88,6 +94,8 @@ public class ProductSupplierRepository implements IRepository<ProductSupplier> {
         this.entityManager.getTransaction().begin();
         this.entityManager.remove(obj);
         this.entityManager.getTransaction().commit();
+        this.entityManager.clear();
+        this.entityManager.close();
 
         return true;
     }
@@ -106,6 +114,7 @@ public class ProductSupplierRepository implements IRepository<ProductSupplier> {
         qry.setParameter("filter", "%" + filter + "%");
 
         List<ProductSupplier> result = qry.getResultList();
+        this.entityManager.clear();
         this.entityManager.close();
 
         return result;

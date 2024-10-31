@@ -19,6 +19,7 @@ public class ShoppingCartRepository implements IRepository<ShoppingCart> {
     public ShoppingCart find(int id) {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
         ShoppingCart sc = this.entityManager.find(ShoppingCart.class, id);
+        this.entityManager.clear();
         this.entityManager.close();
 
         return sc;
@@ -30,6 +31,7 @@ public class ShoppingCartRepository implements IRepository<ShoppingCart> {
 
         ShoppingCart sc = this.entityManager.find(ShoppingCart.class, obj.getId());
 
+        this.entityManager.clear();
         this.entityManager.close();
 
         return sc;
@@ -43,6 +45,7 @@ public class ShoppingCartRepository implements IRepository<ShoppingCart> {
         qry = this.entityManager.createQuery(jpql);
         List lst = qry.getResultList();
 
+        this.entityManager.clear();
         this.entityManager.close();
 
         return (List<ShoppingCart>) lst;
@@ -54,6 +57,7 @@ public class ShoppingCartRepository implements IRepository<ShoppingCart> {
         this.entityManager.getTransaction().begin();
         this.entityManager.merge(obj);
         this.entityManager.getTransaction().commit();
+        this.entityManager.clear();
         this.entityManager.close();
     }
 
@@ -63,6 +67,7 @@ public class ShoppingCartRepository implements IRepository<ShoppingCart> {
         this.entityManager.getTransaction().begin();
         this.entityManager.persist(obj);
         this.entityManager.getTransaction().commit();
+        this.entityManager.clear();
         this.entityManager.close();
     }
 
@@ -75,6 +80,7 @@ public class ShoppingCartRepository implements IRepository<ShoppingCart> {
         if (sc != null) this.entityManager.remove(sc);
 
         this.entityManager.getTransaction().commit();
+        this.entityManager.clear();
         this.entityManager.close();
 
         return sc != null;
@@ -88,6 +94,8 @@ public class ShoppingCartRepository implements IRepository<ShoppingCart> {
         this.entityManager.getTransaction().begin();
         this.entityManager.remove(obj);
         this.entityManager.getTransaction().commit();
+        this.entityManager.clear();
+        this.entityManager.close();
 
         return true;
     }
@@ -98,6 +106,7 @@ public class ShoppingCartRepository implements IRepository<ShoppingCart> {
         qry = this.entityManager.createQuery(jpql);
         qry.setParameter("customerId", customerId);
         List lst = qry.getResultList();
+        this.entityManager.clear();
         this.entityManager.close();
 
         return (List<ShoppingCart>) lst;

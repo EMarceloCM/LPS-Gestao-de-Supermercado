@@ -6,7 +6,6 @@ import jakarta.persistence.Query;
 import model.entities.Product;
 import model.entities.Promotion;
 import repository.interfaces.IRepository;
-
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -24,6 +23,7 @@ public class PromotionRepository implements IRepository<Promotion> {
     public Promotion find(int id) {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
         Promotion p = this.entityManager.find(Promotion.class, id);
+        this.entityManager.clear();
         this.entityManager.close();
         return p;
     }
@@ -32,6 +32,7 @@ public class PromotionRepository implements IRepository<Promotion> {
     public Promotion find(Promotion obj) {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
         Promotion p = this.entityManager.find(Promotion.class, obj.getId());
+        this.entityManager.clear();
         this.entityManager.close();
         return p;
     }
@@ -42,6 +43,7 @@ public class PromotionRepository implements IRepository<Promotion> {
         jpql = " SELECT p FROM Promotion p ";
         qry = this.entityManager.createQuery(jpql);
         List<Promotion> lst = qry.getResultList();
+        this.entityManager.clear();
         this.entityManager.close();
         return lst;
     }
@@ -52,6 +54,7 @@ public class PromotionRepository implements IRepository<Promotion> {
         this.entityManager.getTransaction().begin();
         this.entityManager.merge(obj);
         this.entityManager.getTransaction().commit();
+        this.entityManager.clear();
         this.entityManager.close();
     }
 
@@ -68,6 +71,7 @@ public class PromotionRepository implements IRepository<Promotion> {
 
         this.entityManager.persist(obj);
         this.entityManager.getTransaction().commit();
+        this.entityManager.clear();
         this.entityManager.close();
     }
 
@@ -80,6 +84,7 @@ public class PromotionRepository implements IRepository<Promotion> {
         if (p != null) this.entityManager.remove(p);
 
         this.entityManager.getTransaction().commit();
+        this.entityManager.clear();
         this.entityManager.close();
 
         return p != null;
@@ -93,6 +98,8 @@ public class PromotionRepository implements IRepository<Promotion> {
         this.entityManager.getTransaction().begin();
         this.entityManager.remove(obj);
         this.entityManager.getTransaction().commit();
+        this.entityManager.clear();
+        this.entityManager.close();
 
         return true;
     }
@@ -103,6 +110,7 @@ public class PromotionRepository implements IRepository<Promotion> {
         qry = this.entityManager.createQuery(jpql);
         qry.setParameter("product_id", product_id);
         List<Promotion> lst = qry.getResultList();
+        this.entityManager.clear();
         this.entityManager.close();
 
         return lst.isEmpty() ? null : lst;
@@ -112,10 +120,11 @@ public class PromotionRepository implements IRepository<Promotion> {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
         String jpql = " SELECT p "
                 + " FROM Promotion p "
-                + " WHERE p.isActive = :isActive ";
+                + " WHERE p.active = :isActive ";
         qry = this.entityManager.createQuery(jpql);
         qry.setParameter("isActive", isActive);
         List<Promotion> lst = qry.getResultList();
+        this.entityManager.clear();
         this.entityManager.close();
 
         return lst;
@@ -126,12 +135,13 @@ public class PromotionRepository implements IRepository<Promotion> {
 
         String jpql = " SELECT p FROM Promotion p "
                 + " WHERE p.product.id = :product_id "
-                + " AND p.isActive = true";
+                + " AND p.active = true";
 
         qry = this.entityManager.createQuery(jpql);
         qry.setParameter("product_id", product_id);
 
         List<Promotion> lst = qry.getResultList();
+        this.entityManager.clear();
         this.entityManager.close();
 
         if (lst == null || lst.isEmpty())
@@ -152,6 +162,7 @@ public class PromotionRepository implements IRepository<Promotion> {
         }
 
         this.entityManager.getTransaction().commit();
+        this.entityManager.clear();
         this.entityManager.close();
     }
 

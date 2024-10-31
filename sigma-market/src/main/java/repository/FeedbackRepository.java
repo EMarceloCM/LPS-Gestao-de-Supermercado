@@ -19,6 +19,7 @@ public class FeedbackRepository implements IRepository<Feedback> {
     public Feedback find(int id) {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
         Feedback f = this.entityManager.find(Feedback.class, id);
+        this.entityManager.clear();
         this.entityManager.close();
 
         return f;
@@ -30,6 +31,7 @@ public class FeedbackRepository implements IRepository<Feedback> {
 
         Feedback f = this.entityManager.find(Feedback.class, obj.getId());
 
+        this.entityManager.clear();
         this.entityManager.close();
 
         return f;
@@ -41,11 +43,12 @@ public class FeedbackRepository implements IRepository<Feedback> {
 
         jpql = " SELECT f FROM Feedback f ";
         qry = this.entityManager.createQuery(jpql);
-        List lst = qry.getResultList();
+        List<Feedback> lst = qry.getResultList();
 
+        this.entityManager.clear();
         this.entityManager.close();
 
-        return (List<Feedback>) lst;
+        return lst;
     }
 
     @Override
@@ -54,6 +57,7 @@ public class FeedbackRepository implements IRepository<Feedback> {
         this.entityManager.getTransaction().begin();
         this.entityManager.merge(obj);
         this.entityManager.getTransaction().commit();
+        this.entityManager.clear();
         this.entityManager.close();
     }
 
@@ -63,6 +67,7 @@ public class FeedbackRepository implements IRepository<Feedback> {
         this.entityManager.getTransaction().begin();
         this.entityManager.persist(obj);
         this.entityManager.getTransaction().commit();
+        this.entityManager.clear();
         this.entityManager.close();
     }
 
@@ -75,6 +80,7 @@ public class FeedbackRepository implements IRepository<Feedback> {
         if (f != null) this.entityManager.remove(f);
 
         this.entityManager.getTransaction().commit();
+        this.entityManager.clear();
         this.entityManager.close();
 
         return f != null;
@@ -88,6 +94,8 @@ public class FeedbackRepository implements IRepository<Feedback> {
         this.entityManager.getTransaction().begin();
         this.entityManager.remove(obj);
         this.entityManager.getTransaction().commit();
+        this.entityManager.clear();
+        this.entityManager.close();
 
         return true;
     }
@@ -97,10 +105,11 @@ public class FeedbackRepository implements IRepository<Feedback> {
         jpql = " SELECT f FROM Feedback f WHERE f.customer.id = :customerId ";
         qry = this.entityManager.createQuery(jpql);
         qry.setParameter("customerId", customerId);
-        List lst = qry.getResultList();
+        List<Feedback> lst = qry.getResultList();
+        this.entityManager.clear();
         this.entityManager.close();
 
-        return (List<Feedback>) lst;
+        return lst;
     }
 
     public Feedback findByOrder(int orderId) {
@@ -108,10 +117,11 @@ public class FeedbackRepository implements IRepository<Feedback> {
         jpql = " SELECT f FROM Feedback f WHERE f.order.id = :orderId ";
         qry = this.entityManager.createQuery(jpql);
         qry.setParameter("orderId", orderId);
-        List lst = qry.getResultList();
+        List<Feedback> lst = qry.getResultList();
+        this.entityManager.clear();
         this.entityManager.close();
 
-        return lst.isEmpty() ? null : (Feedback) lst.getFirst();
+        return lst.isEmpty() ? null : lst.getFirst();
     }
 
     public List<Feedback> findWithFilter(String filter) {
@@ -121,9 +131,10 @@ public class FeedbackRepository implements IRepository<Feedback> {
                 + " WHERE f.review LIKE :filter ";
         qry = this.entityManager.createQuery(jpql);
         qry.setParameter("filter", "%" + filter + "%");
-        List lst = qry.getResultList();
+        List<Feedback> lst = qry.getResultList();
+        this.entityManager.clear();
         this.entityManager.close();
 
-        return (List<Feedback>) lst;
+        return lst;
     }
 }

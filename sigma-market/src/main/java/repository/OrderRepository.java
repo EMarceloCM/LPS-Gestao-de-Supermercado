@@ -19,6 +19,7 @@ public class OrderRepository implements IRepository<Order> {
     public Order find(int id) {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
         Order o = this.entityManager.find(Order.class, id);
+        this.entityManager.clear();
         this.entityManager.close();
 
         return o;
@@ -29,7 +30,7 @@ public class OrderRepository implements IRepository<Order> {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
 
         Order o = this.entityManager.find(Order.class, obj.getId());
-
+        this.entityManager.clear();
         this.entityManager.close();
 
         return o;
@@ -43,6 +44,7 @@ public class OrderRepository implements IRepository<Order> {
         qry = this.entityManager.createQuery(jpql);
         List lst = qry.getResultList();
 
+        this.entityManager.clear();
         this.entityManager.close();
 
         return (List<Order>) lst;
@@ -54,6 +56,7 @@ public class OrderRepository implements IRepository<Order> {
         this.entityManager.getTransaction().begin();
         this.entityManager.merge(obj);
         this.entityManager.getTransaction().commit();
+        this.entityManager.clear();
         this.entityManager.close();
     }
 
@@ -63,6 +66,7 @@ public class OrderRepository implements IRepository<Order> {
         this.entityManager.getTransaction().begin();
         this.entityManager.persist(obj);
         this.entityManager.getTransaction().commit();
+        this.entityManager.clear();
         this.entityManager.close();
     }
 
@@ -75,6 +79,7 @@ public class OrderRepository implements IRepository<Order> {
         if (o != null) this.entityManager.remove(o);
 
         this.entityManager.getTransaction().commit();
+        this.entityManager.clear();
         this.entityManager.close();
 
         return o != null;
@@ -88,6 +93,8 @@ public class OrderRepository implements IRepository<Order> {
         this.entityManager.getTransaction().begin();
         this.entityManager.remove(obj);
         this.entityManager.getTransaction().commit();
+        this.entityManager.clear();
+        this.entityManager.close();
 
         return true;
     }
@@ -98,6 +105,7 @@ public class OrderRepository implements IRepository<Order> {
         qry = this.entityManager.createQuery(jpql);
         qry.setParameter("customer_id", customer_id);
         List lst = qry.getResultList();
+        this.entityManager.clear();
         this.entityManager.close();
 
         return (List<Order>) lst;
