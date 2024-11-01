@@ -16,7 +16,6 @@ public class Product {
     private String name;
     private String description;
     private String imgUrl;
-    private LocalDateTime expiredDate;
     private float price;
     private int stock;
     private String sku;

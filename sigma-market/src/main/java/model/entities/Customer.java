@@ -18,6 +18,7 @@ public class Customer {
     private String password;
     private String cpf;
     private String email;
+    private int profileId;
 
     @Enumerated(EnumType.STRING)
     private Role Role;

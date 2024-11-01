@@ -16,7 +16,7 @@ public class ValidateCustomer{
         if(password.isEmpty() || password.isBlank())
             throw new CustomerException("Error - Campo vazio: 'password'.");
         c.setPassword(password.strip());
-
+        //TODO validar profileID
         if(cpf.isEmpty() || cpf.isBlank())
             throw new CustomerException("Error - Campo vazio: 'cpf'.");
 
