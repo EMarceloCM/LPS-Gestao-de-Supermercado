@@ -1,5 +1,5 @@
-# SigmaMarket
-<h1>Informações</h1>
+# SigmaMarket Σ
+<h1>Informações Importantes</h1>
 <h2>Evento que desativa uma promoção quando seu tempo limite exiprar</h2>
 
 ```

@@ -25,7 +25,7 @@ public class FrPromotion extends JDialog {
     private JTable grd;
     private JPanel panForm;
     private JTextField edtProductId;
-    private JLabel lblData;
+    private JLabel lblDiscount;
     private JPanel panBot;
     private JPanel panSearch;
     private JTextField edtSearch;

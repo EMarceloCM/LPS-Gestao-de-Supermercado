@@ -29,9 +29,7 @@ public class AddressRepository implements IRepository<Address> {
     @Override
     public Address find(Address obj) {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
-
         Address a = this.entityManager.find(Address.class, obj.getId());
-
         this.entityManager.clear();
         this.entityManager.close();
 
