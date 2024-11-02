@@ -9,6 +9,7 @@
       <background color="-16048293"/>
       <font name="Arial" size="12"/>
       <foreground color="-16777216"/>
+      <maximumSize width="1280" height="720"/>
       <minimumSize width="1024" height="576"/>
     </properties>
     <border type="none"/>

@@ -1,6 +1,7 @@
 package view;
 
 import Auth.SessionManager;
+import Auth.exceptions.AuthException;
 import controller.ShoppingCartController;
 import model.entities.Product;
 import model.entities.Promotion;
@@ -72,7 +73,11 @@ public class FrProductDetail extends JDialog{
                 product.getPrice() * (Integer) spnQuantityValue.getValue() :
                 promotion.getFinalPrice() * (Integer) spnQuantityValue.getValue();
 
-        cartController.createShoppingCart(product, SessionManager.getLoggedUser(), (Integer) spnQuantityValue.getValue(), totalAmount);
-        dispose();
+        try{
+            cartController.createShoppingCart(product, SessionManager.getLoggedUser(), (Integer) spnQuantityValue.getValue(), totalAmount);
+            dispose();
+        } catch (AuthException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Aviso", JOptionPane.WARNING_MESSAGE);
+        }
     }
 }

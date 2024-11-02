@@ -1,8 +1,9 @@
 package view;
 
 import controller.ProductController;
+import controller.tableModel.utils.IconLabelRenderer;
+import controller.tableModel.utils.IconRenderer;
 import model.enums.Role;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -52,6 +53,7 @@ public class FrMainView extends JFrame {
         changeViewBasedOnRole();
 
         controller.refreshBuyTable(grdProducts);
+        configureGrdAfterTModel();
 
         lblReference.addMouseListener(new MouseAdapter() {
             @Override
@@ -90,6 +92,8 @@ public class FrMainView extends JFrame {
                 FrProduct dlg = new FrProduct(FrMainView.this, true);
                 dlg.setLocationRelativeTo(FrMainView.this);
                 dlg.setVisible(true);
+                controller.refreshBuyTable(grdProducts);
+                configureGrdAfterTModel();
             }
         });
         btnPromotion.addActionListener(new ActionListener() {
@@ -145,6 +149,36 @@ public class FrMainView extends JFrame {
         grdProducts.setDefaultEditor(Object.class, null);
         grdProducts.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         grdProducts.getTableHeader().setReorderingAllowed(false);
+    }
+
+    private void configureGrdAfterTModel(){
+        grdProducts.getColumnModel().getColumn(4).setCellRenderer(new IconLabelRenderer());
+        grdProducts.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int row = grdProducts.rowAtPoint(e.getPoint());
+                int column = grdProducts.columnAtPoint(e.getPoint());
+
+                if (column == 4 && row >= 0) {
+                    JOptionPane.showMessageDialog(null, "FOI CLICADO na linha " + row);
+                }
+            }
+        });
+        grdProducts.getColumnModel().getColumn(0).setMinWidth(60);
+        grdProducts.getColumnModel().getColumn(0).setMaxWidth(405);
+        grdProducts.getColumnModel().getColumn(0).setPreferredWidth(270);
+        grdProducts.getColumnModel().getColumn(1).setMinWidth(60);
+        grdProducts.getColumnModel().getColumn(1).setMaxWidth(725);
+        grdProducts.getColumnModel().getColumn(1).setPreferredWidth(550);
+        grdProducts.getColumnModel().getColumn(2).setMinWidth(60);
+        grdProducts.getColumnModel().getColumn(2).setMaxWidth(60);
+        grdProducts.getColumnModel().getColumn(2).setPreferredWidth(60);
+        grdProducts.getColumnModel().getColumn(3).setMinWidth(80);
+        grdProducts.getColumnModel().getColumn(3).setMaxWidth(180);
+        grdProducts.getColumnModel().getColumn(3).setPreferredWidth(180);
+        grdProducts.getColumnModel().getColumn(4).setMinWidth(30);
+        grdProducts.getColumnModel().getColumn(4).setMaxWidth(30);
+        grdProducts.getColumnModel().getColumn(4).setPreferredWidth(30);
     }
 
     private void changeViewBasedOnRole() {
