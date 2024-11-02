@@ -1,5 +1,6 @@
 package controller;
 
+import Auth.SessionManager;
 import controller.tableModel.TMShoppingCart;
 import model.entities.Customer;
 import model.entities.Product;
@@ -17,6 +18,12 @@ public class ShoppingCartController {
 
     public void refreshTable(JTable t) {
         List<ShoppingCart> list = repository.findAll();
+        TMShoppingCart model = new TMShoppingCart(list);
+        t.setModel(model);
+    }
+
+    public void refreshCustomerTable(JTable t){
+        List<ShoppingCart> list = repository.findByCustomer(SessionManager.getLoggedUserId());
         TMShoppingCart model = new TMShoppingCart(list);
         t.setModel(model);
     }
