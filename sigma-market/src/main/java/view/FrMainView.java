@@ -1,5 +1,6 @@
 package view;
 
+import Auth.SessionManager;
 import controller.ProductController;
 import controller.PromotionController;
 import controller.tableModel.utils.IconLabelRenderer;
@@ -137,6 +138,18 @@ public class FrMainView extends JFrame {
                 } else {
                     Auth.SessionManager.Logout();
                     changeViewBasedOnRole();
+                }
+            }
+        });
+        btnCart.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(SessionManager.isLoggedIn()) {
+                    FrShoppingCart dlg = new FrShoppingCart(FrMainView.this, true);
+                    dlg.setLocationRelativeTo(FrMainView.this);
+                    dlg.setVisible(true);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Realize login!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
         });

@@ -1,11 +1,9 @@
 package view;
 
-import Auth.exceptions.AuthException;
-import controller.ItemOrderController;
+import Auth.SessionManager;
 import controller.OrderController;
 import controller.ShoppingCartController;
 import model.entities.ShoppingCart;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
@@ -21,7 +19,7 @@ public class FrShoppingCart extends JDialog{
     private JLabel iconSearchPaymentType;
     private JPanel panGrid;
     private JTextField edtAddress;
-    private JLabel iconSearchAdress;
+    private JLabel iconSearchAddress;
     private JLabel lblPaymentType;
     private JLabel lblPaymentTypeValue;
     private JLabel lblTotal;
@@ -39,30 +37,24 @@ public class FrShoppingCart extends JDialog{
         orderController = new OrderController();
         setContentPane(panMain);
         setTitle("Carrinho de Compras");
-        // setSize(900, 500);
+        setSize(790, 553);
 
-        try {
-            shoppingCartController.refreshCustomerTable(grdItemOrder);
-        }catch(AuthException ex){
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro!", JOptionPane.ERROR_MESSAGE);
-        }
-
+        shoppingCartController.refreshTable(grdItemOrder);
         initCustomComponents();
     }
 
     private void initCustomComponents() {
         Cursor hand = new Cursor(Cursor.HAND_CURSOR);
-        iconSearchAdress.setCursor(hand);
+        iconSearchAddress.setCursor(hand);
         iconSearchPaymentType.setCursor(hand);
         btnCreateOrder.setCursor(hand);
+        shoppingCartList = shoppingCartController.findByCustomer(SessionManager.getLoggedUserId());
 
-        grd.setDefaultEditor(Object.class, null);
-        grd.getTableHeader().setReorderingAllowed(false);
-
-        if(shoppingCartList != null && !shoppingCartList.isEmpty()) initLables();
+        if(shoppingCartList != null && !shoppingCartList.isEmpty()) initLabels();
+        if(shoppingCartList == null) JOptionPane.showMessageDialog(null, "Carrinho vazio!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    private void initLables(){
+    private void initLabels(){
         float aux = 0;
         for (ShoppingCart shoppingCart : shoppingCartList) {
             aux += shoppingCart.getTotalAmount();

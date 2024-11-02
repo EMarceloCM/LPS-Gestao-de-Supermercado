@@ -3,6 +3,8 @@ package repository;
 import factory.DatabaseJPA;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
+import model.entities.Customer;
+import model.entities.Product;
 import model.entities.ShoppingCart;
 import repository.interfaces.IRepository;
 import java.util.List;
@@ -65,6 +67,17 @@ public class ShoppingCartRepository implements IRepository<ShoppingCart> {
     public void save(ShoppingCart obj) {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
         this.entityManager.getTransaction().begin();
+
+        if (obj.getCustomer() != null && obj.getCustomer().getId() > 0) {
+            Customer managedCustomer = entityManager.find(Customer.class, obj.getCustomer().getId());
+            obj.setCustomer(managedCustomer);
+        }
+
+        if (obj.getProduct() != null && obj.getProduct().getId() > 0) {
+            Product managedProduct = entityManager.find(Product.class, obj.getProduct().getId());
+            obj.setProduct(managedProduct);
+        }
+
         this.entityManager.persist(obj);
         this.entityManager.getTransaction().commit();
         this.entityManager.clear();

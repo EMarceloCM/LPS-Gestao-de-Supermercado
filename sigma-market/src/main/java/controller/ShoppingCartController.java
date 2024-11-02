@@ -17,15 +17,19 @@ public class ShoppingCartController {
     }
 
     public void refreshTable(JTable t) {
-        List<ShoppingCart> list = repository.findAll();
-        TMShoppingCart model = new TMShoppingCart(list);
-        t.setModel(model);
+        if(SessionManager.isLoggedIn()){
+            List<ShoppingCart> list = repository.findAll();
+            TMShoppingCart model = new TMShoppingCart(list);
+            t.setModel(model);
+        }else{
+            List<ShoppingCart> list = repository.findByCustomer(SessionManager.getLoggedUserId());
+            TMShoppingCart model = new TMShoppingCart(list);
+            t.setModel(model);
+        }
     }
 
-    public void refreshCustomerTable(JTable t){
-        List<ShoppingCart> list = repository.findByCustomer(SessionManager.getLoggedUserId());
-        TMShoppingCart model = new TMShoppingCart(list);
-        t.setModel(model);
+    public List<ShoppingCart> findByCustomer(int customer_id){
+        return repository.findByCustomer(customer_id);
     }
 
     public void createShoppingCart(Product product, Customer customer, int quantity, float totalAmount) {

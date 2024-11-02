@@ -24,14 +24,18 @@ public class Customer {
     private Role Role;
 
     @OneToMany(mappedBy = "customer")
+    @ToString.Exclude
     List<Address> addresses;
 
     @OneToMany(mappedBy = "customer")
+    @ToString.Exclude
     List<Feedback> feedbacks;
 
     @OneToMany(mappedBy = "customer")
+    @ToString.Exclude
     List<Order> orders;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    @ToString.Exclude
     List<ShoppingCart> shoppingCarts;
 }
