@@ -80,4 +80,8 @@ public class TMProductBuy extends AbstractTableModel {
             default -> "";
         };
     }
+
+    public Product getProductAt(int rowIndex) {
+        return list.get(rowIndex);
+    }
 }

@@ -9,6 +9,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 public class FrProductDetail extends JDialog{
     private JPanel panTop;
@@ -39,14 +43,16 @@ public class FrProductDetail extends JDialog{
         this.promotion = promotion;
         cartController = new ShoppingCartController();
         setContentPane(panMain);
+        setSize(880, 490);
         setTitle("Detalhes do Produto");
         LoadForm();
 
         btnAddToCart.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if((Integer) spnQuantityValue.getValue() != 0) AddProductToCart();
-                else JOptionPane.showMessageDialog(null, "Quantidade do item não pode ser zero!", "Aviso.", JOptionPane.INFORMATION_MESSAGE);
+                if(product.getStock() == 0) JOptionPane.showMessageDialog(null, "Item indisponível no momento!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+                else if((Integer) spnQuantityValue.getValue() == 0) JOptionPane.showMessageDialog(null, "Quantidade do item não pode ser zero!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+                else AddProductToCart();
             }
         });
     }
@@ -61,11 +67,21 @@ public class FrProductDetail extends JDialog{
             lblDiscount.setVisible(false);
             lblDiscountValue.setVisible(false);
         } else {
-            lblPriceValue.setText("De R$ "+ product.getPrice() +" Por R$ "+promotion.getFinalPrice());
-            lblDiscountValue.setText("R$ "+ (product.getPrice() - promotion.getFinalPrice()));
+            lblPriceValue.setText("De R$ "+ product.getPrice() +" Por R$ "+ String.format("%.2f", promotion.getFinalPrice()));
+            lblDiscountValue.setText("R$ "+ String.format("%.2f", (product.getPrice() - promotion.getFinalPrice())));
         }
 
-        // TODO lblImage.setIcon(product.getImgUrl());
+        try {
+            URI imageUri = new URI(product.getImgUrl());
+            URL imageUrl = imageUri.toURL();
+            ImageIcon icon = new ImageIcon(imageUrl);
+            Image scaledImage = icon.getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH);
+
+            lblImage.setIcon(new ImageIcon(scaledImage));
+            lblImage.setHorizontalAlignment(JLabel.CENTER);
+        } catch (URISyntaxException | MalformedURLException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro!", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private void AddProductToCart(){

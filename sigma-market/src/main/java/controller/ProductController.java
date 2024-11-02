@@ -39,6 +39,10 @@ public class ProductController {
         t.setModel(model);
     }
 
+    public Product findProductById(int product_id){
+        return repository.find(product_id);
+    }
+
     public void createProduct(String name, String description, String imgUrl, String price, int stock, String sku) {
         Product o = ValidateProduct.Validate(name, description, imgUrl, price, stock, sku);
         repository.save(o);

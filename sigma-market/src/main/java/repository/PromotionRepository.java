@@ -52,7 +52,20 @@ public class PromotionRepository implements IRepository<Promotion> {
     public void update(Promotion obj) {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
         this.entityManager.getTransaction().begin();
-        this.entityManager.merge(obj);
+
+        Promotion p = entityManager.find(Promotion.class, obj.getId());
+        if (p == null) throw new IllegalArgumentException("Promoção com o ID fornecido não encontrada.");
+
+        Product product = entityManager.find(Product.class, obj.getProduct().getId());
+        if (product == null) throw new IllegalArgumentException("Produto com o ID fornecido não encontrado.");
+
+        p.setDiscountPercentage(obj.getDiscountPercentage());
+        p.setCreationDate(obj.getCreationDate());
+        p.setDurationMinutes(obj.getDurationMinutes());
+        p.setActive(obj.getActive());
+        p.setProduct(product);
+
+        // this.entityManager.merge(p); nao precisa porque a propr. já está sendo monitorada
         this.entityManager.getTransaction().commit();
         this.entityManager.clear();
         this.entityManager.close();
@@ -116,7 +129,7 @@ public class PromotionRepository implements IRepository<Promotion> {
         return lst.isEmpty() ? null : lst;
     }
 
-    public List<Promotion> findActive(boolean isActive) {
+    public List<Promotion> findActive(int isActive) {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
         String jpql = " SELECT p "
                 + " FROM Promotion p "
@@ -135,7 +148,7 @@ public class PromotionRepository implements IRepository<Promotion> {
 
         String jpql = " SELECT p FROM Promotion p "
                 + " WHERE p.product.id = :product_id "
-                + " AND p.active = true";
+                + " AND p.active = 1";
 
         qry = this.entityManager.createQuery(jpql);
         qry.setParameter("product_id", product_id);

@@ -20,6 +20,10 @@ public class PromotionController {
         t.setModel(model);
     }
 
+    public Promotion findActiveByProductId(int product_id){
+        return repository.findActiveByProduct(product_id);
+    }
+
     public void createPromotion(String discountPercentage, String durationMinutes, boolean isActive, Product product) {
         Promotion p = ValidatePromotion.Validate(discountPercentage, durationMinutes, isActive, product);
 
@@ -38,7 +42,7 @@ public class PromotionController {
     }
 
     public void filterTableByActive(JTable t, boolean isActive) {
-        List<Promotion> list = repository.findActive(isActive);
+        List<Promotion> list = repository.findActive(isActive ? 1 : 0);
         TMPromotion model = new TMPromotion(list);
         t.setModel(model);
     }

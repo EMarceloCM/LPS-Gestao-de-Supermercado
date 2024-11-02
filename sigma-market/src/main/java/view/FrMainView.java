@@ -1,8 +1,10 @@
 package view;
 
 import controller.ProductController;
+import controller.PromotionController;
 import controller.tableModel.utils.IconLabelRenderer;
-import controller.tableModel.utils.IconRenderer;
+import controller.tableModel.utils.StockTableCellRenderer;
+import model.entities.Product;
 import model.enums.Role;
 import javax.swing.*;
 import java.awt.*;
@@ -37,6 +39,7 @@ public class FrMainView extends JFrame {
     private JPanel panMenuAdmin;
 
     private ProductController controller;
+    private PromotionController promotionController;
 
     public FrMainView() {
         // window info
@@ -48,6 +51,7 @@ public class FrMainView extends JFrame {
         setVisible(true);
 
         controller = new ProductController();
+        promotionController = new PromotionController();
 
         initCustomComponents();
         changeViewBasedOnRole();
@@ -153,6 +157,7 @@ public class FrMainView extends JFrame {
 
     private void configureGrdAfterTModel(){
         grdProducts.getColumnModel().getColumn(4).setCellRenderer(new IconLabelRenderer());
+        grdProducts.setDefaultRenderer(Object.class, new StockTableCellRenderer());
         grdProducts.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -160,7 +165,10 @@ public class FrMainView extends JFrame {
                 int column = grdProducts.columnAtPoint(e.getPoint());
 
                 if (column == 4 && row >= 0) {
-                    JOptionPane.showMessageDialog(null, "FOI CLICADO na linha " + row);
+                    Product aux = controller.findProductById(row+1);
+                    FrProductDetail dlg = new FrProductDetail(FrMainView.this,true, aux, promotionController.findActiveByProductId(aux.getId()));
+                    dlg.setLocationRelativeTo(FrMainView.this);
+                    dlg.setVisible(true);
                 }
             }
         });

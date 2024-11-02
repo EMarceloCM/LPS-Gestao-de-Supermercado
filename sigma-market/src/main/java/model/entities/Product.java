@@ -25,6 +25,7 @@ public class Product {
     List<Promotion> promotions;
 
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ToString.Exclude
     List<ShoppingCart> shoppingCarts;
 
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
@@ -32,5 +33,6 @@ public class Product {
     List<ProductSupplier> productSuppliers;
 
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+    @ToString.Exclude
     List<ItemOrder> itemOrders;
 }
