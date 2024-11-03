@@ -14,18 +14,15 @@ public class FrShoppingCart extends JDialog{
     private JButton btnCreateOrder;
     private JLabel lblAddress;
     private javax.swing.JScrollPane JScrollPane;
-    private JTable grd;
     private JPanel panBot;
-    private JLabel iconSearchPaymentType;
     private JPanel panGrid;
-    private JTextField edtAddress;
-    private JLabel iconSearchAddress;
     private JLabel lblPaymentType;
-    private JLabel lblPaymentTypeValue;
     private JLabel lblTotal;
     private JLabel lblTotalValue;
     private JPanel panMain;
     private JTable grdItemOrder;
+    private JComboBox<String> cbPaymentTypeValue;
+    private JComboBox<String> cbAddressValue;
 
     private ShoppingCartController shoppingCartController;
     private OrderController orderController;
@@ -37,21 +34,26 @@ public class FrShoppingCart extends JDialog{
         orderController = new OrderController();
         setContentPane(panMain);
         setTitle("Carrinho de Compras");
-        setSize(790, 553);
+        setSize(840, 570);
+        setMinimumSize(new Dimension(1200, 620));
 
         shoppingCartController.refreshTable(grdItemOrder);
         initCustomComponents();
+        configureGrdAfterTModel();
     }
 
     private void initCustomComponents() {
         Cursor hand = new Cursor(Cursor.HAND_CURSOR);
-        iconSearchAddress.setCursor(hand);
-        iconSearchPaymentType.setCursor(hand);
         btnCreateOrder.setCursor(hand);
         shoppingCartList = shoppingCartController.findByCustomer(SessionManager.getLoggedUserId());
 
         if(shoppingCartList != null && !shoppingCartList.isEmpty()) initLabels();
         if(shoppingCartList == null) JOptionPane.showMessageDialog(null, "Carrinho vazio!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+
+        cbAddressValue.addItem("chamar AddressController");
+        cbPaymentTypeValue.addItem("Dinheiro");
+        cbPaymentTypeValue.addItem("PIX");
+        cbPaymentTypeValue.addItem("Bitcoin");
     }
 
     private void initLabels(){
@@ -60,5 +62,22 @@ public class FrShoppingCart extends JDialog{
             aux += shoppingCart.getTotalAmount();
         }
         lblTotalValue.setText(String.valueOf(aux));
+    }
+
+    private void configureGrdAfterTModel(){
+        grdItemOrder.getColumnModel().getColumn(0).setMaxWidth(405);
+        grdItemOrder.getColumnModel().getColumn(0).setPreferredWidth(350);
+        grdItemOrder.getColumnModel().getColumn(1).setMinWidth(120);
+        grdItemOrder.getColumnModel().getColumn(1).setMaxWidth(725);
+        grdItemOrder.getColumnModel().getColumn(1).setPreferredWidth(550);
+        grdItemOrder.getColumnModel().getColumn(2).setMinWidth(40);
+        grdItemOrder.getColumnModel().getColumn(2).setMaxWidth(40);
+        grdItemOrder.getColumnModel().getColumn(2).setPreferredWidth(40);
+        grdItemOrder.getColumnModel().getColumn(3).setMinWidth(80);
+        grdItemOrder.getColumnModel().getColumn(3).setMaxWidth(110);
+        grdItemOrder.getColumnModel().getColumn(3).setPreferredWidth(110);
+        grdItemOrder.getColumnModel().getColumn(4).setMinWidth(70);
+        grdItemOrder.getColumnModel().getColumn(4).setMaxWidth(70);
+        grdItemOrder.getColumnModel().getColumn(4).setPreferredWidth(70);
     }
 }

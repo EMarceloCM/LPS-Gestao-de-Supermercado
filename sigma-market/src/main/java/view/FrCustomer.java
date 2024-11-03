@@ -118,7 +118,7 @@ public class FrCustomer extends JDialog {
                     if (editingId == -1)
                         controller.createCustomer(fEdtCpf.getText(), edtEmail.getText(), edtNome.getText(), new String(pswUserPassword.getPassword()), comboBoxRole.getSelectedIndex());
                     else
-                        controller.updateCustomer(editingId, fEdtCpf.getText(), edtEmail.getText(), edtNome.getText(), new String(pswUserPassword.getPassword()), comboBoxRole.getSelectedIndex());
+                        controller.updateCustomer(editingId, fEdtCpf.getText(), edtEmail.getText(), edtNome.getText(), new String(pswUserPassword.getPassword()), comboBoxRole.getSelectedIndex(), 0);
 
                     controller.refreshTable(grd);
                     swapForm();

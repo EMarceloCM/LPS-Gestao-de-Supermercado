@@ -6,7 +6,7 @@ import model.exceptions.CustomerException;
 import model.utils.EnumUtils;
 
 public class ValidateCustomer{
-    public static Customer Validate(String name, String password, String cpf, String email, String role) throws CustomerException {
+    public static Customer Validate(String name, String password, String cpf, String email, String role, int profile_id) throws CustomerException {
         Customer c = new Customer();
 
         if(name.isEmpty() || name.isBlank())
@@ -16,7 +16,7 @@ public class ValidateCustomer{
         if(password.isEmpty() || password.isBlank())
             throw new CustomerException("Error - Campo vazio: 'password'.");
         c.setPassword(password.strip());
-        //TODO validar profileID
+
         if(cpf.isEmpty() || cpf.isBlank())
             throw new CustomerException("Error - Campo vazio: 'cpf'.");
 
@@ -38,8 +38,12 @@ public class ValidateCustomer{
         Role r = (Role) converter.convert(role);
         if(r == null)
             throw new CustomerException("Error - Campo inválido: 'role'.");
-
         c.setRole(r);
+
+        if(profile_id < 10)
+            c.setProfileId(profile_id);
+        else
+            throw new CustomerException("Error - Campo inválido: 'profile'");
 
         return c;
     }

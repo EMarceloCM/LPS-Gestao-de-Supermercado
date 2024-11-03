@@ -38,6 +38,7 @@ public class FrMainView extends JFrame {
     private JPanel panReference;
     private JLabel lblReference;
     private JPanel panMenuAdmin;
+    private JButton btnProfile;
 
     private ProductController controller;
     private PromotionController promotionController;
@@ -47,7 +48,7 @@ public class FrMainView extends JFrame {
         setContentPane(panMain);
         setTitle("Supermercado Sigma");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(1280, 720);
+        setSize(1080, 720);
         setLocationRelativeTo(null);
         setVisible(true);
 
@@ -151,6 +152,14 @@ public class FrMainView extends JFrame {
                 }else{
                     JOptionPane.showMessageDialog(null, "Realize login!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
                 }
+            }
+        });
+        btnProfile.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                FrProfile dlg = new FrProfile(FrMainView.this, true);
+                dlg.setLocationRelativeTo(FrMainView.this);
+                dlg.setVisible(true);
             }
         });
     }

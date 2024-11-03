@@ -3,7 +3,6 @@ package model.entities;
 import jakarta.persistence.*;
 import lombok.*;
 import model.enums.Role;
-
 import java.util.List;
 
 @Data

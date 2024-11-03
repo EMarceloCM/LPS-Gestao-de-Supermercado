@@ -5,6 +5,7 @@ import controller.tableModel.TMShoppingCart;
 import model.entities.Customer;
 import model.entities.Product;
 import model.entities.ShoppingCart;
+import model.enums.Role;
 import repository.ShoppingCartRepository;
 import javax.swing.*;
 import java.util.List;
@@ -17,11 +18,11 @@ public class ShoppingCartController {
     }
 
     public void refreshTable(JTable t) {
-        if(SessionManager.isLoggedIn()){
+        if(SessionManager.isLoggedIn() && SessionManager.getLoggedUserRole() == Role.ADMIN){
             List<ShoppingCart> list = repository.findAll();
             TMShoppingCart model = new TMShoppingCart(list);
             t.setModel(model);
-        }else{
+        }else if(SessionManager.getLoggedUserRole() == Role.CUSTOMER){
             List<ShoppingCart> list = repository.findByCustomer(SessionManager.getLoggedUserId());
             TMShoppingCart model = new TMShoppingCart(list);
             t.setModel(model);
