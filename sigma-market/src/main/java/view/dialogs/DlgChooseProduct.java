@@ -4,7 +4,6 @@ import controller.ProductController;
 import lombok.Getter;
 import model.entities.Product;
 import view.utils.TableUtils;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

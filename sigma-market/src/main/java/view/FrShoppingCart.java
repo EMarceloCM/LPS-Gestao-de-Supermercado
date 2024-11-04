@@ -127,6 +127,7 @@ public class FrShoppingCart extends JDialog{
             shoppingCartController.deleteShoppingCart(sp.getId());
         }
 
+        // TODO fechar esta view e abrir a view de OBRIGADO POR COMPRAR
         dispose();
     }
 }

@@ -3,12 +3,10 @@ package view;
 import controller.AddressController;
 import model.entities.Address;
 import model.entities.Customer;
-import model.entities.Promotion;
 import model.exceptions.PromotionException;
 import view.dialogs.DlgChooseCustomer;
 import view.utils.FormatterUtils;
 import view.utils.TableUtils;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -100,7 +98,7 @@ public class FrAddress extends JDialog {
         btnSalvar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
+                try { //TODO se o usuario logado for customer, pegar o id da sessao dele e nao exibir a pesquisa de usuarios
                     if (editingId == -1)
                         controller.createAddress(edtStreet.getText(), fEdtNum.getText(), edtComplement.getText(), edtNeigh.getText(), fEdtZip.getText(), selectedCustomer);
                     else
@@ -137,14 +135,14 @@ public class FrAddress extends JDialog {
         lblSearchUsr.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                DlgChooseCustomer dlg = new DlgChooseCustomer(null, true);
-                dlg.setLocationRelativeTo(FrAddress.this);
-                dlg.setVisible(true);
+            DlgChooseCustomer dlg = new DlgChooseCustomer(null, true);
+            dlg.setLocationRelativeTo(FrAddress.this);
+            dlg.setVisible(true);
 
-                selectedCustomer = dlg.getSelected();
+            selectedCustomer = dlg.getSelected();
 
-                if (selectedCustomer != null)
-                    edtUser.setText(selectedCustomer.getName() + " (" + selectedCustomer.getId() + ")");
+            if (selectedCustomer != null)
+                edtUser.setText(selectedCustomer.getName() + " (" + selectedCustomer.getId() + ")");
             }
         });
     }

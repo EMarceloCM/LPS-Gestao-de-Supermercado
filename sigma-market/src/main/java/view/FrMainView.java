@@ -39,6 +39,7 @@ public class FrMainView extends JFrame {
     private JLabel lblReference;
     private JPanel panMenuAdmin;
     private JButton btnProfile;
+    private JButton btnStock;
 
     private ProductController controller;
     private PromotionController promotionController;

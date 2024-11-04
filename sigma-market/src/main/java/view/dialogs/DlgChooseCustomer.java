@@ -3,9 +3,7 @@ package view.dialogs;
 import controller.CustomerController;
 import lombok.Getter;
 import model.entities.Customer;
-import model.entities.Product;
 import view.utils.TableUtils;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
