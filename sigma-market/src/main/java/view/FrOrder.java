@@ -5,18 +5,21 @@ import controller.ItemOrderController;
 import controller.OrderController;
 import controller.tableModel.utils.IconLabelRenderer;
 import model.enums.Role;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class FrOrder extends JDialog{
+public class FrOrder extends JDialog {
     private JPanel panTop;
     private JLabel lblTitle;
     private javax.swing.JScrollPane JScrollPane;
     private JTable grdOrders;
     private JPanel panMain;
+    private JPanel panSearchForm;
+    private JLabel lblSearchImg;
+    private JTextField edtSearch;
+    private JLabel lblSearch;
 
     private OrderController orderController;
     private ItemOrderController itemOrderController;
@@ -33,6 +36,24 @@ public class FrOrder extends JDialog{
 
         initCustomComponents();
         configureGrdAfterTModel();
+        swapForm();
+
+        lblSearchImg.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                //TODO colocar maskara de inteiro no edtSearch
+                try{
+                    if(!edtSearch.getText().isBlank())
+                        orderController.filterTableByCustomer(grdOrders, Integer.parseInt(edtSearch.getText()));
+                    else
+                        orderController.refreshTable(grdOrders);
+
+                    configureGrdAfterTModel();
+                }catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "Insira um id numérico válido.", "Erro", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
     }
 
     private void initCustomComponents() {
@@ -57,7 +78,9 @@ public class FrOrder extends JDialog{
 
                 if (column == 8 && row >= 0) {
                     int order_id = (Integer) grdOrders.getValueAt(row, 0);
-                    // FrItemOrder = new FrItemOrder(FrOrder.this, true, itemOrderController.findByOrderId(order_id));
+                    FrItemOrder dlg = new FrItemOrder(FrOrder.this, true, order_id);
+                    dlg.setLocationRelativeTo(FrOrder.this);
+                    dlg.setVisible(true);
                 }
             }
         });
@@ -100,7 +123,9 @@ public class FrOrder extends JDialog{
 
                 if (column == 9 && row >= 0) {
                     int order_id = (Integer) grdOrders.getValueAt(row, 0);
-                    //TODO FrItemOrder = new FrItemOrder(FrOrder.this, true, itemOrderController.findByOrderId(order_id));
+                    FrItemOrder dlg = new FrItemOrder(FrOrder.this, true, order_id);
+                    dlg.setLocationRelativeTo(FrOrder.this);
+                    dlg.setVisible(true);
                 }
             }
         });
@@ -134,5 +159,12 @@ public class FrOrder extends JDialog{
         grdOrders.getColumnModel().getColumn(9).setMinWidth(30);
         grdOrders.getColumnModel().getColumn(9).setMaxWidth(30);
         grdOrders.getColumnModel().getColumn(9).setPreferredWidth(30);
+    }
+
+    private void swapForm(){
+        boolean isVisible = SessionManager.getLoggedUserRole() == Role.ADMIN;
+        lblSearch.setVisible(isVisible);
+        edtSearch.setVisible(isVisible);
+        lblSearchImg.setVisible(isVisible);
     }
 }

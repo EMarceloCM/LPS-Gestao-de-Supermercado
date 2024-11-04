@@ -90,5 +90,6 @@ public class FrProfile extends JDialog{
         int roleId = SessionManager.getLoggedUserRole() == Role.ADMIN ? 0 : 1;
         controller.updateCustomer(SessionManager.getLoggedUserId(), lblCpfValue.getText(), lblEmailValue.getText(), lblNameValue.getText(),
                 lblPswValue.getText(), roleId, cbProfile.getSelectedIndex()+1);
+        //TODO atualizar o login atual com os dados novos do usuario
     }
 }

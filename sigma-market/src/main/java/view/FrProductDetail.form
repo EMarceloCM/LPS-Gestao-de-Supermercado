@@ -227,7 +227,7 @@
               <enabled value="true"/>
               <font/>
               <foreground color="-1"/>
-              <opaque value="true"/>
+              <opaque value="false"/>
               <text value=""/>
             </properties>
           </component>

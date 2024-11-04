@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="view.FrOrder">
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="view.FrItemOrder">
   <grid id="27dc6" binding="panMain" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="5" bottom="5" right="5"/>
     <constraints>
-      <xy x="20" y="20" width="1280" height="650"/>
+      <xy x="20" y="20" width="735" height="433"/>
     </constraints>
     <properties>
       <background color="-16048293"/>
-      <maximumSize width="800" height="500"/>
-      <minimumSize width="500" height="200"/>
-      <preferredSize width="600" height="400"/>
     </properties>
     <border type="none"/>
     <children>
-      <grid id="62298" binding="panTop" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="86a36" binding="panTop" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
@@ -26,7 +23,7 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="a31" class="javax.swing.JLabel" binding="lblTitle">
+          <component id="fbd91" class="javax.swing.JLabel" binding="lblTitle">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -35,13 +32,12 @@
               <foreground color="-1509633"/>
               <horizontalAlignment value="0"/>
               <horizontalTextPosition value="2"/>
-              <icon value="icons/order-24.png"/>
-              <text value="Seus Pedidos"/>
+              <text value="Detalhes do Pedido"/>
             </properties>
           </component>
         </children>
       </grid>
-      <scrollpane id="e90b4" binding="JScrollPane">
+      <scrollpane id="7c544" binding="JScrollPane">
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -50,7 +46,7 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="929b8" class="javax.swing.JTable" binding="grdOrders">
+          <component id="fe4e9" class="javax.swing.JTable" binding="grdItemOrder">
             <constraints/>
             <properties>
               <font name="Arial"/>
@@ -58,7 +54,7 @@
           </component>
         </children>
       </scrollpane>
-      <grid id="8ccce" binding="panSearchForm" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="e0947" binding="panBot" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
@@ -68,38 +64,14 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="686b0" class="javax.swing.JLabel" binding="lblSearchImg">
+          <component id="340d9" class="javax.swing.JButton" binding="btnRate">
             <constraints>
-              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <horizontalAlignment value="2"/>
               <horizontalTextPosition value="2"/>
-              <icon value="icons/search.png"/>
-              <text value=""/>
-              <verticalAlignment value="0"/>
-            </properties>
-          </component>
-          <component id="95529" class="javax.swing.JTextField" binding="edtSearch">
-            <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <minimum-size width="200" height="25"/>
-                <preferred-size width="150" height="-1"/>
-                <maximum-size width="350" height="-1"/>
-              </grid>
-            </constraints>
-            <properties>
-              <font name="Arial" size="12"/>
-            </properties>
-          </component>
-          <component id="7259a" class="javax.swing.JLabel" binding="lblSearch">
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <foreground color="-1509633"/>
-              <labelFor value="7e8d4"/>
-              <text value="Pesquisar:"/>
+              <icon value="icons/star-fill.png"/>
+              <text value="Avaliar"/>
             </properties>
           </component>
         </children>

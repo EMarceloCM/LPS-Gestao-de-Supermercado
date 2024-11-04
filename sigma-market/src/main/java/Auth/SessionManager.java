@@ -5,7 +5,6 @@ import model.entities.Customer;
 import model.enums.Role;
 import model.exceptions.CustomerException;
 import repository.CustomerRepository;
-
 import java.util.Objects;
 
 public class SessionManager {

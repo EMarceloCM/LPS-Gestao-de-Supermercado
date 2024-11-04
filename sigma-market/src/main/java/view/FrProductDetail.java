@@ -51,7 +51,7 @@ public class FrProductDetail extends JDialog{
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(product.getStock() == 0) JOptionPane.showMessageDialog(null, "Item indisponível no momento!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-                else if((Integer) spnQuantityValue.getValue() == 0) JOptionPane.showMessageDialog(null, "Quantidade do item não pode ser zero!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+                else if((Integer) spnQuantityValue.getValue() <= 0) JOptionPane.showMessageDialog(null, "Quantidade do item não pode ser zero!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
                 else if((Integer) spnQuantityValue.getValue() > product.getStock()) JOptionPane.showMessageDialog(null, "Quantidade do item está acima do estoque disponível!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
                 else AddProductToCart();
             }

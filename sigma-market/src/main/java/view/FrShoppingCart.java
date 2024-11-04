@@ -127,7 +127,9 @@ public class FrShoppingCart extends JDialog{
             shoppingCartController.deleteShoppingCart(sp.getId());
         }
 
-        // TODO fechar esta view e abrir a view de OBRIGADO POR COMPRAR
+        FrViewTanks dlg = new FrViewTanks(FrShoppingCart.this, true);
+        dlg.setLocationRelativeTo(FrShoppingCart.this);
+        dlg.setVisible(true);
         dispose();
     }
 }
