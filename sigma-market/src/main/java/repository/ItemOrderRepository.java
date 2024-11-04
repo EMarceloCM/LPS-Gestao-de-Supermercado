@@ -120,10 +120,10 @@ public class ItemOrderRepository implements IRepository<ItemOrder> {
         jpql = " SELECT i FROM ItemOrder i WHERE i.order_id = :order_id ";
         qry = this.entityManager.createQuery(jpql);
         qry.setParameter("order_id", order_id);
-        List lst = qry.getResultList();
+        List<ItemOrder> lst = qry.getResultList();
         this.entityManager.clear();
         this.entityManager.close();
 
-        return (List<ItemOrder>) lst;
+        return lst;
     }
 }

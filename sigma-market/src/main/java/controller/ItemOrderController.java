@@ -17,6 +17,10 @@ public class ItemOrderController {
         t.setModel(model);
     }
 
+    public List<ItemOrder> findByOrderId(int order_id) {
+        return repository.findByOrder(order_id);
+    }
+
     public void createItemOrder(Product product, Order order, int quantity, float totalAmount) {
         ItemOrder io = new ItemOrder(0, product, order, quantity, totalAmount);
 
@@ -30,7 +34,6 @@ public class ItemOrderController {
     }
 
     public void deleteItemOrder(int id) {
-        // TODO confirmar se não irá o pedido junto
         repository.delete(id);
     }
 

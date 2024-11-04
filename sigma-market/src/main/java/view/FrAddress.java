@@ -61,7 +61,7 @@ public class FrAddress extends JDialog {
         isFormActive = true;
         initCustomComponents();
         swapForm();
-
+        // TODO fazer o campo número aceitar apenas números, está crashando qnd coloca letras
         controller.refreshTable(grd);
 
         btnNew.addActionListener(new ActionListener() {

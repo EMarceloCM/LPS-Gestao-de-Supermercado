@@ -86,7 +86,7 @@ public class FrShoppingCart extends JDialog{
         for (ShoppingCart shoppingCart : shoppingCartList) {
             aux += shoppingCart.getTotalAmount();
         }
-        lblTotalValue.setText(String.valueOf(aux));
+        lblTotalValue.setText("R$ " + String.format("%.2f", aux));
     }
 
     private void configureGrdAfterTModel(){
@@ -120,7 +120,7 @@ public class FrShoppingCart extends JDialog{
         PaymentType selectedPType = cbPaymentTypeValue.getSelectedIndex() == 0 ? PaymentType.MONEY :
                 (cbPaymentTypeValue.getSelectedIndex() == 1 ? PaymentType.PIX : PaymentType.BITCOIN);
 
-        Order o = orderController.createOrderAndGet(lblTotalValue.getText(), selectedPType.toString(), SessionManager.getLoggedUser(), selectedAddress);
+        Order o = orderController.createOrderAndGet(lblTotalValue.getText().replace("R$ ", "").replace(",", "."), selectedPType.toString(), SessionManager.getLoggedUser(), selectedAddress);
 
         for(ShoppingCart sp : shoppingCartList){
             itemOrderController.createItemOrder(sp.getProduct(), o, sp.getQuantity(), sp.getTotalAmount());

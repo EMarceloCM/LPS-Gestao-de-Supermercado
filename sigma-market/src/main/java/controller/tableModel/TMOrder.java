@@ -1,8 +1,12 @@
 package controller.tableModel;
 
 import model.entities.Order;
+
+import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
+import java.awt.*;
 import java.util.List;
+import java.util.Objects;
 
 public class TMOrder extends AbstractTableModel {
     private List<Order> lst;
@@ -16,6 +20,7 @@ public class TMOrder extends AbstractTableModel {
     private final int COL_ORDER_STATUS = 6;
     private final int COL_PAYMENT_STATUS = 7;
     private final int COL_PAYMENT_TYPE = 8;
+    private final int COL_DETAILS = 9;
 
     public TMOrder(List<Order> lst) {
         this.lst = lst;
@@ -28,7 +33,7 @@ public class TMOrder extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 9;
+        return 10;
     }
 
     @Override
@@ -42,12 +47,21 @@ public class TMOrder extends AbstractTableModel {
             case COL_ID -> o.getId();
             case COL_CUSTOMER_ID -> o.getCustomer().getId();
             case COL_ADDRESS_ID -> o.getAddress().getId();
-            case COL_FEEDBACK_ID -> o.getFeedback().getId();
+            case COL_FEEDBACK_ID -> o.getFeedback() != null ? o.getFeedback().getId() : "null";
             case COL_DATE -> o.getDate();
             case COL_TOTAL_AMOUNT -> o.getTotalAmount();
             case COL_ORDER_STATUS -> o.getOrderStatus().toString();
             case COL_PAYMENT_STATUS -> o.getPaymentStatus().toString();
             case COL_PAYMENT_TYPE -> o.getPaymentType().toString();
+            case COL_DETAILS -> {
+                JLabel label = new JLabel();
+                ImageIcon icon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/eye-line.png")));
+                Image img = icon.getImage();
+                Image scaledImg = img.getScaledInstance(20, 20,  Image.SCALE_SMOOTH);
+                label.setIcon(new ImageIcon(scaledImg));
+                label.setHorizontalAlignment(JLabel.CENTER);
+                yield label;
+            }
             default -> o;
         };
     }
@@ -64,6 +78,7 @@ public class TMOrder extends AbstractTableModel {
             case COL_ORDER_STATUS -> "Status do Pedido";
             case COL_PAYMENT_STATUS -> "Status do Pagamento";
             case COL_PAYMENT_TYPE -> "Tipo de Pagamento";
+            case COL_DETAILS -> "Ver";
             default -> "";
         };
     }

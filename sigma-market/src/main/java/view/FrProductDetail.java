@@ -80,7 +80,7 @@ public class FrProductDetail extends JDialog{
 
             lblImage.setIcon(new ImageIcon(scaledImage));
             lblImage.setHorizontalAlignment(JLabel.CENTER);
-        } catch (URISyntaxException | MalformedURLException e) {
+        } catch (URISyntaxException | MalformedURLException | NullPointerException e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Erro!", JOptionPane.ERROR_MESSAGE);
         }
     }

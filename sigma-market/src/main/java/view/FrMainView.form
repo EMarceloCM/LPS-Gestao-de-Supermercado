@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="view.FrMainView">
-  <grid id="27dc6" binding="panMain" layout-manager="GridLayoutManager" row-count="3" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="panMain" layout-manager="GridLayoutManager" row-count="4" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="5" left="5" bottom="5" right="5"/>
     <constraints>
-      <xy x="20" y="20" width="1024" height="576"/>
+      <xy x="20" y="20" width="1139" height="639"/>
     </constraints>
     <properties>
       <background color="-16048293"/>
@@ -363,10 +363,56 @@
           </grid>
         </children>
       </grid>
+      <grid id="750b4" binding="panSearch" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-16048293"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="6032d" class="javax.swing.JTextField" binding="edtSearch">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="4" fill="0" indent="0" use-parent-layout="false">
+                <minimum-size width="200" height="25"/>
+                <preferred-size width="150" height="-1"/>
+                <maximum-size width="350" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <font name="Arial" size="12"/>
+            </properties>
+          </component>
+          <component id="7983" class="javax.swing.JLabel" binding="lblSearchImg">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <horizontalAlignment value="10"/>
+              <horizontalTextPosition value="2"/>
+              <icon value="icons/search.png"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="6c452" class="javax.swing.JLabel" binding="lblSearch">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <foreground color="-1509633"/>
+              <horizontalAlignment value="4"/>
+              <labelFor value=""/>
+              <text value="Pesquisar:"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
       <grid id="a4e17" binding="panReference" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
-          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="2" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="2" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <background color="-16048293"/>

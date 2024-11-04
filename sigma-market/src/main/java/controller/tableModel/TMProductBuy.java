@@ -6,6 +6,7 @@ import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 import java.awt.*;
 import java.util.List;
+import java.util.Objects;
 
 public class TMProductBuy extends AbstractTableModel {
     private List<Product> list;
@@ -58,7 +59,7 @@ public class TMProductBuy extends AbstractTableModel {
             case COL_DISCOUNT -> !hasPromotion ? "nenhuma promoção no momento" : "R$ " + (o.getPrice() - p.getDiscountPercentage());
             case COL_DETAILS -> {
                 JLabel label = new JLabel();
-                ImageIcon icon = new ImageIcon(getClass().getResource("/icons/eye-line.png"));
+                ImageIcon icon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/eye-line.png")));
                 Image img = icon.getImage();
                 Image scaledImg = img.getScaledInstance(20, 20,  Image.SCALE_SMOOTH);
                 label.setIcon(new ImageIcon(scaledImg));
