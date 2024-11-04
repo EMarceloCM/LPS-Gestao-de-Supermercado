@@ -16,20 +16,23 @@ public class Product {
     private String name;
     private String description;
     private String imgUrl;
-    private LocalDateTime expiredDate;
     private float price;
     private int stock;
     private String sku;
 
-    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "product", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ToString.Exclude
     List<Promotion> promotions;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ToString.Exclude
     List<ShoppingCart> shoppingCarts;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ToString.Exclude
     List<ProductSupplier> productSuppliers;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+    @ToString.Exclude
     List<ItemOrder> itemOrders;
 }

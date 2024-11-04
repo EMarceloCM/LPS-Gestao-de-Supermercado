@@ -16,5 +16,6 @@ public class Supplier {
     private String cnpj;
 
     @OneToMany(mappedBy = "supplier", cascade = CascadeType.ALL)
+    @ToString.Exclude
     List<ProductSupplier> productSuppliers;
 }

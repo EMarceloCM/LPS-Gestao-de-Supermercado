@@ -15,7 +15,6 @@ public class ProductController {
         repository = new ProductRepository();
     }
 
-    // main view table
     public void refreshBuyTable(JTable t) {
         List<Product> list = repository.findAll();
         TMProductBuy model = new TMProductBuy(list);
@@ -26,6 +25,22 @@ public class ProductController {
         List<Product> list = repository.findAll();
         TMProduct model = new TMProduct(list);
         t.setModel(model);
+    }
+
+    public void filterTable(JTable t, String filter) {
+        List<Product> list = repository.findWithFilter(filter);
+        TMProduct model = new TMProduct(list);
+        t.setModel(model);
+    }
+
+    public void filterBuyTable(JTable t, String filter) {
+        List<Product> list = repository.findWithFilter(filter);
+        TMProductBuy model = new TMProductBuy(list);
+        t.setModel(model);
+    }
+
+    public Product findProductById(int product_id){
+        return repository.find(product_id);
     }
 
     public void createProduct(String name, String description, String imgUrl, String price, int stock, String sku) {
@@ -39,13 +54,7 @@ public class ProductController {
         repository.update(o);
     }
 
-    public void deleteCustomer(int id) {
+    public void deleteProduct(int id) {
         repository.delete(id);
-    }
-
-    public void filterTable(JTable t, String filter) {
-        List<Product> list = repository.findWithFilter(filter);
-        TMProduct model = new TMProduct(list);
-        t.setModel(model);
     }
 }

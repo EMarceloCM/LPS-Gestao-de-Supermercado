@@ -5,7 +5,7 @@ import model.entities.Customer;
 import model.exceptions.AddressException;
 
 public class ValidateAddress {
-    public static Address Validate(String street, String number, String complement, String neighborhood, Customer customer) throws AddressException {
+    public static Address Validate(String street, String number, String complement, String neighborhood, String zipcode, Customer customer) throws AddressException {
         Address a  = new Address();
 
         if(street.isEmpty() || street.isBlank())
@@ -20,9 +20,10 @@ public class ValidateAddress {
         if(neighborhood.isBlank() || neighborhood.isEmpty())
             throw new AddressException("Error - Campo vazio: 'bairro'.");
         a.setNeighborhood(neighborhood.strip());
+        a.setZipcode(zipcode.strip());
 
         if(customer == null)
-            throw new AddressException("Error - Campo inválido: 'costumer_id'.");
+            throw new AddressException("Error - Campo inválido: 'customer_id'.");
         a.setCustomer(customer);
 
         return a;

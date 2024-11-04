@@ -37,8 +37,10 @@ public class Order {
     private Address address;
 
     @OneToMany(mappedBy = "order")
+    @ToString.Exclude
     List<ItemOrder> itemOrders;
 
     @OneToOne(mappedBy = "order", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ToString.Exclude
     private Feedback feedback;
 }

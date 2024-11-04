@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="view.FrProfile">
+  <grid id="27dc6" binding="panMain" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="840" height="420"/>
+    </constraints>
+    <properties>
+      <maximumSize width="740" height="420"/>
+      <minimumSize width="620" height="420"/>
+      <opaque value="true"/>
+      <preferredSize width="740" height="420"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <grid id="8eb70" binding="panTop" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <minimum-size width="-1" height="70"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-16048293"/>
+          <font name="Arial"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="e9424" class="javax.swing.JLabel" binding="lblWelcome">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="Arial" size="28"/>
+              <foreground color="-1509633"/>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
+              <text value="Bem-Vindo, @user!"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="130b" binding="panForm" layout-manager="GridLayoutManager" row-count="2" column-count="6" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="10" bottom="10" right="10"/>
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-16048293"/>
+          <font name="Arial"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <hspacer id="8e3bb">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+          <hspacer id="770ff">
+            <constraints>
+              <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+          <component id="1e6de" class="javax.swing.JLabel" binding="lblProfile">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                <minimum-size width="200" height="200"/>
+                <preferred-size width="250" height="250"/>
+                <maximum-size width="250" height="250"/>
+              </grid>
+            </constraints>
+            <properties>
+              <autoscrolls value="false"/>
+              <background color="-1"/>
+              <enabled value="true"/>
+              <focusable value="false"/>
+              <font/>
+              <foreground color="-1"/>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
+              <icon value="profile/0.png"/>
+              <iconTextGap value="4"/>
+              <opaque value="true"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="91e60" class="javax.swing.JComboBox" binding="cbProfile">
+            <constraints>
+              <grid row="1" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+          </component>
+          <grid id="e00f" binding="panFormCore" layout-manager="GridLayoutManager" row-count="4" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-16048293"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="49bc8" class="javax.swing.JLabel" binding="lblName">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="5" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Arial" size="28"/>
+                  <foreground color="-1509633"/>
+                  <horizontalAlignment value="0"/>
+                  <horizontalTextPosition value="0"/>
+                  <text value="Nome:"/>
+                </properties>
+              </component>
+              <component id="83597" class="javax.swing.JLabel" binding="lblPsw">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="5" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Arial" size="28"/>
+                  <foreground color="-1509633"/>
+                  <horizontalAlignment value="0"/>
+                  <horizontalTextPosition value="0"/>
+                  <text value="Senha:"/>
+                </properties>
+              </component>
+              <component id="40455" class="javax.swing.JLabel" binding="lblCpf">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="5" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Arial" size="28"/>
+                  <foreground color="-1509633"/>
+                  <horizontalAlignment value="0"/>
+                  <horizontalTextPosition value="0"/>
+                  <text value="CPF:"/>
+                </properties>
+              </component>
+              <component id="4cb4a" class="javax.swing.JLabel" binding="lblNameValue">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false">
+                    <maximum-size width="-1" height="250"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font name="Arial" size="26"/>
+                  <foreground color="-1509633"/>
+                  <horizontalAlignment value="0"/>
+                  <horizontalTextPosition value="0"/>
+                  <text value="seu nome aqui"/>
+                </properties>
+              </component>
+              <component id="52230" class="javax.swing.JLabel" binding="lblPswValue">
+                <constraints>
+                  <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Arial" size="26"/>
+                  <foreground color="-1509633"/>
+                  <horizontalAlignment value="0"/>
+                  <horizontalTextPosition value="0"/>
+                  <text value="abc123"/>
+                </properties>
+              </component>
+              <component id="f8444" class="javax.swing.JLabel" binding="lblCpfValue">
+                <constraints>
+                  <grid row="2" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Arial" size="26"/>
+                  <foreground color="-1509633"/>
+                  <horizontalAlignment value="0"/>
+                  <horizontalTextPosition value="0"/>
+                  <text value="123.123.123-12"/>
+                </properties>
+              </component>
+              <component id="2615d" class="javax.swing.JLabel" binding="lblEmail">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="5" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Arial" size="28"/>
+                  <foreground color="-1509633"/>
+                  <horizontalAlignment value="0"/>
+                  <horizontalTextPosition value="0"/>
+                  <text value="E-mail:"/>
+                </properties>
+              </component>
+              <component id="4e4c5" class="javax.swing.JLabel" binding="lblEmailValue">
+                <constraints>
+                  <grid row="3" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Arial" size="26"/>
+                  <foreground color="-1509633"/>
+                  <horizontalAlignment value="0"/>
+                  <horizontalTextPosition value="0"/>
+                  <text value="eu@gmail.com"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <component id="fa552" class="javax.swing.JButton" binding="btnSave">
+            <constraints>
+              <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="4" fill="0" indent="1" use-parent-layout="false">
+                <preferred-size width="80" height="30"/>
+              </grid>
+            </constraints>
+            <properties>
+              <margin top="0" left="0" bottom="0" right="0"/>
+              <text value="Salvar"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>

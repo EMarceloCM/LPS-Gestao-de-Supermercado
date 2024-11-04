@@ -15,9 +15,13 @@ public class Promotion {
     private float discountPercentage;
     private LocalDateTime creationDate;
     private int durationMinutes;
-    private boolean isActive;
+    private int active;
 
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name="product_id")
     private Product product;
+
+    public float getFinalPrice() {
+        return (1 - (this.getDiscountPercentage()/100)) * product.getPrice();
+    }
 }

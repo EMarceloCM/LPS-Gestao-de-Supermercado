@@ -1,6 +1,7 @@
 package controller;
 
-import controller.tableModel.TMCustomer;
+import Auth.SessionManager;
+import controller.tableModel.TMAdminCustomer;
 import model.entities.Customer;
 import model.enums.Role;
 import model.exceptions.CustomerException;
@@ -17,19 +18,21 @@ public class CustomerController {
     }
 
     public void refreshTable(JTable t) {
-        List<Customer> list = repository.findAll();
-        TMCustomer model = new TMCustomer(list);
-        t.setModel(model);
+        if(SessionManager.getLoggedUserRole() == Role.ADMIN) {
+            List<Customer> list = repository.findAll();
+            TMAdminCustomer model = new TMAdminCustomer(list);
+            t.setModel(model);
+        }
     }
 
     public void filterTable(JTable t, String filter) {
         List<Customer> list = repository.findWithFilter(filter);
-        TMCustomer model = new TMCustomer(list);
+        TMAdminCustomer model = new TMAdminCustomer(list);
         t.setModel(model);
     }
 
     public void createCustomer(String cpf, String email, String name, String psw, int role) {
-        Customer o = ValidateCustomer.Validate(name, psw, cpf, email, Role.values()[role].name());
+        Customer o = ValidateCustomer.Validate(name, psw, cpf, email, Role.values()[role].name(), 0);
 
         if (repository.findByCPF(o.getCpf()) != null) {
             throw new CustomerException("[ERROR] - Este CPF já foi cadastrado!");
@@ -42,8 +45,8 @@ public class CustomerController {
         repository.save(o);
     }
 
-    public void updateCustomer(int id, String cpf, String email, String name, String psw, int role) {
-        Customer o = ValidateCustomer.Validate(name, psw, cpf, email, Role.values()[role].name());
+    public void updateCustomer(int id, String cpf, String email, String name, String psw, int role, int profile_id) {
+        Customer o = ValidateCustomer.Validate(name, psw, cpf, email, Role.values()[role].name(), profile_id);
         o.setId(id);
 
         Customer r = repository.findByCPF(o.getCpf());

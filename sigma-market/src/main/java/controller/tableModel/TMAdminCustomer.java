@@ -4,7 +4,7 @@ import model.entities.Customer;
 import javax.swing.table.AbstractTableModel;
 import java.util.List;
 
-public class TMCustomer extends AbstractTableModel {
+public class TMAdminCustomer extends AbstractTableModel {
     private List<Customer> list;
 
     private final int COL_NAME = 0;
@@ -13,7 +13,7 @@ public class TMCustomer extends AbstractTableModel {
     private final int COL_EMAIL = 3;
     private final int COL_ROLE = 4;
 
-    public TMCustomer(List<Customer> list) {
+    public TMAdminCustomer(List<Customer> list) {
         this.list = list;
     }
 

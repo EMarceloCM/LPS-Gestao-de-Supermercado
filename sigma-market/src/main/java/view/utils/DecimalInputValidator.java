@@ -18,6 +18,8 @@ public class DecimalInputValidator extends KeyAdapter {
         char c = e.getKeyChar();
         String currText = textField.getText();
 
+        if (e.isControlDown()) return;
+
         if (!Character.isDigit(c) && c != '.' && c != ',' && c != KeyEvent.VK_BACK_SPACE) {
             e.consume();
             Toolkit.getDefaultToolkit().beep();
@@ -40,7 +42,11 @@ public class DecimalInputValidator extends KeyAdapter {
             return;
         }
 
-        if (currText.contains(".")) {
+        int selectionStart = textField.getSelectionStart();
+        int selectionEnd = textField.getSelectionEnd();
+        boolean hasSelection = selectionStart != selectionEnd;
+
+        if (!hasSelection && currText.contains(".")) {
             int postDot = currText.indexOf('.');
             if (currText.length() - postDot > 2) {
                 e.consume();

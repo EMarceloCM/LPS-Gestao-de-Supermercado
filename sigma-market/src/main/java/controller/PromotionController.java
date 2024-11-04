@@ -12,7 +12,7 @@ import java.util.List;
 public class PromotionController {
     private PromotionRepository repository;
 
-    PromotionController() { repository = new PromotionRepository(); }
+    public PromotionController() { repository = new PromotionRepository(); }
 
     public void refreshTable(JTable t) {
         List<Promotion> list = repository.findAll();
@@ -20,30 +20,29 @@ public class PromotionController {
         t.setModel(model);
     }
 
-    public void createPromotion(String discountPercentage, String creationDate, String durationMinutes, boolean isActive, Product product) {
-        Promotion p = ValidatePromotion.Validate(discountPercentage, creationDate, durationMinutes, isActive, product);
+    public Promotion findActiveByProductId(int product_id){
+        return repository.findActiveByProduct(product_id);
+    }
 
-        if(isActive) verifyActivatedPromotions(product.getId());
+    public void createPromotion(String discountPercentage, String durationMinutes, boolean isActive, Product product) {
+        Promotion p = ValidatePromotion.Validate(discountPercentage, durationMinutes, isActive, product);
 
         repository.save(p);
     }
 
-    public void updatePromotion(int id, String discountPercentage, String creationDate, String durationMinutes, boolean isActive, Product product) {
-        Promotion p = ValidatePromotion.Validate(discountPercentage, creationDate, durationMinutes, isActive, product);
+    public void updatePromotion(int id, String discountPercentage, String durationMinutes, boolean isActive, Product product) {
+        Promotion p = ValidatePromotion.Validate(discountPercentage, durationMinutes, isActive, product);
         p.setId(id);
-
-        if(isActive) verifyActivatedPromotions(product.getId());
 
         repository.update(p);
     }
 
     public void deletePromotion(int id) {
-        // TODO confirmar se não irá deletar um produto ao deletar sua promoção
         repository.delete(id);
     }
 
     public void filterTableByActive(JTable t, boolean isActive) {
-        List<Promotion> list = repository.findActive(isActive);
+        List<Promotion> list = repository.findActive(isActive ? 1 : 0);
         TMPromotion model = new TMPromotion(list);
         t.setModel(model);
     }

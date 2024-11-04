@@ -14,7 +14,6 @@ public class ValidateLegalEntity {
             return false;
         }
 
-        // considera-se erro CNPJ's formados por uma sequencia de numeros iguais
         if (cnpj.equals("00000000000000") || cnpj.equals("11111111111111")
                 || cnpj.equals("22222222222222") || cnpj.equals("33333333333333")
                 || cnpj.equals("44444444444444") || cnpj.equals("55555555555555")
@@ -22,8 +21,8 @@ public class ValidateLegalEntity {
                 || cnpj.equals("88888888888888") || cnpj.equals("99999999999999") || (cnpj.length() != 14))
             return (false);
         char dig13, dig14;
-        int sm, i, r, num, peso; // "try" - protege o código para eventuais
-        // erros de conversao de tipo (int)
+        int sm, i, r, num, peso;
+
         try {
             // Calculo do 1o. Digito Verificador
             sm = 0;
@@ -60,8 +59,7 @@ public class ValidateLegalEntity {
                 dig14 = '0';
             else
                 dig14 = (char) ((11 - r) + 48);
-            // Verifica se os dígitos calculados conferem com os dígitos
-            // informados.
+            // Verifica se os dígitos calculados conferem com os dígitos informados.
             if ((dig13 == cnpj.charAt(12)) && (dig14 == cnpj.charAt(13)))
                 return (true);
             else

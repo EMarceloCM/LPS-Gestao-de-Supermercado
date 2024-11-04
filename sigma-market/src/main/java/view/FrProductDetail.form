@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="view.FrProductDetail">
+  <grid id="27dc6" binding="panMain" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="842" height="390"/>
+    </constraints>
+    <properties>
+      <background color="-1"/>
+      <maximumSize width="1920" height="1080"/>
+      <opaque value="true"/>
+      <preferredSize width="900" height="500"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <grid id="1f53c" binding="panTop" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <minimum-size width="-1" height="70"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-16048293"/>
+          <font name="Arial"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="3caa4" class="javax.swing.JLabel" binding="lblName">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="Arial" size="28"/>
+              <foreground color="-1509633"/>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
+              <text value="NOME DO PRODUTO"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="91346" binding="panForm" layout-manager="GridLayoutManager" row-count="1" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="5" left="5" bottom="5" right="5"/>
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-16048293"/>
+          <font name="Arial"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <grid id="b1126" binding="panFormCore" layout-manager="GridLayoutManager" row-count="5" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-16048293"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="80d1e" class="javax.swing.JLabel" binding="lblDescription">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="5" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Arial" size="28"/>
+                  <foreground color="-1509633"/>
+                  <horizontalAlignment value="0"/>
+                  <horizontalTextPosition value="0"/>
+                  <text value="Descrição:"/>
+                </properties>
+              </component>
+              <component id="a1c5f" class="javax.swing.JLabel" binding="lblPrice">
+                <constraints>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="5" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Arial" size="28"/>
+                  <foreground color="-1509633"/>
+                  <horizontalAlignment value="0"/>
+                  <horizontalTextPosition value="0"/>
+                  <text value="Preco:"/>
+                </properties>
+              </component>
+              <component id="45d5f" class="javax.swing.JLabel" binding="lblStock">
+                <constraints>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="5" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Arial" size="28"/>
+                  <foreground color="-1509633"/>
+                  <horizontalAlignment value="0"/>
+                  <horizontalTextPosition value="0"/>
+                  <text value="Estoque:"/>
+                </properties>
+              </component>
+              <component id="beae" class="javax.swing.JLabel" binding="lblDescriptionValue">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false">
+                    <maximum-size width="-1" height="250"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font name="Arial" size="26"/>
+                  <foreground color="-1509633"/>
+                  <horizontalAlignment value="0"/>
+                  <horizontalTextPosition value="0"/>
+                  <text value="boa para se alimentar"/>
+                </properties>
+              </component>
+              <component id="382df" class="javax.swing.JLabel" binding="lblPriceValue">
+                <constraints>
+                  <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Arial" size="26"/>
+                  <foreground color="-1509633"/>
+                  <horizontalAlignment value="0"/>
+                  <horizontalTextPosition value="0"/>
+                  <text value="De R$ 19,99 Por R$ 12,99"/>
+                </properties>
+              </component>
+              <component id="5a1ba" class="javax.swing.JLabel" binding="lblStockValue">
+                <constraints>
+                  <grid row="2" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Arial" size="26"/>
+                  <foreground color="-1509633"/>
+                  <horizontalAlignment value="0"/>
+                  <horizontalTextPosition value="0"/>
+                  <text value="15 unidades"/>
+                </properties>
+              </component>
+              <component id="f89c5" class="javax.swing.JLabel" binding="lblQuantity">
+                <constraints>
+                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Arial" size="28"/>
+                  <foreground color="-1509633"/>
+                  <labelFor value=""/>
+                  <text value="Quantidade:"/>
+                </properties>
+              </component>
+              <component id="c8ff4" class="javax.swing.JSpinner" binding="spnQuantityValue">
+                <constraints>
+                  <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                    <minimum-size width="100" height="25"/>
+                    <maximum-size width="100" height="25"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font name="Arial" size="12"/>
+                </properties>
+              </component>
+              <component id="ad1db" class="javax.swing.JButton" binding="btnAddToCart">
+                <constraints>
+                  <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                    <preferred-size width="100" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <actionCommand value=""/>
+                  <background color="-16048293"/>
+                  <borderPainted value="true"/>
+                  <contentAreaFilled value="true"/>
+                  <defaultCapable value="true"/>
+                  <focusPainted value="false"/>
+                  <font name="Arial" size="16"/>
+                  <foreground color="-1509633"/>
+                  <horizontalTextPosition value="4"/>
+                  <icon value="icons/shopping-cart-empty.png"/>
+                  <label value="Adicionar"/>
+                  <text value="Adicionar"/>
+                </properties>
+              </component>
+              <component id="9c027" class="javax.swing.JLabel" binding="lblDiscount">
+                <constraints>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="5" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Arial" size="28"/>
+                  <foreground color="-1509633"/>
+                  <horizontalAlignment value="0"/>
+                  <horizontalTextPosition value="0"/>
+                  <text value="Desconto:"/>
+                </properties>
+              </component>
+              <component id="b17d4" class="javax.swing.JLabel" binding="lblDiscountValue">
+                <constraints>
+                  <grid row="3" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <font name="Arial" size="26"/>
+                  <foreground color="-1509633"/>
+                  <horizontalAlignment value="0"/>
+                  <horizontalTextPosition value="0"/>
+                  <text value="R$ 7,00"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <hspacer id="dc8d2">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+          <hspacer id="141bb">
+            <constraints>
+              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+          <component id="414b2" class="javax.swing.JLabel" binding="lblImage">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+                <minimum-size width="200" height="200"/>
+                <preferred-size width="250" height="250"/>
+                <maximum-size width="250" height="250"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-1"/>
+              <enabled value="true"/>
+              <font/>
+              <foreground color="-1"/>
+              <opaque value="false"/>
+              <text value=""/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>

@@ -19,6 +19,7 @@ public class CustomerRepository implements IRepository<Customer> {
     public Customer find(int id) {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
         Customer c = this.entityManager.find(Customer.class, id);
+        this.entityManager.clear();
         this.entityManager.close();
 
         return c;
@@ -30,6 +31,7 @@ public class CustomerRepository implements IRepository<Customer> {
 
         Customer c = this.entityManager.find(Customer.class, obj.getId());
 
+        this.entityManager.clear();
         this.entityManager.close();
 
         return c;
@@ -41,11 +43,12 @@ public class CustomerRepository implements IRepository<Customer> {
 
         jpql = " SELECT c FROM Customer c ";
         qry = this.entityManager.createQuery(jpql);
-        List lst = qry.getResultList();
+        List<Customer> lst = qry.getResultList();
 
+        this.entityManager.clear();
         this.entityManager.close();
 
-        return (List<Customer>) lst;
+        return lst;
     }
 
     @Override
@@ -54,6 +57,7 @@ public class CustomerRepository implements IRepository<Customer> {
         this.entityManager.getTransaction().begin();
         this.entityManager.merge(obj);
         this.entityManager.getTransaction().commit();
+        this.entityManager.clear();
         this.entityManager.close();
     }
 
@@ -63,6 +67,7 @@ public class CustomerRepository implements IRepository<Customer> {
         this.entityManager.getTransaction().begin();
         this.entityManager.persist(obj);
         this.entityManager.getTransaction().commit();
+        this.entityManager.clear();
         this.entityManager.close();
     }
 
@@ -75,6 +80,7 @@ public class CustomerRepository implements IRepository<Customer> {
         if (c != null) this.entityManager.remove(c);
 
         this.entityManager.getTransaction().commit();
+        this.entityManager.clear();
         this.entityManager.close();
 
         return c != null;
@@ -88,6 +94,8 @@ public class CustomerRepository implements IRepository<Customer> {
         this.entityManager.getTransaction().begin();
         this.entityManager.remove(obj);
         this.entityManager.getTransaction().commit();
+        this.entityManager.clear();
+        this.entityManager.close();
 
         return true;
     }
@@ -97,10 +105,11 @@ public class CustomerRepository implements IRepository<Customer> {
         jpql = "SELECT c FROM Customer c WHERE c.cpf = :cpf";
         qry = this.entityManager.createQuery(jpql);
         qry.setParameter("cpf", cpf);
-        List lst = qry.getResultList();
+        List<Customer> lst = qry.getResultList();
+        this.entityManager.clear();
         this.entityManager.close();
 
-        return lst.isEmpty() ? null : (Customer) lst.get(0);
+        return lst.isEmpty() ? null : lst.getFirst();
     }
 
     public Customer findByEmail(String email) {
@@ -108,10 +117,11 @@ public class CustomerRepository implements IRepository<Customer> {
         jpql = "SELECT c FROM Customer c WHERE c.email = :email";
         qry = this.entityManager.createQuery(jpql);
         qry.setParameter("email", email);
-        List lst = qry.getResultList();
+        List<Customer> lst = qry.getResultList();
+        this.entityManager.clear();
         this.entityManager.close();
 
-        return lst.isEmpty() ? null : (Customer) lst.getFirst();
+        return lst.isEmpty() ? null : lst.getFirst();
     }
 
     public List<Customer> findWithFilter(String filter) {
@@ -121,9 +131,10 @@ public class CustomerRepository implements IRepository<Customer> {
                 + " WHERE c.name LIKE :filter OR c.email LIKE :filter ";
         qry = this.entityManager.createQuery(jpql);
         qry.setParameter("filter", "%" + filter + "%");
-        List lst = qry.getResultList();
+        List<Customer> lst = qry.getResultList();
+        this.entityManager.clear();
         this.entityManager.close();
 
-        return (List<Customer>) lst;
+        return lst;
     }
 }

@@ -15,6 +15,7 @@ public class Address {
     private int number;
     private String complement;
     private String neighborhood;
+    private String zipcode;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name="customer_id")

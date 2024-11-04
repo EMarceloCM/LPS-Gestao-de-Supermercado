@@ -8,20 +8,15 @@ import model.enums.PaymentStatus;
 import model.enums.PaymentType;
 import model.exceptions.OrderException;
 import model.utils.EnumUtils;
-import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeParseException;
 
 public class ValidateOrder {
-    public static Order Validate(String date, String totalAmount, String orderStatus, String paymentStatus, String paymentType, Customer customer, Address address) throws OrderException, DateTimeParseException, NumberFormatException {
+    public static Order Validate(String totalAmount, String orderStatus, String paymentStatus, String paymentType, Customer customer, Address address) throws OrderException, DateTimeParseException, NumberFormatException {
         Order o = new Order();
 
-        LocalDateTime localDate = null;
-        try {
-            localDate = LocalDateTime.parse(date);
-        } catch (DateTimeParseException ex) {
-            throw new DateTimeParseException("Error - Campo inválido: 'data'.", ex.getParsedString(), ex.getErrorIndex());
-        }
-        o.setDate(localDate);
+        o.setDate(ZonedDateTime.now(ZoneId.of("America/Sao_Paulo")).toLocalDateTime());
 
         float floatValue = 0.0f;
         try {
@@ -52,7 +47,7 @@ public class ValidateOrder {
         o.setPaymentType(pt);
 
         if(customer == null)
-            throw new OrderException("Error - Campo inválido: 'costumer_id'.");
+            throw new OrderException("Error - Campo inválido: 'customer_id'.");
         o.setCustomer(customer);
 
         if(address == null)
