@@ -111,8 +111,12 @@ public class FrProduct extends  JDialog {
                         JOptionPane.OK_CANCEL_OPTION,
                         JOptionPane.QUESTION_MESSAGE);
                 if (response == JOptionPane.OK_OPTION) {
-                    controller.deleteProduct(marked.getId());
-                    controller.refreshTable(grd);
+                    try{
+                        controller.deleteProduct(marked.getId());
+                        controller.refreshTable(grd);
+                    } catch (RuntimeException ex){
+                        JOptionPane.showMessageDialog(null, "Não é possível deletar um produto já vendido!", "Erro!", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             }
         });
