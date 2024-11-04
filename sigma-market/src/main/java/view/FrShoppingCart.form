@@ -126,7 +126,7 @@
               <foreground color="-1509633"/>
               <horizontalAlignment value="0"/>
               <horizontalTextPosition value="0"/>
-              <text value="R$ 149,99"/>
+              <text value="R$ 0"/>
             </properties>
           </component>
           <component id="3da58" class="javax.swing.JComboBox" binding="cbPaymentTypeValue">

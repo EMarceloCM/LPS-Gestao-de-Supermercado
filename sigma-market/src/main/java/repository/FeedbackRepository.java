@@ -3,7 +3,9 @@ package repository;
 import factory.DatabaseJPA;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
+import model.entities.Customer;
 import model.entities.Feedback;
+import model.entities.Order;
 import repository.interfaces.IRepository;
 import java.util.List;
 
@@ -55,7 +57,28 @@ public class FeedbackRepository implements IRepository<Feedback> {
     public void update(Feedback obj) {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
         this.entityManager.getTransaction().begin();
-        this.entityManager.merge(obj);
+
+        Customer c = entityManager.find(Customer.class, obj.getCustomer().getId());
+        if (c == null) {
+            throw new IllegalArgumentException("ID do usuario não encontrado.");
+        }
+
+        Order o = entityManager.find(Order.class, obj.getOrder().getId());
+        if (o == null) {
+            throw new IllegalArgumentException("ID do pedido não encontrado.");
+        }
+
+        Feedback f = entityManager.find(Feedback.class, obj.getId());
+        if (f == null) {
+            throw new IllegalArgumentException("ID do feedback não encontrado.");
+        }
+
+        f.setCustomer(c);
+        f.setOrder(o);
+        f.setReview(obj.getReview());
+        f.setStars(obj.getStars());
+
+        this.entityManager.merge(f);
         this.entityManager.getTransaction().commit();
         this.entityManager.clear();
         this.entityManager.close();
@@ -65,6 +88,19 @@ public class FeedbackRepository implements IRepository<Feedback> {
     public void save(Feedback obj) {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
         this.entityManager.getTransaction().begin();
+
+        Customer c = entityManager.find(Customer.class, obj.getCustomer().getId());
+        if (c == null) {
+            throw new IllegalArgumentException("ID do usuario não encontrado.");
+        }
+        obj.setCustomer(c);
+
+        Order o = entityManager.find(Order.class, obj.getOrder().getId());
+        if (o == null) {
+            throw new IllegalArgumentException("ID do pedido não encontrado.");
+        }
+        obj.setOrder(o);
+
         this.entityManager.persist(obj);
         this.entityManager.getTransaction().commit();
         this.entityManager.clear();

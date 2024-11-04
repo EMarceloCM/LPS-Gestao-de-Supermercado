@@ -33,6 +33,10 @@ public class OrderController {
         }
     }
 
+    public Order findById(int id) {
+        return repository.find(id);
+    }
+
     public void createOrder(String totalAmount, String paymentType, Customer customer, Address address) {
         Order o = ValidateOrder.Validate(totalAmount, OrderStatus.APPROVED.toString(), PaymentStatus.PENDIND.toString(), paymentType, customer, address);
         repository.save(o);

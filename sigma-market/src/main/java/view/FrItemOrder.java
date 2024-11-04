@@ -2,6 +2,8 @@ package view;
 
 import controller.ItemOrderController;
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class FrItemOrder extends JDialog {
     private JPanel panTop;
@@ -24,6 +26,15 @@ public class FrItemOrder extends JDialog {
         itemOrderController.filterTableByOrder(grdItemOrder, order_id);
 
         initCustomComponents();
+        btnRate.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                FrEditFeedback dlg = new FrEditFeedback(FrItemOrder.this, true, order_id);
+                dlg.setLocationRelativeTo(FrItemOrder.this);
+                dlg.setVisible(true);
+                dispose();
+            }
+        });
     }
 
     private void initCustomComponents() {

@@ -41,5 +41,6 @@ public class Order {
     List<ItemOrder> itemOrders;
 
     @OneToOne(mappedBy = "order", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ToString.Exclude
     private Feedback feedback;
 }

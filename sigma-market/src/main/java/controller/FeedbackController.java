@@ -55,7 +55,6 @@ public class FeedbackController {
         repository.update(f);
     }
 
-    //TODO confirmar que não irá deletar o pedido junto
     public void deleteFeedback(int id) {
         repository.delete(id);
     }
@@ -64,5 +63,9 @@ public class FeedbackController {
         List<Feedback> list = repository.findByCustomer(customer_id);
         TMFeedback model = new TMFeedback(list);
         t.setModel(model);
+    }
+
+    public Feedback findByOrderId(int order_id) {
+        return repository.findByOrder(order_id);
     }
 }

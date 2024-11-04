@@ -91,5 +91,6 @@ public class FrProfile extends JDialog{
         controller.updateCustomer(SessionManager.getLoggedUserId(), lblCpfValue.getText(), lblEmailValue.getText(), lblNameValue.getText(),
                 lblPswValue.getText(), roleId, cbProfile.getSelectedIndex()+1);
         //TODO atualizar o login atual com os dados novos do usuario
+        SessionManager.Login(lblEmailValue.getText(), lblPswValue.getText());
     }
 }
