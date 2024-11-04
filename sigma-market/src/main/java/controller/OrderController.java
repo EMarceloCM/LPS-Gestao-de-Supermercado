@@ -38,6 +38,11 @@ public class OrderController {
         repository.save(o);
     }
 
+    public Order createOrderAndGet(String totalAmount, String paymentType, Customer customer, Address address) {
+        Order o = ValidateOrder.Validate(totalAmount, OrderStatus.APPROVED.toString(), PaymentStatus.PENDIND.toString(), paymentType, customer, address);
+        return repository.saveAndGet(o);
+    }
+
     public void updateOrder(int id, String totalAmount, String orderStatus, String paymentStatus, String paymentType, Customer customer, Address address) {
         Order o = ValidateOrder.Validate(totalAmount, orderStatus, paymentStatus, paymentType, customer, address);
         o.setId(id);

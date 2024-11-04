@@ -3,6 +3,8 @@ package repository;
 import factory.DatabaseJPA;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
+import model.entities.Address;
+import model.entities.Customer;
 import model.entities.Order;
 import repository.interfaces.IRepository;
 import java.util.List;
@@ -68,6 +70,28 @@ public class OrderRepository implements IRepository<Order> {
         this.entityManager.getTransaction().commit();
         this.entityManager.clear();
         this.entityManager.close();
+    }
+
+    public Order saveAndGet(Order obj) {
+        this.entityManager = DatabaseJPA.getInstance().getEntityManager();
+        this.entityManager.getTransaction().begin();
+
+        Address a = this.entityManager.find(Address.class, obj.getAddress().getId());
+        if (a == null) {
+            throw new IllegalArgumentException("ID do endereço não encontrado.");
+        }
+        obj.setAddress(a);
+        Customer c = this.entityManager.find(Customer.class, obj.getCustomer().getId());
+        if (c == null) {
+            throw new IllegalArgumentException("ID do usuario não encontrado.");
+        }
+        obj.setCustomer(c);
+
+        this.entityManager.persist(obj);
+        this.entityManager.getTransaction().commit();
+        this.entityManager.clear();
+        this.entityManager.close();
+        return obj;
     }
 
     @Override

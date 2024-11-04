@@ -4,6 +4,8 @@ import factory.DatabaseJPA;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import model.entities.ItemOrder;
+import model.entities.Order;
+import model.entities.Product;
 import repository.interfaces.IRepository;
 import java.util.List;
 
@@ -65,6 +67,19 @@ public class ItemOrderRepository implements IRepository<ItemOrder> {
     public void save(ItemOrder obj) {
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
         this.entityManager.getTransaction().begin();
+
+        Order o = this.entityManager.find(Order.class, obj.getOrder().getId());
+        if (o == null) {
+            throw new IllegalArgumentException("ID do pedido não encontrado.");
+        }
+        obj.setOrder(o);
+
+        Product p = this.entityManager.find(Product.class, obj.getProduct().getId());
+        if (p == null) {
+            throw new IllegalArgumentException("ID do produto não encontrado.");
+        }
+        obj.setProduct(p);
+
         this.entityManager.persist(obj);
         this.entityManager.getTransaction().commit();
         this.entityManager.clear();

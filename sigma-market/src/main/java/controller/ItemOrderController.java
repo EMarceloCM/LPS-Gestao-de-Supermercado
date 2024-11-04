@@ -9,7 +9,7 @@ import java.util.List;
 public class ItemOrderController {
     private ItemOrderRepository repository;
 
-    ItemOrderController() { repository = new ItemOrderRepository(); }
+    public ItemOrderController() { repository = new ItemOrderRepository(); }
 
     public void refreshTable(JTable t) {
         List<ItemOrder> list = repository.findAll();

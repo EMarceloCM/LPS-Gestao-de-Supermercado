@@ -42,6 +42,10 @@ public class AddressController {
         }
     }
 
+    public List<Address> findByCustomer(int customer_id){
+        return repository.findByCostumer(customer_id);
+    }
+
     public void createAddress(String street, String number, String complement, String neighborhood, String zipcode, Customer customer) {
         Address a = ValidateAddress.Validate(street, number, complement, neighborhood, zipcode, customer);
         repository.save(a);
