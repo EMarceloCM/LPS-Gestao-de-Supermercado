@@ -197,7 +197,7 @@ public class FrFeedback extends JDialog {
             }
         });
         lblSearchOrder.addMouseListener(new MouseAdapter() {
-            @Override //TODO colocar a lupa ao lado do campo
+            @Override //TODO colocar a lupa ao lado do campo, não quer ficar nao sei pq
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
 
@@ -209,6 +209,13 @@ public class FrFeedback extends JDialog {
 
                 if (selectedOrder != null)
                     edtOrder.setText("id: " + selectedOrder.getId());
+            }
+        });
+        lblSearchImg.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                controller.filterTable(grdFeedbacks, edtSearch.getText());
             }
         });
     }

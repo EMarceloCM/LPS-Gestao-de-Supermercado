@@ -10,7 +10,7 @@ public class FrViewTanks extends JDialog {
     private JLabel lblDescription;
     private JLabel lblImage;
     private JPanel panMain;
-
+//TODO se quiser melhorar essa view fica a vontade
     public FrViewTanks(FrShoppingCart parent, boolean modal) {
         super(parent, modal);
         setContentPane(panMain);

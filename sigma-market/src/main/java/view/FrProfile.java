@@ -1,13 +1,17 @@
 package view;
 
 import Auth.SessionManager;
+import Auth.exceptions.AuthException;
 import controller.CustomerController;
 import model.entities.Customer;
 import model.enums.Role;
+import model.exceptions.CustomerException;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class FrProfile extends JDialog{
@@ -18,19 +22,19 @@ public class FrProfile extends JDialog{
     private JLabel lblName;
     private JLabel lblPsw;
     private JLabel lblCpf;
-    private JLabel lblNameValue;
-    private JLabel lblPswValue;
-    private JLabel lblCpfValue;
     private JLabel lblEmail;
-    private JLabel lblEmailValue;
     private JLabel lblProfile;
     private JPanel panMain;
     private JComboBox<String> cbProfile;
     private JButton btnSave;
+    private JTextField edtName;
+    private JPasswordField edtPsw;
+    private JTextField edtCPF;
+    private JTextField edtEmail;
 
     private Customer customer;
     private CustomerController controller;
-
+//TODO colocar máskara nos campos, não deu tempo :/
     public FrProfile(Frame parent, boolean modal){
         super(parent, modal);
         this.customer = SessionManager.getLoggedUser();
@@ -51,17 +55,16 @@ public class FrProfile extends JDialog{
             @Override
             public void actionPerformed(ActionEvent e) {
                 save();
-                dispose();
             }
         });
     }
 
     private void LoadForm(){
         lblWelcome.setText("Bem-Vindo, " + customer.getName() + "!");
-        lblNameValue.setText(customer.getName());
-        lblPswValue.setText(customer.getPassword());
-        lblCpfValue.setText(customer.getCpf());
-        lblEmailValue.setText(customer.getEmail());
+        edtName.setText(customer.getName());
+        edtPsw.setText(customer.getPassword());
+        edtCPF.setText(customer.getCpf());
+        edtEmail.setText(customer.getEmail());
 
         cbProfile.addItem("Perfil 1");
         cbProfile.addItem("Perfil 2");
@@ -88,9 +91,14 @@ public class FrProfile extends JDialog{
 
     private void save(){
         int roleId = SessionManager.getLoggedUserRole() == Role.ADMIN ? 0 : 1;
-        controller.updateCustomer(SessionManager.getLoggedUserId(), lblCpfValue.getText(), lblEmailValue.getText(), lblNameValue.getText(),
-                lblPswValue.getText(), roleId, cbProfile.getSelectedIndex()+1);
-        //TODO atualizar o login atual com os dados novos do usuario
-        SessionManager.Login(lblEmailValue.getText(), lblPswValue.getText());
+
+        try{
+            controller.updateCustomer(SessionManager.getLoggedUserId(), edtCPF.getText(), edtEmail.getText(), edtName.getText(),
+                    edtPsw.getText(), roleId, cbProfile.getSelectedIndex()+1);
+            SessionManager.Login(edtEmail.getText(), edtPsw.getText());
+            dispose();
+        }catch(CustomerException | AuthException ex){
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 }

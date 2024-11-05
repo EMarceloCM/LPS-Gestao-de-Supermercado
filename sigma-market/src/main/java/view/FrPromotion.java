@@ -44,7 +44,7 @@ public class FrPromotion extends JDialog {
     private Product selectedProduct;
     private boolean isFormActive;
     private int editingId;
-
+//TODO fazer filtro de pesquisa funcionar
     public FrPromotion(Frame parent, boolean modal) {
         super(parent, modal);
         setContentPane(panMain);
