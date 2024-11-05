@@ -6,6 +6,7 @@ import controller.CustomerController;
 import model.entities.Customer;
 import model.enums.Role;
 import model.exceptions.CustomerException;
+import view.utils.FormatterUtils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -31,10 +32,11 @@ public class FrProfile extends JDialog{
     private JPasswordField edtPsw;
     private JTextField edtCPF;
     private JTextField edtEmail;
+    private JFormattedTextField fEdtCpf;
 
     private Customer customer;
     private CustomerController controller;
-//TODO colocar máskara nos campos, não deu tempo :/
+
     public FrProfile(Frame parent, boolean modal){
         super(parent, modal);
         this.customer = SessionManager.getLoggedUser();
@@ -44,7 +46,9 @@ public class FrProfile extends JDialog{
         setMinimumSize(new Dimension(740, 420));
         setMaximumSize(new Dimension(900, 550));
         setTitle("Perfil");
+        initCustomComponents();
         LoadForm();
+
         cbProfile.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -63,7 +67,7 @@ public class FrProfile extends JDialog{
         lblWelcome.setText("Bem-Vindo, " + customer.getName() + "!");
         edtName.setText(customer.getName());
         edtPsw.setText(customer.getPassword());
-        edtCPF.setText(customer.getCpf());
+        fEdtCpf.setText(customer.getCpf());
         edtEmail.setText(customer.getEmail());
 
         cbProfile.addItem("Perfil 1");
@@ -93,12 +97,16 @@ public class FrProfile extends JDialog{
         int roleId = SessionManager.getLoggedUserRole() == Role.ADMIN ? 0 : 1;
 
         try{
-            controller.updateCustomer(SessionManager.getLoggedUserId(), edtCPF.getText(), edtEmail.getText(), edtName.getText(),
+            controller.updateCustomer(SessionManager.getLoggedUserId(), fEdtCpf.getText(), edtEmail.getText(), edtName.getText(),
                     edtPsw.getText(), roleId, cbProfile.getSelectedIndex()+1);
             SessionManager.Login(edtEmail.getText(), edtPsw.getText());
             dispose();
         }catch(CustomerException | AuthException ex){
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro", JOptionPane.INFORMATION_MESSAGE);
         }
+    }
+
+    private void initCustomComponents() {
+        FormatterUtils.applyCpfMask(fEdtCpf);
     }
 }

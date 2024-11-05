@@ -139,7 +139,6 @@ public class FrPromotion extends JDialog {
     private void initCustomComponents() {
         // set clickable buttons
         Cursor hand = new Cursor(Cursor.HAND_CURSOR);
-        lblSearchImg.setCursor(hand);
         lblSearchProd.setCursor(hand);
 
         fEdtDiscount.addKeyListener(new DecimalInputValidator(fEdtDiscount));
@@ -159,7 +158,6 @@ public class FrPromotion extends JDialog {
         btnEdit.setVisible(!isFormActive);
         btnNew.setVisible(!isFormActive);
         panForm.setVisible(isFormActive);
-        panBot.setVisible(!isFormActive);
     }
 
     private void cleanForm() {

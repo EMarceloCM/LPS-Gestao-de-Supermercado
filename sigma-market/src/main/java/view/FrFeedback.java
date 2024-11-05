@@ -43,6 +43,8 @@ public class FrFeedback extends JDialog {
     private JLabel lblStar3;
     private JLabel lblStar4;
     private JLabel lblStar5;
+    private JTextArea txtReview;
+    private JPanel panStar;
 
     private FeedbackController controller;
     private boolean isFormActive;
@@ -184,9 +186,9 @@ public class FrFeedback extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 try {
                     if (editingId == -1)
-                        controller.createFeedback(edtReview.getText(), String.valueOf(totalStars), SessionManager.getLoggedUser(), selectedOrder);
+                        controller.createFeedback(txtReview.getText(), String.valueOf(totalStars), SessionManager.getLoggedUser(), selectedOrder);
                     else
-                        controller.updateFeedback(editingId, edtReview.getText(), String.valueOf(totalStars), SessionManager.getLoggedUser(), selectedOrder);
+                        controller.updateFeedback(editingId, txtReview.getText(), String.valueOf(totalStars), SessionManager.getLoggedUser(), selectedOrder);
 
                     controller.refreshTable(grdFeedbacks);
                     swapForm();
@@ -197,7 +199,7 @@ public class FrFeedback extends JDialog {
             }
         });
         lblSearchOrder.addMouseListener(new MouseAdapter() {
-            @Override //TODO colocar a lupa ao lado do campo, não quer ficar nao sei pq
+            @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
 
@@ -243,7 +245,7 @@ public class FrFeedback extends JDialog {
     }
 
     private void cleanForm() {
-        edtReview.setText("");
+        txtReview.setText("");
         edtOrder.setText("");
         edtSearch.setText("");
         lblStar1.setIcon(new ImageIcon(getClass().getResource("/icons/star-fill-yellow.png")));
@@ -256,7 +258,7 @@ public class FrFeedback extends JDialog {
     }
 
     private void loadForm(Feedback f) {
-        edtReview.setText(f.getReview());
+        txtReview.setText(f.getReview());
         edtOrder.setText(String.valueOf(f.getOrder().getId()));
         totalStars = f.getStars();
 

@@ -25,13 +25,14 @@ public class FrEditFeedback extends JDialog{
     private JLabel lblStar3;
     private JLabel lblStar4;
     private JLabel lblStar5;
+    private JTextArea txtReview;
+    private JPanel panStar;
 
     private FeedbackController feedbackController;
     private OrderController orderController;
     private Feedback feedback;
     private int order_id;
     private int totalStars;
-    //TODO deixar essa view menos feia
     public FrEditFeedback(FrItemOrder parent, boolean modal, int order_id) {
         super(parent, modal);
         setContentPane(panMain);
@@ -109,7 +110,7 @@ public class FrEditFeedback extends JDialog{
         btnSubmit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(edtReview.getText().isBlank()) JOptionPane.showMessageDialog(null, "Deixe uma mensagem em seu feedback!", "Aviso!", JOptionPane.INFORMATION_MESSAGE);
+                if(txtReview.getText().isBlank()) JOptionPane.showMessageDialog(null, "Deixe uma mensagem em seu feedback!", "Aviso!", JOptionPane.INFORMATION_MESSAGE);
                 else submitFeedback(totalStars);
             }
         });
@@ -117,7 +118,7 @@ public class FrEditFeedback extends JDialog{
 
     private void initCustomComponents() {
         if(feedback != null) {
-            edtReview.setText(feedback.getReview());
+            txtReview.setText(feedback.getReview());
 
             int stars = feedback.getStars();
             for(int i = 1; i <= stars; i++) {
@@ -128,7 +129,7 @@ public class FrEditFeedback extends JDialog{
                 else if(i == 5) lblStar5.setIcon(new ImageIcon(getClass().getResource("/icons/star-fill.png")));
             }
         }else{
-            edtReview.setText("");
+            txtReview.setText("");
             lblStar1.setIcon(new ImageIcon(getClass().getResource("/icons/star-fill.png")));
             lblStar2.setIcon(new ImageIcon(getClass().getResource("/icons/star-line.png")));
             lblStar3.setIcon(new ImageIcon(getClass().getResource("/icons/star-line.png")));
@@ -139,9 +140,9 @@ public class FrEditFeedback extends JDialog{
 
     private void submitFeedback(int stars) {
         if(feedback == null)
-            feedbackController.createFeedback(edtReview.getText(), String.valueOf(stars), SessionManager.getLoggedUser(), orderController.findById(order_id));
+            feedbackController.createFeedback(txtReview.getText(), String.valueOf(stars), SessionManager.getLoggedUser(), orderController.findById(order_id));
         else
-            feedbackController.updateFeedback(feedback.getId(), edtReview.getText(), String.valueOf(stars), SessionManager.getLoggedUser(), orderController.findById(order_id));
+            feedbackController.updateFeedback(feedback.getId(), txtReview.getText(), String.valueOf(stars), SessionManager.getLoggedUser(), orderController.findById(order_id));
 
         dispose();
     }

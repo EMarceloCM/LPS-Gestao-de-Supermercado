@@ -1,11 +1,16 @@
 package view;
 
+import Auth.SessionManager;
 import controller.AddressController;
 import model.entities.Address;
 import model.entities.Customer;
+import model.enums.Role;
+import model.exceptions.AddressException;
 import model.exceptions.PromotionException;
 import view.dialogs.DlgChooseCustomer;
+import view.utils.DecimalInputValidator;
 import view.utils.FormatterUtils;
+import view.utils.IntegerInputValidator;
 import view.utils.TableUtils;
 import javax.swing.*;
 import java.awt.*;
@@ -13,6 +18,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.net.Authenticator;
 
 public class FrAddress extends JDialog {
     private JPanel panTop;
@@ -61,9 +67,8 @@ public class FrAddress extends JDialog {
         isFormActive = true;
         initCustomComponents();
         swapForm();
-        // TODO fazer o campo número aceitar apenas números, está crashando qnd coloca letras
-        // TODO fazer campo de pesquisa funcionar
         controller.refreshTable(grd);
+        cleanForm();
 
         btnNew.addActionListener(new ActionListener() {
             @Override
@@ -99,7 +104,7 @@ public class FrAddress extends JDialog {
         btnSalvar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try { //TODO se o usuario logado for customer, pegar o id da sessao dele e nao exibir a pesquisa de usuarios
+                try {
                     if (editingId == -1)
                         controller.createAddress(edtStreet.getText(), fEdtNum.getText(), edtComplement.getText(), edtNeigh.getText(), fEdtZip.getText(), selectedCustomer);
                     else
@@ -108,7 +113,7 @@ public class FrAddress extends JDialog {
                     controller.refreshTable(grd);
                     swapForm();
                     cleanForm();
-                } catch (PromotionException ex) {
+                } catch (AddressException ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro!", JOptionPane.ERROR_MESSAGE);
                 }
             }
@@ -146,6 +151,12 @@ public class FrAddress extends JDialog {
                 edtUser.setText(selectedCustomer.getName() + " (" + selectedCustomer.getId() + ")");
             }
         });
+        lblSearchImg.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                controller.filterTable(grd, edtSearch.getText());
+            }
+        });
     }
 
     private void initCustomComponents() {
@@ -153,7 +164,14 @@ public class FrAddress extends JDialog {
         lblSearchImg.setCursor(hand);
         lblSearchUsr.setCursor(hand);
 
+        if (SessionManager.getLoggedUserRole() != Role.ADMIN) {
+            lblUser.setVisible(false);
+            edtUser.setVisible(false);
+            lblSearchUsr.setVisible(false);
+        }
+
         FormatterUtils.applyCepMask(fEdtZip);
+        fEdtNum.addKeyListener(new IntegerInputValidator(fEdtNum));
 
         grd.setDefaultEditor(Object.class, null);
         grd.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -178,9 +196,9 @@ public class FrAddress extends JDialog {
         edtComplement.setText("");
         edtNeigh.setText("");
         fEdtZip.setText("");
-        edtUser.setText("");
 
-        selectedCustomer = null;
+        edtUser.setText(SessionManager.getLoggedUser().getName() + " (" + SessionManager.getLoggedUser().getId() + ")");
+        selectedCustomer = SessionManager.getLoggedUser();
     }
 
     private void loadForm(Address o) {
