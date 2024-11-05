@@ -40,6 +40,7 @@ public class DlgChooseCustomer extends JDialog {
 
         initCustomComponents();
         controller.refreshTable(grd);
+
         lblSearchImg.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
