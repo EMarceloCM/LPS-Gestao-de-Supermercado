@@ -175,6 +175,21 @@ public class FrMainView extends JFrame {
                 dlg.setVisible(true);
             }
         });
+        btnRelFeedbacks.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                FrFeedback dlg = new FrFeedback(FrMainView.this, true);
+                dlg.setLocationRelativeTo(FrMainView.this);
+                dlg.setVisible(true);
+            }
+        });
+        lblSearchImg.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                controller.filterBuyTable(grdProducts, edtSearch.getText());
+            }
+        });
     }
 
     private void initCustomComponents() {
