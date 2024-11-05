@@ -7,7 +7,6 @@ import model.exceptions.PromotionException;
 import view.dialogs.DlgChooseProduct;
 import view.utils.DecimalInputValidator;
 import view.utils.TableUtils;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -27,9 +26,6 @@ public class FrPromotion extends JDialog {
     private JTextField edtProductId;
     private JLabel lblDiscount;
     private JPanel panBot;
-    private JPanel panSearch;
-    private JTextField edtSearch;
-    private JLabel lblSearch;
     private JLabel lblSearchImg;
     private JFormattedTextField fEdtDiscount;
     private JPanel panMain;
@@ -44,7 +40,7 @@ public class FrPromotion extends JDialog {
     private Product selectedProduct;
     private boolean isFormActive;
     private int editingId;
-//TODO fazer filtro de pesquisa funcionar
+
     public FrPromotion(Frame parent, boolean modal) {
         super(parent, modal);
         setContentPane(panMain);
