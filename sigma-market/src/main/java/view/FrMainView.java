@@ -188,6 +188,7 @@ public class FrMainView extends JFrame {
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
                 controller.filterBuyTable(grdProducts, edtSearch.getText());
+                configureGrdAfterTModel();
             }
         });
     }
