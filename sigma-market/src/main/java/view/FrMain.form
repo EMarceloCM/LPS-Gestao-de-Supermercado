@@ -1,129 +1,151 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="view.FrMainView">
-  <grid id="27dc6" binding="panMain" layout-manager="GridLayoutManager" row-count="4" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-    <margin top="5" left="5" bottom="5" right="5"/>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="view.FrMain">
+  <grid id="27dc6" binding="panMain" layout-manager="GridLayoutManager" row-count="4" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="10" left="10" bottom="10" right="10"/>
     <constraints>
-      <xy x="20" y="20" width="1139" height="639"/>
+      <xy x="20" y="20" width="963" height="551"/>
     </constraints>
     <properties>
       <background color="-16048293"/>
-      <font name="Arial" size="12"/>
-      <foreground color="-16777216"/>
-      <maximumSize width="1280" height="720"/>
-      <minimumSize width="1024" height="576"/>
     </properties>
     <border type="none"/>
     <children>
-      <scrollpane id="270ec">
+      <component id="31ca6" class="javax.swing.JLabel" binding="lblNome">
         <constraints>
-          <grid row="1" column="1" row-span="2" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="1" row-span="2" col-span="1" vsize-policy="0" hsize-policy="4" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <background color="-1509633"/>
-          <font name="Arial" size="12"/>
-          <foreground color="-16777216"/>
+          <font name="Arial" size="32" style="1"/>
+          <foreground color="-1509633"/>
+          <text value="Supermercado Sigma Σ"/>
         </properties>
-        <border type="none"/>
-        <children>
-          <component id="6ddfc" class="javax.swing.JTable" binding="grdProducts">
-            <constraints/>
-            <properties>
-              <font name="Arial" size="12"/>
-              <foreground color="-16777216"/>
-              <updateSelectionOnSort value="true"/>
-            </properties>
-            <clientProperties>
-              <Table.isFileList class="java.lang.Boolean" value="false"/>
-            </clientProperties>
-          </component>
-        </children>
-      </scrollpane>
-      <grid id="fe11d" binding="panTop" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      </component>
+      <grid id="ef90c" binding="panBot" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
-          <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <minimum-size width="-1" height="70"/>
-          </grid>
+          <grid row="3" column="1" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="2" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <background color="-16048293"/>
-          <font name="Arial" size="12"/>
-          <foreground color="-16777216"/>
         </properties>
         <border type="none"/>
         <children>
-          <component id="2d3f4" class="javax.swing.JLabel" binding="lblNome">
-            <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="4" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <font name="Arial" size="32" style="1"/>
-              <foreground color="-1509633"/>
-              <text value="Supermercado Sigma Σ"/>
-            </properties>
-          </component>
-          <grid id="6fd51" binding="panTopLeft" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="e764f" binding="panSearch" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
-              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                <maximum-size width="100" height="-1"/>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="4" fill="2" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-16048293"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="d414d" class="javax.swing.JTextField" binding="edtSearch">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="4" fill="0" indent="0" use-parent-layout="false">
+                    <minimum-size width="200" height="25"/>
+                    <preferred-size width="150" height="-1"/>
+                    <maximum-size width="350" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font name="Arial" size="12"/>
+                </properties>
+              </component>
+              <component id="11306" class="javax.swing.JLabel" binding="lblSearchImg">
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <horizontalAlignment value="10"/>
+                  <horizontalTextPosition value="4"/>
+                  <icon value="icons/search.png"/>
+                  <text value=""/>
+                </properties>
+              </component>
+              <component id="c6c19" class="javax.swing.JLabel" binding="lblSearch">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <foreground color="-1509633"/>
+                  <horizontalAlignment value="2"/>
+                  <labelFor value=""/>
+                  <text value="Pesquisar:"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <component id="f5eb3" class="javax.swing.JLabel" binding="lblReference">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+                <minimum-size width="-1" height="30"/>
               </grid>
             </constraints>
             <properties>
               <background color="-16048293"/>
               <foreground color="-1509633"/>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="4"/>
+              <icon value="icons/github.png"/>
+              <text value="Projeto no Github"/>
             </properties>
-            <border type="none"/>
-            <children>
-              <component id="16443" class="javax.swing.JButton" binding="btnLoginOrLogout">
-                <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <background color="-16048293"/>
-                  <borderPainted value="false"/>
-                  <contentAreaFilled value="true"/>
-                  <defaultCapable value="true"/>
-                  <focusPainted value="false"/>
-                  <font name="Arial" size="16"/>
-                  <foreground color="-1509633"/>
-                  <horizontalTextPosition value="4"/>
-                  <icon value="icons/login.png"/>
-                  <text value="Login"/>
-                </properties>
-              </component>
-              <component id="7e191" class="javax.swing.JButton" binding="btnCart">
-                <constraints>
-                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <background color="-16048293"/>
-                  <borderPainted value="false"/>
-                  <contentAreaFilled value="true"/>
-                  <defaultCapable value="true"/>
-                  <enabled value="true"/>
-                  <focusPainted value="false"/>
-                  <font name="Arial" size="16"/>
-                  <foreground color="-15517540"/>
-                  <horizontalTextPosition value="4"/>
-                  <icon value="icons/shopping-cart-empty.png"/>
-                  <text value=""/>
-                  <visible value="true"/>
-                </properties>
-              </component>
-            </children>
-          </grid>
-          <hspacer id="452c8">
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-          </hspacer>
+          </component>
         </children>
       </grid>
-      <grid id="7b4bf" binding="panLeft" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <scrollpane id="e8c9e">
+        <constraints>
+          <grid row="2" column="1" row-span="1" col-span="2" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="ccc4d" class="javax.swing.JTable" binding="grdProducts">
+            <constraints/>
+            <properties/>
+          </component>
+        </children>
+      </scrollpane>
+      <component id="fc6b1" class="javax.swing.JButton" binding="btnLoginOrLogout">
+        <constraints>
+          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-16048293"/>
+          <borderPainted value="false"/>
+          <contentAreaFilled value="true"/>
+          <defaultCapable value="true"/>
+          <focusPainted value="false"/>
+          <font name="Arial" size="16"/>
+          <foreground color="-1509633"/>
+          <horizontalTextPosition value="4"/>
+          <icon value="icons/login.png"/>
+          <text value="Login"/>
+        </properties>
+      </component>
+      <component id="104a6" class="javax.swing.JButton" binding="btnCart">
+        <constraints>
+          <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-16048293"/>
+          <borderPainted value="false"/>
+          <contentAreaFilled value="true"/>
+          <defaultCapable value="true"/>
+          <enabled value="true"/>
+          <focusPainted value="false"/>
+          <font name="Arial" size="16"/>
+          <foreground color="-15517540"/>
+          <horizontalTextPosition value="4"/>
+          <icon value="icons/shopping-cart-empty.png"/>
+          <text value=""/>
+          <visible value="true"/>
+        </properties>
+      </component>
+      <grid id="39b96" binding="panLeft" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false">
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false">
             <minimum-size width="120" height="-1"/>
           </grid>
         </constraints>
@@ -134,7 +156,7 @@
         </properties>
         <border type="none"/>
         <children>
-          <grid id="7662d" binding="panMenuTitle" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="50a39" binding="panMenuTitle" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -146,7 +168,7 @@
             </properties>
             <border type="none"/>
             <children>
-              <component id="4afad" class="javax.swing.JLabel" binding="lblMenu">
+              <component id="6108a" class="javax.swing.JLabel" binding="lblMenu">
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -159,7 +181,7 @@
               </component>
             </children>
           </grid>
-          <grid id="f3bdc" binding="panMenuItems" layout-manager="GridLayoutManager" row-count="6" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="729a2" binding="panMenuItems" layout-manager="GridLayoutManager" row-count="6" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -172,7 +194,7 @@
             </properties>
             <border type="none"/>
             <children>
-              <grid id="52a7f" binding="panMenuAdmin" layout-manager="GridLayoutManager" row-count="6" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+              <grid id="b51b" binding="panMenuAdmin" layout-manager="GridLayoutManager" row-count="6" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                 <margin top="0" left="0" bottom="0" right="0"/>
                 <constraints>
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -182,7 +204,7 @@
                 </properties>
                 <border type="none"/>
                 <children>
-                  <component id="9c186" class="javax.swing.JButton" binding="btnUsers">
+                  <component id="7789b" class="javax.swing.JButton" binding="btnUsers">
                     <constraints>
                       <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -201,7 +223,7 @@
                       <text value="Gerenciar Usuario"/>
                     </properties>
                   </component>
-                  <component id="ea86e" class="javax.swing.JButton" binding="btnSupplier">
+                  <component id="32de9" class="javax.swing.JButton" binding="btnSupplier">
                     <constraints>
                       <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -218,7 +240,7 @@
                       <text value="Gerenciar Fornecedor"/>
                     </properties>
                   </component>
-                  <component id="17a96" class="javax.swing.JButton" binding="btnProduct">
+                  <component id="72cdb" class="javax.swing.JButton" binding="btnProduct">
                     <constraints>
                       <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -235,7 +257,7 @@
                       <text value="Gerenciar Produto"/>
                     </properties>
                   </component>
-                  <component id="bd940" class="javax.swing.JButton" binding="btnPromotion">
+                  <component id="71449" class="javax.swing.JButton" binding="btnPromotion">
                     <constraints>
                       <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -255,7 +277,7 @@
                       <text value="Gerenciar Promoção"/>
                     </properties>
                   </component>
-                  <component id="8fd7b" class="javax.swing.JButton" binding="btnRelOrders">
+                  <component id="cebb7" class="javax.swing.JButton" binding="btnRelOrders">
                     <constraints>
                       <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -272,7 +294,7 @@
                       <text value="Relatório de Vendas"/>
                     </properties>
                   </component>
-                  <component id="a72ee" class="javax.swing.JButton" binding="btnStock">
+                  <component id="273c8" class="javax.swing.JButton" binding="btnStock">
                     <constraints>
                       <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                     </constraints>
@@ -291,7 +313,7 @@
                   </component>
                 </children>
               </grid>
-              <component id="8f272" class="javax.swing.JButton" binding="btnEndereco">
+              <component id="4bc68" class="javax.swing.JButton" binding="btnEndereco">
                 <constraints>
                   <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -308,7 +330,7 @@
                   <text value="Gerenciar Endereço"/>
                 </properties>
               </component>
-              <component id="51bb8" class="javax.swing.JButton" binding="btnOrders">
+              <component id="81e0d" class="javax.swing.JButton" binding="btnOrders">
                 <constraints>
                   <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -325,7 +347,7 @@
                   <text value="Ver Pedidos"/>
                 </properties>
               </component>
-              <component id="f4ffc" class="javax.swing.JButton" binding="btnRelFeedbacks">
+              <component id="a52d3" class="javax.swing.JButton" binding="btnRelFeedbacks">
                 <constraints>
                   <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -342,7 +364,7 @@
                   <text value="Relatório de Feedbacks"/>
                 </properties>
               </component>
-              <component id="f781" class="javax.swing.JButton" binding="btnProfile">
+              <component id="494ca" class="javax.swing.JButton" binding="btnProfile">
                 <constraints>
                   <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
@@ -361,80 +383,6 @@
               </component>
             </children>
           </grid>
-        </children>
-      </grid>
-      <grid id="750b4" binding="panSearch" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="0" bottom="0" right="0"/>
-        <constraints>
-          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="4" fill="2" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-16048293"/>
-        </properties>
-        <border type="none"/>
-        <children>
-          <component id="6032d" class="javax.swing.JTextField" binding="edtSearch">
-            <constraints>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="4" fill="0" indent="0" use-parent-layout="false">
-                <minimum-size width="200" height="25"/>
-                <preferred-size width="150" height="-1"/>
-                <maximum-size width="350" height="-1"/>
-              </grid>
-            </constraints>
-            <properties>
-              <font name="Arial" size="12"/>
-            </properties>
-          </component>
-          <component id="7983" class="javax.swing.JLabel" binding="lblSearchImg">
-            <constraints>
-              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <horizontalAlignment value="10"/>
-              <horizontalTextPosition value="4"/>
-              <icon value="icons/search.png"/>
-              <text value=""/>
-            </properties>
-          </component>
-          <component id="6c452" class="javax.swing.JLabel" binding="lblSearch">
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <foreground color="-1509633"/>
-              <horizontalAlignment value="2"/>
-              <labelFor value=""/>
-              <text value="Pesquisar:"/>
-            </properties>
-          </component>
-        </children>
-      </grid>
-      <grid id="a4e17" binding="panReference" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="0" bottom="0" right="0"/>
-        <constraints>
-          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="2" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <background color="-16048293"/>
-          <foreground color="-1509633"/>
-        </properties>
-        <border type="none"/>
-        <children>
-          <component id="814f5" class="javax.swing.JLabel" binding="lblReference">
-            <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
-                <minimum-size width="-1" height="30"/>
-              </grid>
-            </constraints>
-            <properties>
-              <background color="-16048293"/>
-              <foreground color="-1509633"/>
-              <horizontalAlignment value="0"/>
-              <horizontalTextPosition value="4"/>
-              <icon value="icons/github.png"/>
-              <text value="Projeto no Github"/>
-            </properties>
-          </component>
         </children>
       </grid>
     </children>
