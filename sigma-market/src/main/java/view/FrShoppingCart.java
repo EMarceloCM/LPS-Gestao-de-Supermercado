@@ -159,12 +159,7 @@ public class FrShoppingCart extends JDialog{
         shoppingCartList = shoppingCartController.findByCustomer(SessionManager.getLoggedUserId());
         shoppingCartController.refreshTable(grdItemOrder);
 
-        float newTotalValue = 0;
-        for(ShoppingCart s : shoppingCartList){
-            newTotalValue += s.getTotalAmount();
-        }
-        lblTotalValue.setText("R$ " + String.format("%.2f", newTotalValue));
-
+        initLabels();
         configureGrdAfterTModel();
     }
 }
