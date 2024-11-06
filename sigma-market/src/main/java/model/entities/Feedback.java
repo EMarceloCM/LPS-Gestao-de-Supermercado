@@ -23,4 +23,16 @@ public class Feedback {
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name="order_id", unique = true)
     private Order order;
+
+
+    public String getStarsAsEmote() {
+            StringBuilder str = new StringBuilder();
+            for (int i = 0; i < stars; i++) {
+                str.append("★");
+            }
+            for (int i = stars; i < 5; i++) {
+                str.append("☆");
+            }
+            return str.toString();
+    }
 }
