@@ -17,6 +17,7 @@ public class SessionManager {
 
     public static void Login(String email, String psw) throws AuthException {
         try {
+            email = email.toLowerCase();
             Customer customer = new CustomerRepository().findByEmail(email);
 
             if(customer == null)

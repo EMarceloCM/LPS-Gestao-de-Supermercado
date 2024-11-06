@@ -4,6 +4,7 @@ import controller.tableModel.TMProductSupplier;
 import model.entities.Product;
 import model.entities.ProductSupplier;
 import model.entities.Supplier;
+import model.validations.ValidateProductSupplier;
 import repository.ProductSupplierRepository;
 import javax.swing.*;
 import java.time.ZoneId;
@@ -13,7 +14,7 @@ import java.util.List;
 public class ProductSupplierController {
     private ProductSupplierRepository repository;
 
-    ProductSupplierController() { repository = new ProductSupplierRepository(); }
+    public ProductSupplierController() { repository = new ProductSupplierRepository(); }
 
     public void refreshTable(JTable t) {
         List<ProductSupplier> list = repository.findAll();
@@ -21,14 +22,14 @@ public class ProductSupplierController {
         t.setModel(model);
     }
 
-    public void createProductSupplier(Product product, Supplier supplier, float purchasePrice, int quantity) {
-        ProductSupplier ps = new ProductSupplier(0, product, supplier, purchasePrice, quantity, ZonedDateTime.now(ZoneId.of("America/Sao_Paulo")).toLocalDateTime());
-
+    public void createProductSupplier(Product product, Supplier supplier, String purchasePrice, String quantity) {
+        ProductSupplier ps = ValidateProductSupplier.Validate(product, supplier, purchasePrice, quantity, ZonedDateTime.now(ZoneId.of("America/Sao_Paulo")).toLocalDateTime());
         repository.save(ps);
     }
 
-    public void updateProductSupplier(int id, Product product, Supplier supplier, float purchasePrice, int quantity) {
-        ProductSupplier ps = new ProductSupplier(id, product, supplier, purchasePrice, quantity, ZonedDateTime.now(ZoneId.of("America/Sao_Paulo")).toLocalDateTime());
+    public void updateProductSupplier(int id, Product product, Supplier supplier, String purchasePrice, String quantity) {
+        ProductSupplier ps = ValidateProductSupplier.Validate(product, supplier, purchasePrice, quantity, ZonedDateTime.now(ZoneId.of("America/Sao_Paulo")).toLocalDateTime());
+        ps.setId(id);
 
         repository.update(ps);
     }
