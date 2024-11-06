@@ -199,6 +199,14 @@ public class FrMainView extends JFrame {
                 dlg.setVisible(true);
             }
         });
+        btnStock.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                FrViewStock dlg = new FrViewStock(FrMainView.this, true);
+                dlg.setLocationRelativeTo(FrMainView.this);
+                dlg.setVisible(true);
+            }
+        });
     }
 
     private void initCustomComponents() {
