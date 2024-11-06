@@ -45,9 +45,9 @@ public class TMOrder extends AbstractTableModel {
 
         return switch (columnIndex) {
             case COL_ID -> o.getId();
-            case COL_CUSTOMER_ID -> o.getCustomer().getId();
-            case COL_ADDRESS_ID -> o.getAddress().getId();
-            case COL_FEEDBACK_ID -> o.getFeedback() != null ? o.getFeedback().getId() : "null";
+            case COL_CUSTOMER_ID -> o.getCustomer().getId() + " - " + o.getCustomer().getName();
+            case COL_ADDRESS_ID -> o.getAddress().getId() + " - " + o.getAddress().getStreet();
+            case COL_FEEDBACK_ID -> o.getFeedback() != null ? o.getFeedback().getId() : "";
             case COL_DATE -> o.getDate();
             case COL_TOTAL_AMOUNT -> o.getTotalAmount();
             case COL_ORDER_STATUS -> o.getOrderStatus().toString();

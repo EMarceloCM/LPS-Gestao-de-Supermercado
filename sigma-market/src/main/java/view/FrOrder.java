@@ -5,6 +5,9 @@ import controller.ItemOrderController;
 import controller.OrderController;
 import controller.tableModel.utils.IconLabelRenderer;
 import model.enums.Role;
+import view.utils.DecimalInputValidator;
+import view.utils.IntegerInputValidator;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -20,6 +23,7 @@ public class FrOrder extends JDialog {
     private JLabel lblSearchImg;
     private JTextField edtSearch;
     private JLabel lblSearch;
+    private JFormattedTextField fEdtSearch;
 
     private OrderController orderController;
     private ItemOrderController itemOrderController;
@@ -28,7 +32,7 @@ public class FrOrder extends JDialog {
         super(parent, modal);
         setContentPane(panMain);
         setTitle("Pedidos");
-        setSize(1170, 680);
+        setSize(1070, 680);
 
         orderController = new OrderController();
         itemOrderController = new ItemOrderController();
@@ -41,15 +45,14 @@ public class FrOrder extends JDialog {
         lblSearchImg.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                //TODO colocar maskara de inteiro no edtSearch
-                try{
-                    if(!edtSearch.getText().isBlank())
-                        orderController.filterTableByCustomer(grdOrders, Integer.parseInt(edtSearch.getText()));
+                try {
+                    if(!fEdtSearch.getText().isBlank())
+                        orderController.filterTableByCustomer(grdOrders, Integer.parseInt(fEdtSearch.getText()));
                     else
                         orderController.refreshTable(grdOrders);
 
                     configureGrdAfterTModel();
-                }catch (NumberFormatException ex) {
+                } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, "Insira um id numérico válido.", "Erro", JOptionPane.ERROR_MESSAGE);
                 }
             }
@@ -57,6 +60,11 @@ public class FrOrder extends JDialog {
     }
 
     private void initCustomComponents() {
+        Cursor hand = new Cursor(Cursor.HAND_CURSOR);
+        lblSearchImg.setCursor(hand);
+
+        fEdtSearch.addKeyListener(new IntegerInputValidator(fEdtSearch));
+
         grdOrders.setDefaultEditor(Object.class, null);
         grdOrders.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         grdOrders.getTableHeader().setReorderingAllowed(false);
@@ -164,7 +172,7 @@ public class FrOrder extends JDialog {
     private void swapForm(){
         boolean isVisible = SessionManager.getLoggedUserRole() == Role.ADMIN;
         lblSearch.setVisible(isVisible);
-        edtSearch.setVisible(isVisible);
+        fEdtSearch.setVisible(isVisible);
         lblSearchImg.setVisible(isVisible);
     }
 }

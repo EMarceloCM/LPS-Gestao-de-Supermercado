@@ -37,7 +37,7 @@ public class FrEditFeedback extends JDialog{
         super(parent, modal);
         setContentPane(panMain);
         setTitle("Feedback");
-        setSize(550, 400);
+        setSize(550, 300);
 
         this.totalStars = 1;
         this.order_id = order_id;

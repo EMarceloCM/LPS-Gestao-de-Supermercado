@@ -183,6 +183,6 @@ public class FrProduct extends  JDialog {
         spnStock.setValue(o.getStock());
         txtDesc.setText(o.getDescription());
         txtImgUrl.setText(o.getImgUrl());
-        edtPrice.setText(String.format("%.2f", o.getPrice()));
+        edtPrice.setText(String.format("%.2f", o.getPrice()).replace(',', '.'));
     }
 }
