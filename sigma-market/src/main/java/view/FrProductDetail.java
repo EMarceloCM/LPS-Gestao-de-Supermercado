@@ -6,7 +6,6 @@ import controller.ShoppingCartController;
 import model.entities.Product;
 import model.entities.Promotion;
 import model.entities.ShoppingCart;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -79,11 +78,15 @@ public class FrProductDetail extends JDialog {
             URI imageUri = new URI(product.getImgUrl());
             URL imageUrl = imageUri.toURL();
             ImageIcon icon = new ImageIcon(imageUrl);
-            Image scaledImage = icon.getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH);
 
+            if (icon.getIconWidth() == -1 || icon.getIconHeight() == -1) {
+                icon = new ImageIcon(getClass().getResource("/image/produto_generico.png"));
+            }
+
+            Image scaledImage = icon.getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH);
             lblImage.setIcon(new ImageIcon(scaledImage));
             lblImage.setHorizontalAlignment(JLabel.CENTER);
-        } catch (URISyntaxException | MalformedURLException | NullPointerException e) {
+        } catch (URISyntaxException | MalformedURLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Erro!", JOptionPane.ERROR_MESSAGE);
         }
     }
