@@ -4,6 +4,10 @@ import controller.ItemOrderController;
 import controller.OrderController;
 import model.entities.ItemOrder;
 import model.entities.Order;
+import model.exceptions.OrderException;
+import model.exceptions.ProductException;
+import view.utils.FormatterUtils;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -17,8 +21,8 @@ public class FrSellingReport extends JDialog {
     private JPanel panForm;
     private JLabel lblInitialDate;
     private JLabel lblFinalDate;
-    private JFormattedTextField edtInitialDate;
-    private JFormattedTextField edtFinalDate;
+    private JFormattedTextField fEdtDateI;
+    private JFormattedTextField fEdtDateF;
     private JButton btnFilter;
     private JLabel lblTitle;
     private JPanel panInfo;
@@ -40,12 +44,14 @@ public class FrSellingReport extends JDialog {
     private List<Order> orders;
     private List<ItemOrder> itemOrders;
 
-//TODO colocar máskara nos campos de data do tipo -> dd/MM/yyyy HH:mm:ss
     public FrSellingReport(Frame parent, boolean modal) {
         super(parent, modal);
         setContentPane(panMain);
         setSize(740, 380);
         setTitle("Relatório de Vendas");
+
+        FormatterUtils.applyDateMask(fEdtDateF);
+        FormatterUtils.applyDateMask(fEdtDateI);
 
         orderController = new OrderController();
         itemOrderController = new ItemOrderController();
@@ -57,21 +63,35 @@ public class FrSellingReport extends JDialog {
         btnFilter.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+                DateTimeFormatter displayFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                DateTimeFormatter parseFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+                
+                LocalDate initialDate = null;
+                LocalDate finalDate = null;
 
-                LoadForm(LocalDateTime.parse(edtInitialDate.getText(), formatter),
-                        LocalDateTime.parse(edtFinalDate.getText(), formatter));
+                try {
+                    initialDate = LocalDate.parse(fEdtDateI.getText(), displayFormatter);
+                    finalDate = LocalDate.parse(fEdtDateF.getText(), displayFormatter);
+                } catch (RuntimeException ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro!", JOptionPane.ERROR_MESSAGE);
+                }
+
+                LoadForm(initialDate.atStartOfDay(), finalDate.atTime(23, 59, 59, 999_999_999));
             }
         });
     }
 
     private void LoadForm(LocalDateTime initialDate, LocalDateTime finalDate){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-        edtInitialDate.setText(initialDate.format(formatter));
-        edtFinalDate.setText(finalDate.format(formatter));
+        fEdtDateI.setText(initialDate.format(formatter));
+        fEdtDateF.setText(finalDate.format(formatter));
 
-        orders = orderController.findWithinDateRange(initialDate, finalDate);
+        try {
+            orders = orderController.findWithinDateRange(initialDate, finalDate);
+        } catch (OrderException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro!", JOptionPane.ERROR_MESSAGE);
+        }
 
         int itemsCount = 0;
         float avarageItemsPerOrder = 0;
