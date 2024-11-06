@@ -157,6 +157,7 @@ public class FrMainView extends JFrame {
                 }else{
                     JOptionPane.showMessageDialog(null, "Realize login!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
                 }
+                configureGrdAfterTModel();
             }
         });
         btnProfile.addActionListener(new ActionListener() {

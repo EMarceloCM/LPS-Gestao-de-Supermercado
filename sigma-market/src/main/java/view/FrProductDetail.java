@@ -5,6 +5,8 @@ import Auth.exceptions.AuthException;
 import controller.ShoppingCartController;
 import model.entities.Product;
 import model.entities.Promotion;
+import model.entities.ShoppingCart;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -13,6 +15,7 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.List;
 
 public class FrProductDetail extends JDialog{
     private JPanel panTop;
@@ -86,15 +89,40 @@ public class FrProductDetail extends JDialog{
     }
 
     private void AddProductToCart(){
+        ShoppingCart existedItemInCart = null;
+
+        List<ShoppingCart> sps = cartController.findByCustomer(SessionManager.getLoggedUserId());
+        for(ShoppingCart sp : sps){
+            if(sp.getProduct().getId() == product.getId()){
+                existedItemInCart = sp;
+                if(sp.getQuantity() + (Integer) spnQuantityValue.getValue() > product.getStock()){
+                    JOptionPane.showMessageDialog(null, "Quantidade do item (" +(Integer) spnQuantityValue.getValue()+ " + " +sp.getQuantity()+ " já no carrinho) está acima do estoque disponível ("+product.getStock()+")!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+                    return;
+                }
+            }
+        }
+
         float totalAmount = promotion == null ?
                 product.getPrice() * (Integer) spnQuantityValue.getValue() :
                 promotion.getFinalPrice() * (Integer) spnQuantityValue.getValue();
 
-        try{
-            cartController.createShoppingCart(product, SessionManager.getLoggedUser(), (Integer) spnQuantityValue.getValue(), totalAmount);
-            dispose();
-        } catch (AuthException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "Aviso", JOptionPane.WARNING_MESSAGE);
+        if(existedItemInCart == null){
+            try{
+                cartController.createShoppingCart(product, SessionManager.getLoggedUser(), (Integer) spnQuantityValue.getValue(), totalAmount);
+                dispose();
+            } catch (AuthException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Aviso", JOptionPane.WARNING_MESSAGE);
+            }
+        }else{
+            existedItemInCart.setQuantity(existedItemInCart.getQuantity() + (Integer) spnQuantityValue.getValue());
+            existedItemInCart.setTotalAmount(existedItemInCart.getTotalAmount() + totalAmount);
+
+            try{
+                cartController.updateShoppingCart(existedItemInCart.getId(), product, SessionManager.getLoggedUser(), existedItemInCart.getQuantity(), existedItemInCart.getTotalAmount());
+                dispose();
+            } catch (AuthException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Aviso", JOptionPane.WARNING_MESSAGE);
+            }
         }
     }
 }
