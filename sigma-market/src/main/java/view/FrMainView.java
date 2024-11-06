@@ -191,6 +191,14 @@ public class FrMainView extends JFrame {
                 configureGrdAfterTModel();
             }
         });
+        btnRelOrders.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                FrSellingReport dlg = new FrSellingReport(FrMainView.this, true);
+                dlg.setLocationRelativeTo(FrMainView.this);
+                dlg.setVisible(true);
+            }
+        });
     }
 
     private void initCustomComponents() {

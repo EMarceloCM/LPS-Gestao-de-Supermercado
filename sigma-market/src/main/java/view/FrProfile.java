@@ -7,12 +7,10 @@ import model.entities.Customer;
 import model.enums.Role;
 import model.exceptions.CustomerException;
 import view.utils.FormatterUtils;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Arrays;
 import java.util.Objects;
 
 public class FrProfile extends JDialog{
@@ -79,6 +77,8 @@ public class FrProfile extends JDialog{
         cbProfile.addItem("Perfil 7");
         cbProfile.addItem("Perfil 8");
         cbProfile.addItem("Perfil 9");
+        cbProfile.addItem("Perfil 10");
+        cbProfile.addItem("Perfil 11");
         if(customer.getProfileId() > 0){
             cbProfile.setSelectedIndex(customer.getProfileId() - 1);
             loadImage(customer.getProfileId());

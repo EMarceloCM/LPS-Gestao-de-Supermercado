@@ -40,7 +40,7 @@ public class ValidateCustomer{
             throw new CustomerException("Error - Campo inválido: 'role'.");
         c.setRole(r);
 
-        if(profile_id < 10)
+        if(profile_id < 12)
             c.setProfileId(profile_id);
         else
             throw new CustomerException("Error - Campo inválido: 'profile'");

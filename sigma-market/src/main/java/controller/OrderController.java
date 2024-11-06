@@ -12,6 +12,7 @@ import model.enums.Role;
 import model.validations.ValidateOrder;
 import repository.OrderRepository;
 import javax.swing.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class OrderController {
@@ -62,5 +63,9 @@ public class OrderController {
         List<Order> list = repository.findByCustomer(customer_id);
         TMOrder model = new TMOrder(list);
         t.setModel(model);
+    }
+
+    public List<Order> findWithinDateRange(LocalDateTime start, LocalDateTime end){
+        return repository.findOrdersWithinDateRange(start, end);
     }
 }
