@@ -5,14 +5,19 @@ import controller.AddressController;
 import controller.ItemOrderController;
 import controller.OrderController;
 import controller.ShoppingCartController;
+import controller.tableModel.utils.IconLabelRenderer;
+import controller.tableModel.utils.StockTableCellRenderer;
 import model.entities.Address;
 import model.entities.Order;
+import model.entities.Product;
 import model.entities.ShoppingCart;
 import model.enums.PaymentType;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 
 public class FrShoppingCart extends JDialog{
@@ -90,6 +95,19 @@ public class FrShoppingCart extends JDialog{
     }
 
     private void configureGrdAfterTModel(){
+        grdItemOrder.getColumnModel().getColumn(5).setCellRenderer(new IconLabelRenderer());
+        grdItemOrder.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int row = grdItemOrder.rowAtPoint(e.getPoint());
+                int column = grdItemOrder.columnAtPoint(e.getPoint());
+
+                if (column == 5 && row >= 0) {
+                    ShoppingCart aux = (ShoppingCart) grdItemOrder.getModel().getValueAt(row, -1);
+                    deleteItem(aux);
+                }
+            }
+        });
         grdItemOrder.getColumnModel().getColumn(0).setMaxWidth(405);
         grdItemOrder.getColumnModel().getColumn(0).setPreferredWidth(350);
         grdItemOrder.getColumnModel().getColumn(1).setMinWidth(120);
@@ -104,6 +122,9 @@ public class FrShoppingCart extends JDialog{
         grdItemOrder.getColumnModel().getColumn(4).setMinWidth(70);
         grdItemOrder.getColumnModel().getColumn(4).setMaxWidth(70);
         grdItemOrder.getColumnModel().getColumn(4).setPreferredWidth(70);
+        grdItemOrder.getColumnModel().getColumn(5).setMinWidth(65);
+        grdItemOrder.getColumnModel().getColumn(5).setMaxWidth(65);
+        grdItemOrder.getColumnModel().getColumn(5).setPreferredWidth(65);
     }
 
     private void placesOrder(){
@@ -131,5 +152,19 @@ public class FrShoppingCart extends JDialog{
         dlg.setLocationRelativeTo(FrShoppingCart.this);
         dlg.setVisible(true);
         dispose();
+    }
+
+    private void deleteItem(ShoppingCart sp){
+        shoppingCartController.deleteShoppingCart(sp.getId());
+        shoppingCartList = shoppingCartController.findByCustomer(SessionManager.getLoggedUserId());
+        shoppingCartController.refreshTable(grdItemOrder);
+
+        float newTotalValue = 0;
+        for(ShoppingCart s : shoppingCartList){
+            newTotalValue += s.getTotalAmount();
+        }
+        lblTotalValue.setText("R$ " + String.format("%.2f", newTotalValue));
+
+        configureGrdAfterTModel();
     }
 }
