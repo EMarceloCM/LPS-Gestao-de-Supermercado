@@ -244,9 +244,9 @@ public class FrMain extends JFrame {
         grdProducts.getColumnModel().getColumn(1).setMinWidth(60);
         grdProducts.getColumnModel().getColumn(1).setMaxWidth(725);
         grdProducts.getColumnModel().getColumn(1).setPreferredWidth(550);
-        grdProducts.getColumnModel().getColumn(2).setMinWidth(60);
-        grdProducts.getColumnModel().getColumn(2).setMaxWidth(60);
-        grdProducts.getColumnModel().getColumn(2).setPreferredWidth(60);
+        grdProducts.getColumnModel().getColumn(2).setMinWidth(100);
+        grdProducts.getColumnModel().getColumn(2).setMaxWidth(100);
+        grdProducts.getColumnModel().getColumn(2).setPreferredWidth(100);
         grdProducts.getColumnModel().getColumn(3).setMinWidth(80);
         grdProducts.getColumnModel().getColumn(3).setMaxWidth(180);
         grdProducts.getColumnModel().getColumn(3).setPreferredWidth(180);

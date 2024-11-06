@@ -102,7 +102,9 @@
         <children>
           <component id="ccc4d" class="javax.swing.JTable" binding="grdProducts">
             <constraints/>
-            <properties/>
+            <properties>
+              <font name="Arial" size="14"/>
+            </properties>
           </component>
         </children>
       </scrollpane>

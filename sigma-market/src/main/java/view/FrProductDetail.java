@@ -17,7 +17,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.List;
 
-public class FrProductDetail extends JDialog{
+public class FrProductDetail extends JDialog {
     private JPanel panTop;
     private JLabel lblName;
     private JButton btnAddToCart;
@@ -64,7 +64,7 @@ public class FrProductDetail extends JDialog{
     private void LoadForm(){
         lblName.setText(product.getName());
         lblDescriptionValue.setText(product.getDescription());
-        lblStockValue.setText(product.getStock() +" unidades");
+        lblStockValue.setText(product.getStock() + " unidades");
 
         if(promotion == null){
             lblPriceValue.setText("R$ "+ product.getPrice());
