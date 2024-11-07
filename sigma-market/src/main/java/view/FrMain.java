@@ -214,6 +214,7 @@ public class FrMain extends JFrame {
         lblReference.setCursor(hand);
         btnCart.setCursor(hand);
         btnLoginOrLogout.setCursor(hand);
+        lblSearchImg.setCursor(hand);
 
         // set table layout
         grdProducts.setDefaultEditor(Object.class, null);
