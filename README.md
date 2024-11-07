@@ -35,7 +35,7 @@ DELIMITER ;
 ```
 
 <br>
-<h2>Trigger que aumenta o estoque de um produto após um registro de compra ou atualização da mesm</h2>
+<h2>Trigger que aumenta o estoque de um produto após um registro de compra ou atualização da mesma</h2>
 
 ```
 DELIMITER //
