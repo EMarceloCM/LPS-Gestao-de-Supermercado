@@ -85,14 +85,29 @@ public class FrProductDetail extends JDialog {
                 URL imageUrl = imageUri.toURL();
                 ImageIcon productIcon = new ImageIcon(imageUrl);
 
-                if (productIcon.getIconWidth() != -1 && productIcon.getIconHeight() != -1) {
-                    Image scaledProductImage = productIcon.getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH);
-                    lblImage.setIcon(new ImageIcon(scaledProductImage));
+                int originalWidth = productIcon.getIconWidth();
+                int originalHeight = productIcon.getIconHeight();
+
+                int targetWidth = 250;
+                int targetHeight = 250;
+
+                double aspectRatio = (double) originalWidth / originalHeight;
+                int newWidth = targetWidth;
+                int newHeight = (int) (targetWidth / aspectRatio);
+
+                if (newHeight > targetHeight) {
+                    newHeight = targetHeight;
+                    newWidth = (int) (targetHeight * aspectRatio);
                 }
+
+                Image scaledProductImage = productIcon.getImage().getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+                lblImage.setIcon(new ImageIcon(scaledProductImage));
+
             } catch (URISyntaxException | MalformedURLException e) {
                 System.err.println("Erro ao carregar a imagem do produto: " + e.getMessage());
             }
         });
+
     }
 
 
