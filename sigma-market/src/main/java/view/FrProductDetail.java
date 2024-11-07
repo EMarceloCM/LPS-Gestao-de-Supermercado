@@ -74,22 +74,27 @@ public class FrProductDetail extends JDialog {
             lblDiscountValue.setText("R$ "+ String.format("%.2f", (product.getPrice() - promotion.getFinalPrice())));
         }
 
-        try {
-            URI imageUri = new URI(product.getImgUrl());
-            URL imageUrl = imageUri.toURL();
-            ImageIcon icon = new ImageIcon(imageUrl);
+        ImageIcon icon = new ImageIcon(getClass().getResource("/image/produto_generico.png"));
+        Image scaledImage = icon.getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH);
+        lblImage.setIcon(new ImageIcon(scaledImage));
+        lblImage.setHorizontalAlignment(JLabel.CENTER);
 
-            if (icon.getIconWidth() == -1 || icon.getIconHeight() == -1) {
-                icon = new ImageIcon(getClass().getResource("/image/produto_generico.png"));
+        SwingUtilities.invokeLater(() -> {
+            try {
+                URI imageUri = new URI(product.getImgUrl());
+                URL imageUrl = imageUri.toURL();
+                ImageIcon productIcon = new ImageIcon(imageUrl);
+
+                if (productIcon.getIconWidth() != -1 && productIcon.getIconHeight() != -1) {
+                    Image scaledProductImage = productIcon.getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH);
+                    lblImage.setIcon(new ImageIcon(scaledProductImage));
+                }
+            } catch (URISyntaxException | MalformedURLException e) {
+                System.err.println("Erro ao carregar a imagem do produto: " + e.getMessage());
             }
-
-            Image scaledImage = icon.getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH);
-            lblImage.setIcon(new ImageIcon(scaledImage));
-            lblImage.setHorizontalAlignment(JLabel.CENTER);
-        } catch (URISyntaxException | MalformedURLException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro!", JOptionPane.ERROR_MESSAGE);
-        }
+        });
     }
+
 
     private void AddProductToCart(){
         ShoppingCart existedItemInCart = null;
