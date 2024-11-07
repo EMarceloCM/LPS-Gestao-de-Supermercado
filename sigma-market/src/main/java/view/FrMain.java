@@ -51,7 +51,7 @@ public class FrMain extends JFrame {
         setContentPane(panMain);
         setTitle("Supermercado Sigma");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(1080, 680);
+        setSize(1280, 960);
         setLocationRelativeTo(null);
         setVisible(true);
 
@@ -244,14 +244,11 @@ public class FrMain extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 int row = grdProducts.rowAtPoint(e.getPoint());
-                int column = grdProducts.columnAtPoint(e.getPoint());
 
-                if (column == 4 && row >= 0) {
-                    Product aux = controller.findProductById(row+1);
-                    FrProductDetail dlg = new FrProductDetail(FrMain.this,true, aux, promotionController.findActiveByProductId(aux.getId()));
-                    dlg.setLocationRelativeTo(FrMain.this);
-                    dlg.setVisible(true);
-                }
+                Product aux = (Product) grdProducts.getModel().getValueAt(row, -1);
+                FrProductDetail dlg = new FrProductDetail(FrMain.this,true, aux, promotionController.findActiveByProductId(aux.getId()));
+                dlg.setLocationRelativeTo(FrMain.this);
+                dlg.setVisible(true);
             }
         });
         grdProducts.getColumnModel().getColumn(0).setMinWidth(60);
