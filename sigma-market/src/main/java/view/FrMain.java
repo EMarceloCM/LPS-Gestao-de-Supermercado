@@ -230,11 +230,13 @@ public class FrMain extends JFrame {
         btnCart.setCursor(hand);
         btnLoginOrLogout.setCursor(hand);
         lblSearchImg.setCursor(hand);
+        grdProducts.setCursor(hand);
 
         // set table layout
         grdProducts.setDefaultEditor(Object.class, null);
         grdProducts.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         grdProducts.getTableHeader().setReorderingAllowed(false);
+        grdProducts.setRowHeight(30);
     }
 
     private void configureGrdAfterTModel(){
