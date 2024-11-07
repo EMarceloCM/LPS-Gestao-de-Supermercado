@@ -111,6 +111,8 @@ public class FrMain extends JFrame {
                 FrPromotion dlg = new FrPromotion(FrMain.this, true);
                 dlg.setLocationRelativeTo(FrMain.this);
                 dlg.setVisible(true);
+                controller.refreshBuyTable(grdProducts);
+                configureGrdAfterTModel();
             }
         });
         btnEndereco.addActionListener(new ActionListener() {
@@ -119,6 +121,8 @@ public class FrMain extends JFrame {
                 FrAddress dlg = new FrAddress(FrMain.this, true);
                 dlg.setLocationRelativeTo(FrMain.this);
                 dlg.setVisible(true);
+                controller.refreshBuyTable(grdProducts);
+                configureGrdAfterTModel();
             }
         });
         btnLoginOrLogout.addActionListener(new ActionListener() {
@@ -155,6 +159,7 @@ public class FrMain extends JFrame {
                 }else{
                     JOptionPane.showMessageDialog(null, "Realize login!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
                 }
+                controller.refreshBuyTable(grdProducts);
                 configureGrdAfterTModel();
             }
         });
@@ -164,6 +169,8 @@ public class FrMain extends JFrame {
                 FrProfile dlg = new FrProfile(FrMain.this, true);
                 dlg.setLocationRelativeTo(FrMain.this);
                 dlg.setVisible(true);
+                controller.refreshBuyTable(grdProducts);
+                configureGrdAfterTModel();
             }
         });
         btnOrders.addActionListener(new ActionListener() {
@@ -172,6 +179,8 @@ public class FrMain extends JFrame {
                 FrOrder dlg = new FrOrder(FrMain.this, true);
                 dlg.setLocationRelativeTo(FrMain.this);
                 dlg.setVisible(true);
+                controller.refreshBuyTable(grdProducts);
+                configureGrdAfterTModel();
             }
         });
         btnRelFeedbacks.addActionListener(new ActionListener() {
@@ -180,6 +189,8 @@ public class FrMain extends JFrame {
                 FrFeedback dlg = new FrFeedback(FrMain.this, true);
                 dlg.setLocationRelativeTo(FrMain.this);
                 dlg.setVisible(true);
+                controller.refreshBuyTable(grdProducts);
+                configureGrdAfterTModel();
             }
         });
         lblSearchImg.addMouseListener(new MouseAdapter() {
@@ -196,6 +207,8 @@ public class FrMain extends JFrame {
                 FrSellingReport dlg = new FrSellingReport(FrMain.this, true);
                 dlg.setLocationRelativeTo(FrMain.this);
                 dlg.setVisible(true);
+                controller.refreshBuyTable(grdProducts);
+                configureGrdAfterTModel();
             }
         });
         btnStock.addActionListener(new ActionListener() {
@@ -204,6 +217,8 @@ public class FrMain extends JFrame {
                 FrViewStock dlg = new FrViewStock(FrMain.this, true);
                 dlg.setLocationRelativeTo(FrMain.this);
                 dlg.setVisible(true);
+                controller.refreshBuyTable(grdProducts);
+                configureGrdAfterTModel();
             }
         });
     }
@@ -214,6 +229,7 @@ public class FrMain extends JFrame {
         lblReference.setCursor(hand);
         btnCart.setCursor(hand);
         btnLoginOrLogout.setCursor(hand);
+        lblSearchImg.setCursor(hand);
 
         // set table layout
         grdProducts.setDefaultEditor(Object.class, null);
