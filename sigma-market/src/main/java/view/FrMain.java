@@ -9,6 +9,7 @@ import model.entities.Product;
 import model.enums.Role;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
@@ -268,6 +269,10 @@ public class FrMain extends JFrame {
         grdProducts.getColumnModel().getColumn(4).setMinWidth(30);
         grdProducts.getColumnModel().getColumn(4).setMaxWidth(30);
         grdProducts.getColumnModel().getColumn(4).setPreferredWidth(30);
+
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        grdProducts.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
     }
 
     private void changeViewBasedOnRole() {
