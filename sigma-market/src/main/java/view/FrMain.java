@@ -46,6 +46,7 @@ public class FrMain extends JFrame {
     private JPanel panBot;
     private ProductController controller;
     private PromotionController promotionController;
+    private FrProductDetail dlgProductDetail;
 
     public FrMain() {
         // window info
@@ -58,6 +59,7 @@ public class FrMain extends JFrame {
 
         controller = new ProductController();
         promotionController = new PromotionController();
+        dlgProductDetail = null;
 
         initCustomComponents();
         changeViewBasedOnRole();
@@ -246,12 +248,14 @@ public class FrMain extends JFrame {
         grdProducts.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                int row = grdProducts.rowAtPoint(e.getPoint());
+                if (dlgProductDetail == null || !dlgProductDetail.isShowing()) {  // Verifica se a janela já está aberta
+                    int row = grdProducts.rowAtPoint(e.getPoint());
 
-                Product aux = (Product) grdProducts.getModel().getValueAt(row, -1);
-                FrProductDetail dlg = new FrProductDetail(FrMain.this,true, aux, promotionController.findActiveByProductId(aux.getId()));
-                dlg.setLocationRelativeTo(FrMain.this);
-                dlg.setVisible(true);
+                    Product aux = (Product) grdProducts.getModel().getValueAt(row, -1);
+                    dlgProductDetail = new FrProductDetail(FrMain.this, true, aux, promotionController.findActiveByProductId(aux.getId()));
+                    dlgProductDetail.setLocationRelativeTo(FrMain.this);
+                    dlgProductDetail.setVisible(true);
+                }
             }
         });
         grdProducts.getColumnModel().getColumn(0).setMinWidth(60);
@@ -270,9 +274,6 @@ public class FrMain extends JFrame {
         grdProducts.getColumnModel().getColumn(4).setMaxWidth(30);
         grdProducts.getColumnModel().getColumn(4).setPreferredWidth(30);
 
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
-        grdProducts.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
     }
 
     private void changeViewBasedOnRole() {
