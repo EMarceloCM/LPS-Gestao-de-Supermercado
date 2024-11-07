@@ -19,6 +19,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
+import java.util.Objects;
 
 public class FrShoppingCart extends JDialog{
     private JPanel panTop;
@@ -35,6 +36,7 @@ public class FrShoppingCart extends JDialog{
     private JTable grdItemOrder;
     private JComboBox<String> cbPaymentTypeValue;
     private JComboBox<String> cbAddressValue;
+    private JLabel lblPaymentIcon;
 
     private ShoppingCartController shoppingCartController;
     private AddressController addressController;
@@ -64,6 +66,17 @@ public class FrShoppingCart extends JDialog{
                 placesOrder();
             }
         });
+        cbPaymentTypeValue.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(cbPaymentTypeValue.getSelectedIndex() == 0)
+                    lblPaymentIcon.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/money-dollar-circle-line.png"))));
+                else if(cbPaymentTypeValue.getSelectedIndex() == 1)
+                    lblPaymentIcon.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/pix-line.png"))));
+                else
+                    lblPaymentIcon.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/btc-line.png"))));
+            }
+        });
     }
 
     private void initCustomComponents() {
@@ -77,6 +90,7 @@ public class FrShoppingCart extends JDialog{
         cbPaymentTypeValue.addItem("Dinheiro");
         cbPaymentTypeValue.addItem("PIX");
         cbPaymentTypeValue.addItem("Bitcoin");
+        lblPaymentIcon.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/money-dollar-circle-line.png"))));
 
         addresses = addressController.findByCustomer(SessionManager.getLoggedUserId());
         if(addresses != null && !addresses.isEmpty()){
