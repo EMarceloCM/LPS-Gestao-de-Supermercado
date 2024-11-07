@@ -34,5 +34,38 @@ END$$
 DELIMITER ;
 ```
 
+<br>
+<h2>Trigger que aumenta o estoque de um produto após um registro de compra ou atualização da mesm</h2>
+
+```
+DELIMITER //
+
+CREATE TRIGGER update_product_stock_after_insert
+AFTER INSERT ON ProductSupplier
+FOR EACH ROW
+BEGIN
+    UPDATE Product
+    SET stock = stock + NEW.quantity
+    WHERE id = NEW.product_id;
+END//
+
+DELIMITER ;
+```
+
+```
+DELIMITER //
+
+CREATE TRIGGER update_product_stock_after_update
+AFTER UPDATE ON ProductSupplier
+FOR EACH ROW
+BEGIN
+    UPDATE Product
+    SET stock = stock + NEW.quantity
+    WHERE id = NEW.product_id;
+END//
+
+DELIMITER ;
+```
+
 # Preview
 Imagens da aplicação
