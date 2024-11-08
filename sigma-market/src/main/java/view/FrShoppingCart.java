@@ -6,10 +6,8 @@ import controller.ItemOrderController;
 import controller.OrderController;
 import controller.ShoppingCartController;
 import controller.tableModel.utils.IconLabelRenderer;
-import controller.tableModel.utils.StockTableCellRenderer;
 import model.entities.Address;
 import model.entities.Order;
-import model.entities.Product;
 import model.entities.ShoppingCart;
 import model.enums.PaymentType;
 import javax.swing.*;
@@ -162,7 +160,7 @@ public class FrShoppingCart extends JDialog{
             shoppingCartController.deleteShoppingCart(sp.getId());
         }
 
-        FrViewTanks dlg = new FrViewTanks(FrShoppingCart.this, true);
+        FrViewThanks dlg = new FrViewThanks(FrShoppingCart.this, true);
         dlg.setLocationRelativeTo(FrShoppingCart.this);
         dlg.setVisible(true);
         dispose();

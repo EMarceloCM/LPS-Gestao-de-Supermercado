@@ -46,7 +46,7 @@ public class FrProductDetail extends JDialog {
         this.promotion = promotion;
         cartController = new ShoppingCartController();
         setContentPane(panMain);
-        setSize(880, 490);
+        setSize(880, 475);
         setTitle("Detalhes do Produto");
         LoadForm();
 
