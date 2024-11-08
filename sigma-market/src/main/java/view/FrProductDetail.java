@@ -15,6 +15,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.List;
+import java.util.Objects;
 
 public class FrProductDetail extends JDialog {
     private JPanel panTop;
@@ -62,7 +63,7 @@ public class FrProductDetail extends JDialog {
 
     private void LoadForm(){
         lblName.setText(product.getName());
-        lblDescriptionValue.setText(product.getDescription());
+        lblDescriptionValue.setText("<html><body style='width: 250px'>" + product.getDescription() + "</body></html>");
         lblStockValue.setText(product.getStock() + " unidades");
 
         if(promotion == null){
@@ -74,7 +75,7 @@ public class FrProductDetail extends JDialog {
             lblDiscountValue.setText("R$ "+ String.format("%.2f", (product.getPrice() - promotion.getFinalPrice())));
         }
 
-        ImageIcon icon = new ImageIcon(getClass().getResource("/image/produto_generico.png"));
+        ImageIcon icon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/image/produto_generico.png")));
         Image scaledImage = icon.getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH);
         lblImage.setIcon(new ImageIcon(scaledImage));
         lblImage.setHorizontalAlignment(JLabel.CENTER);

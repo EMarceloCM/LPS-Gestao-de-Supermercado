@@ -4,6 +4,9 @@ import Auth.SessionManager;
 import controller.FeedbackController;
 import controller.OrderController;
 import model.entities.Feedback;
+import model.exceptions.FeedbackException;
+import model.exceptions.PromotionException;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -39,7 +42,7 @@ public class FrEditFeedback extends JDialog{
         setTitle("Feedback");
         setSize(550, 300);
 
-        this.totalStars = 1;
+        this.totalStars = 0;
         this.order_id = order_id;
         feedbackController = new FeedbackController();
         orderController = new OrderController();
@@ -111,7 +114,13 @@ public class FrEditFeedback extends JDialog{
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(txtReview.getText().isBlank()) JOptionPane.showMessageDialog(null, "Deixe uma mensagem em seu feedback!", "Aviso!", JOptionPane.INFORMATION_MESSAGE);
-                else submitFeedback(totalStars);
+                else {
+                    try{
+                        submitFeedback(totalStars);
+                    } catch(FeedbackException ex) {
+                        JOptionPane.showMessageDialog(null, ex.getMessage(), "Aviso!", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                }
             }
         });
     }
@@ -130,7 +139,7 @@ public class FrEditFeedback extends JDialog{
             }
         }else{
             txtReview.setText("");
-            lblStar1.setIcon(new ImageIcon(getClass().getResource("/icons/star-fill-yellow.png")));
+            lblStar1.setIcon(new ImageIcon(getClass().getResource("/icons/star-line-yellow.png")));
             lblStar2.setIcon(new ImageIcon(getClass().getResource("/icons/star-line-yellow.png")));
             lblStar3.setIcon(new ImageIcon(getClass().getResource("/icons/star-line-yellow.png")));
             lblStar4.setIcon(new ImageIcon(getClass().getResource("/icons/star-line-yellow.png")));

@@ -4,7 +4,6 @@ import model.entities.Customer;
 import model.entities.Feedback;
 import model.entities.Order;
 import model.exceptions.FeedbackException;
-import model.exceptions.PromotionException;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeParseException;
@@ -25,7 +24,7 @@ public class ValidateFeedback {
             throw new NumberFormatException("Error - Campo inválido: 'estrelas'.");
         }
         if(intValue > 5 || intValue < 1)
-            throw new PromotionException("Error - Campo inválido: 'estrelas' deve estar entre 1 e 5.");
+            throw new FeedbackException("Error - Campo inválido: 'estrelas' deve estar entre 1 e 5.");
         f.setStars(intValue);
 
         if(customer == null)
