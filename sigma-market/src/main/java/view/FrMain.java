@@ -9,7 +9,6 @@ import model.entities.Product;
 import model.enums.Role;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
@@ -39,7 +38,7 @@ public class FrMain extends JFrame {
     private JButton btnPromotion;
     private JButton btnRelOrders;
     private JButton btnStock;
-    private JButton btnEndereco;
+    private JButton btnAddress;
     private JButton btnOrders;
     private JButton btnRelFeedbacks;
     private JButton btnProfile;
@@ -49,7 +48,6 @@ public class FrMain extends JFrame {
     private FrProductDetail dlgProductDetail;
 
     public FrMain() {
-        // window info
         setContentPane(panMain);
         setTitle("Supermercado Sigma");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -118,7 +116,7 @@ public class FrMain extends JFrame {
                 configureGrdAfterTModel();
             }
         });
-        btnEndereco.addActionListener(new ActionListener() {
+        btnAddress.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 FrAddress dlg = new FrAddress(FrMain.this, true);

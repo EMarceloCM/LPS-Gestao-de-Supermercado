@@ -3,8 +3,6 @@ package controller.tableModel.utils;
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class IconLabelRenderer extends JLabel implements TableCellRenderer {
 
@@ -12,13 +10,6 @@ public class IconLabelRenderer extends JLabel implements TableCellRenderer {
         setOpaque(true);
         setHorizontalAlignment(CENTER);
         setIcon(new ImageIcon("resources/icons/eye-line.png"));
-
-        addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                JOptionPane.showMessageDialog(null, "FOI CLICADO");
-            }
-        });
     }
 
     @Override
