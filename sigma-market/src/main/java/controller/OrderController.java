@@ -67,7 +67,6 @@ public class OrderController {
     }
 
     public List<Order> findWithinDateRange(LocalDateTime start, LocalDateTime end){
-        // TODO: passar essa responsabilidade para Validate
         if (start.isAfter(end)) {
             throw new OrderException("Error - a data inicial deve ser anterior a data final");
         }
