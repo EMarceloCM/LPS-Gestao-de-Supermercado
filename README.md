@@ -66,46 +66,6 @@ END//
 
 DELIMITER ;
 ```
-</br>
-<h2>Trigger que desativa uma promoção ativa de um produto caso uma outra promoção seja cadastrada naquele mesmo produto ou uma promoção existe seja reativada</h2>
-
-```
-DELIMITER $$
-
-CREATE TRIGGER trg_deactivate_other_promotions
-BEFORE INSERT ON Promotion
-FOR EACH ROW
-BEGIN
-    IF NEW.active = 1 THEN
-        UPDATE Promotion
-        SET active = 0
-        WHERE product_id = NEW.product_id
-          AND id <> NEW.id
-          AND active = 1;
-    END IF;
-END$$
-
-DELIMITER ;
-```
-
-```
-DELIMITER $$
-
-CREATE TRIGGER trg_deactivate_other_promotions_after_update
-BEFORE UPDATE ON Promotion
-FOR EACH ROW
-BEGIN
-    IF NEW.active = 1 THEN
-        UPDATE Promotion
-        SET active = 0
-        WHERE product_id = NEW.product_id
-          AND id <> NEW.id
-          AND active = 1;
-    END IF;
-END$$
-
-DELIMITER ;
-```
 
 # Preview
 Imagens da aplicação
