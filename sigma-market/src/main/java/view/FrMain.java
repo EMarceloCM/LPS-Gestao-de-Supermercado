@@ -243,17 +243,20 @@ public class FrMain extends JFrame {
     private void configureGrdAfterTModel(){
         grdProducts.getColumnModel().getColumn(3).setCellRenderer(new IconLabelRenderer());
         grdProducts.setDefaultRenderer(Object.class, new StockTableCellRenderer());
+
+        for (MouseListener listener : grdProducts.getMouseListeners()) {
+            grdProducts.removeMouseListener(listener);
+        }
+
         grdProducts.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (dlgProductDetail == null || !dlgProductDetail.isShowing()) {  // Verifica se a janela já está aberta
-                    int row = grdProducts.rowAtPoint(e.getPoint());
+                int row = grdProducts.rowAtPoint(e.getPoint());
 
-                    Product aux = (Product) grdProducts.getModel().getValueAt(row, -1);
-                    dlgProductDetail = new FrProductDetail(FrMain.this, true, aux, promotionController.findActiveByProductId(aux.getId()));
-                    dlgProductDetail.setLocationRelativeTo(FrMain.this);
-                    dlgProductDetail.setVisible(true);
-                }
+                Product aux = (Product) grdProducts.getModel().getValueAt(row, -1);
+                dlgProductDetail = new FrProductDetail(FrMain.this, true, aux, promotionController.findActiveByProductId(aux.getId()));
+                dlgProductDetail.setLocationRelativeTo(FrMain.this);
+                dlgProductDetail.setVisible(true);
             }
         });
         grdProducts.getColumnModel().getColumn(0).setMinWidth(60);
