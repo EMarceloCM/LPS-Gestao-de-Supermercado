@@ -76,12 +76,12 @@ CREATE TRIGGER trg_deactivate_other_promotions
 BEFORE INSERT ON Promotion
 FOR EACH ROW
 BEGIN
-    IF NEW.active = true THEN
+    IF NEW.active = 1 THEN
         UPDATE Promotion
-        SET active = false
+        SET active = 0
         WHERE product_id = NEW.product_id
           AND id <> NEW.id
-          AND active = true;
+          AND active = 1;
     END IF;
 END$$
 
@@ -91,16 +91,16 @@ DELIMITER ;
 ```
 DELIMITER $$
 
-CREATE TRIGGER trg_deactivate_other_promotions_u
+CREATE TRIGGER trg_deactivate_other_promotions_after_update
 BEFORE UPDATE ON Promotion
 FOR EACH ROW
 BEGIN
-    IF NEW.active = true THEN
+    IF NEW.active = 1 THEN
         UPDATE Promotion
-        SET active = false
+        SET active = 0
         WHERE product_id = NEW.product_id
           AND id <> NEW.id
-          AND active = true;
+          AND active = 1;
     END IF;
 END$$
 
