@@ -50,6 +50,8 @@ public class PromotionRepository implements IRepository<Promotion> {
 
     @Override
     public void update(Promotion obj) {
+        deactivatePreviewPromotion(obj);
+
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
         this.entityManager.getTransaction().begin();
 
@@ -73,6 +75,8 @@ public class PromotionRepository implements IRepository<Promotion> {
 
     @Override
     public void save(Promotion obj) {
+        deactivatePreviewPromotion(obj);
+
         this.entityManager = DatabaseJPA.getInstance().getEntityManager();
         this.entityManager.getTransaction().begin();
 
@@ -94,7 +98,7 @@ public class PromotionRepository implements IRepository<Promotion> {
         this.entityManager.getTransaction().begin();
 
         Promotion p = this.entityManager.find(Promotion.class, id);
-        if (p != null) this.entityManager.remove(p);
+        if (p != null)this.entityManager.remove(p);
 
         this.entityManager.getTransaction().commit();
         this.entityManager.clear();
@@ -163,24 +167,10 @@ public class PromotionRepository implements IRepository<Promotion> {
         return lst.getFirst();
     }
 
-    public void deactivatePromotion(int promotion_id) {
-        this.entityManager = DatabaseJPA.getInstance().getEntityManager();
-        this.entityManager.getTransaction().begin();
-
-        Promotion promotion = this.entityManager.find(Promotion.class, promotion_id);
-
-        if (promotion != null) {
-            promotion.setActive(0);
-            this.entityManager.merge(promotion);
-        }
-
-        this.entityManager.getTransaction().commit();
-        this.entityManager.clear();
-        this.entityManager.close();
-    }
-
-    private boolean verifyDate(LocalDateTime date, int duration) {
-        LocalDateTime finalDate = date.plusMinutes(duration);
-        return finalDate.isAfter(ZonedDateTime.now(ZoneId.of("America/Sao_Paulo")).toLocalDateTime());
+    private void deactivatePreviewPromotion(Promotion promotion) {
+        Promotion p = findActiveByProduct(promotion.getProduct().getId());
+        if(p == null || p.getId() == promotion.getId()) return;
+        p.setActive(0);
+        update(p);
     }
 }

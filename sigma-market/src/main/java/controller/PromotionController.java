@@ -61,10 +61,4 @@ public class PromotionController {
         TMPromotion model = new TMPromotion(lst);
         t.setModel(model);
     }
-
-    private void verifyActivatedPromotions(int product_id) {
-        Promotion p2 = repository.findActiveByProduct(product_id);
-        if(p2 != null)
-            repository.deactivatePromotion(p2.getId());
-    }
 }
