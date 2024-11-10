@@ -174,7 +174,7 @@
               <foreground color="-1509633"/>
               <horizontalAlignment value="0"/>
               <horizontalTextPosition value="0"/>
-              <text value="Quantidade de Itens:"/>
+              <text value="Quantidade de Produtos:"/>
             </properties>
           </component>
           <component id="a3185" class="javax.swing.JLabel" binding="lblItemOrderQuantityValue">

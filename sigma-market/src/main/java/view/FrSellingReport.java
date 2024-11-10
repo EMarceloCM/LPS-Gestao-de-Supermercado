@@ -97,15 +97,20 @@ public class FrSellingReport extends JDialog {
         float avarageItemsPerOrder = 0;
         float avaragePurchasePerOrder = 0;
         float totalPurchase = 0;
+        float totalItens = 0;
 
         for(Order order : orders){
             itemOrders = itemOrderController.findByOrderId(order.getId());
+
+            for (ItemOrder item: itemOrders) {
+                totalItens += item.getQuantity();
+            }
 
             itemsCount += itemOrders.size();
             totalPurchase += order.getTotalAmount();
         }
 
-        avarageItemsPerOrder = (float) itemsCount / orders.size();
+        avarageItemsPerOrder = totalItens / orders.size();
         avaragePurchasePerOrder = totalPurchase / orders.size();
 
         lblOrdersValue.setText(String.valueOf(orders.size()));

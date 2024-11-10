@@ -54,6 +54,8 @@ public class FrMain extends JFrame {
         setSize(1280, 960);
         setLocationRelativeTo(null);
         setVisible(true);
+        Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/image/logo3.jpg"));
+        setIconImage(icon);
 
         controller = new ProductController();
         promotionController = new PromotionController();
