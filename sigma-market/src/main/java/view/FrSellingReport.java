@@ -110,8 +110,8 @@ public class FrSellingReport extends JDialog {
 
         lblOrdersValue.setText(String.valueOf(orders.size()));
         lblItemOrderQuantityValue.setText(String.valueOf(itemsCount));
-        lblAvarageItemOrderPerOrderValue.setText(String.valueOf(avarageItemsPerOrder));
-        lblAvaragePurchasePerOrderValue.setText("R$ " + String.format("%.2f", avaragePurchasePerOrder));
+        lblAvarageItemOrderPerOrderValue.setText(String.valueOf(avarageItemsPerOrder >= 0 ? avarageItemsPerOrder : 0));
+        lblAvaragePurchasePerOrderValue.setText("R$ " + String.format("%.2f", avaragePurchasePerOrder >= 0 ? avaragePurchasePerOrder : 0));
         lblTotalPurchaseValue.setText("R$ " + String.format("%.2f", totalPurchase));
     }
 }

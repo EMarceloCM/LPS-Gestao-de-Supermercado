@@ -17,7 +17,7 @@ public class StockTableCellRenderer extends DefaultTableCellRenderer {
         Product product = model.getProductAt(row);
 
         if (product.getStock() == 0) {
-            cell.setBackground(Color.RED);
+            cell.setBackground(new Color(255, 71, 71));
             cell.setForeground(Color.WHITE);
         } else {
             cell.setBackground(isSelected ? table.getSelectionBackground() : table.getBackground());
