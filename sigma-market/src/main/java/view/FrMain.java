@@ -241,7 +241,7 @@ public class FrMain extends JFrame {
     }
 
     private void configureGrdAfterTModel(){
-        grdProducts.getColumnModel().getColumn(4).setCellRenderer(new IconLabelRenderer());
+        grdProducts.getColumnModel().getColumn(3).setCellRenderer(new IconLabelRenderer());
         grdProducts.setDefaultRenderer(Object.class, new StockTableCellRenderer());
         grdProducts.addMouseListener(new MouseAdapter() {
             @Override
@@ -262,15 +262,13 @@ public class FrMain extends JFrame {
         grdProducts.getColumnModel().getColumn(1).setMinWidth(60);
         grdProducts.getColumnModel().getColumn(1).setMaxWidth(725);
         grdProducts.getColumnModel().getColumn(1).setPreferredWidth(550);
-        grdProducts.getColumnModel().getColumn(2).setMinWidth(100);
-        grdProducts.getColumnModel().getColumn(2).setMaxWidth(100);
-        grdProducts.getColumnModel().getColumn(2).setPreferredWidth(100);
-        grdProducts.getColumnModel().getColumn(3).setMinWidth(80);
-        grdProducts.getColumnModel().getColumn(3).setMaxWidth(180);
-        grdProducts.getColumnModel().getColumn(3).setPreferredWidth(180);
-        grdProducts.getColumnModel().getColumn(4).setMinWidth(30);
-        grdProducts.getColumnModel().getColumn(4).setMaxWidth(30);
-        grdProducts.getColumnModel().getColumn(4).setPreferredWidth(30);
+        grdProducts.getColumnModel().getColumn(2).setMinWidth(230);
+        grdProducts.getColumnModel().getColumn(2).setMaxWidth(230);
+        grdProducts.getColumnModel().getColumn(2).setPreferredWidth(230);
+        grdProducts.getColumnModel().getColumn(3).setMinWidth(30);
+        grdProducts.getColumnModel().getColumn(3).setMaxWidth(30);
+        grdProducts.getColumnModel().getColumn(3).setPreferredWidth(30);
+
 
     }
 

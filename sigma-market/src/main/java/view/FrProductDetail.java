@@ -71,7 +71,7 @@ public class FrProductDetail extends JDialog {
             lblDiscount.setVisible(false);
             lblDiscountValue.setVisible(false);
         } else {
-            lblPriceValue.setText("De R$ "+ product.getPrice() +" Por R$ "+ String.format("%.2f", promotion.getFinalPrice()));
+            lblPriceValue.setText("De R$ "+  String.format("%.2f", product.getPrice()) + " Por R$ "+ String.format("%.2f", promotion.getFinalPrice()));
             lblDiscountValue.setText("R$ "+ String.format("%.2f", (product.getPrice() - promotion.getFinalPrice())));
         }
 
