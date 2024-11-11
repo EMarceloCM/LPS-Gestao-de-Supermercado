@@ -7,6 +7,8 @@ import model.entities.Customer;
 import model.enums.Role;
 import model.exceptions.CustomerException;
 import view.utils.FormatterUtils;
+import view.utils.ImageComparison;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -96,16 +98,16 @@ public class FrProfile extends JDialog{
     private void save(){
         int roleId = SessionManager.getLoggedUserRole() == Role.ADMIN ? 0 : 1;
 
+        ImageIcon icon = new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("profile/0.png")));
+        Image image = icon.getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH);
+        ImageIcon target = new ImageIcon(image);
+
+        boolean iconChanged = !ImageComparison.areIconsEqual((ImageIcon) lblProfile.getIcon(), target);
+
         try{
-            if(!edtPsw.getText().isBlank()){
-                controller.updateCustomer(SessionManager.getLoggedUserId(), fEdtCpf.getText(), edtEmail.getText(), edtName.getText(),
-                        edtPsw.getText(), roleId, cbProfile.getSelectedIndex()+1);
-                SessionManager.Login(edtEmail.getText(), edtPsw.getText());
-            }else{
-                controller.updateCustomer(SessionManager.getLoggedUserId(), fEdtCpf.getText(), edtEmail.getText(), edtName.getText(),
-                        customer.getPassword(), roleId, cbProfile.getSelectedIndex()+1);
-                SessionManager.Login(edtEmail.getText(), customer.getPassword());
-            }
+            controller.updateCustomer(SessionManager.getLoggedUserId(), fEdtCpf.getText(), edtEmail.getText(), edtName.getText(),
+                    edtPsw.getText(), roleId, iconChanged ? cbProfile.getSelectedIndex()+1 : 0);
+            SessionManager.Login(edtEmail.getText(), edtPsw.getText());
             dispose();
         }catch(CustomerException | AuthException ex){
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro", JOptionPane.INFORMATION_MESSAGE);
