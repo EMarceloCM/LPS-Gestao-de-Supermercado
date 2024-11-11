@@ -68,36 +68,36 @@ DELIMITER ;
 ```
 
 # Preview
-Página Principal
+### Página Principal
 ![image](https://github.com/user-attachments/assets/a1933cf3-acc0-49e8-a2b2-3ebc3085183f)
 
-Página de Login
+### Página de Login
 ![image](https://github.com/user-attachments/assets/8d22a7ea-bea0-4b95-804f-0690e7c7b606)
 
-Detalhes do Produto
-![image](https://github.com/user-attachments/assets/0c8b9f77-8996-49c2-8ed8-edbab8291acb)
+### Detalhes do Produto
+![image](https://github.com/user-attachments/assets/9b51f569-157b-424d-8d22-18fb9e211c92)
 
-Cadastro de Produto
+### Cadastro de Produto
 ![image](https://github.com/user-attachments/assets/8691c181-62f3-4485-84ac-75b0cc65c881)
 
-Cadastro de Estoque
+### Cadastro de Estoque
 ![image](https://github.com/user-attachments/assets/b47ffbc4-7e31-4f99-9019-e5d776453300)
 
-Cadastro de Promoção
+### Cadastro de Promoção
 ![image](https://github.com/user-attachments/assets/8b2517b0-cf14-4244-80bd-b12af68976ff)
 
-Relatório de Vendas
+### Relatório de Vendas
 ![image](https://github.com/user-attachments/assets/5483038b-8912-4b7a-9d7a-ad9180863eaa)
 
-Perfil
+### Perfil
 ![image](https://github.com/user-attachments/assets/3c903149-1af8-4bea-86b8-3b78c6c05de7)
 
-Cadastro de Endereço
+### Cadastro de Endereço
 ![image](https://github.com/user-attachments/assets/b05ccf2b-db8b-44a6-8557-2af227e61bf5)
 
-Pedidos
+### Pedidos
 ![image](https://github.com/user-attachments/assets/d7f63bdb-8beb-4492-a828-670e4e42692c)
 
-Feedbacks
+### Feedbacks
 ![image](https://github.com/user-attachments/assets/b04fe7b9-b7a6-4ed3-b794-7fa8b92f842e)
 
