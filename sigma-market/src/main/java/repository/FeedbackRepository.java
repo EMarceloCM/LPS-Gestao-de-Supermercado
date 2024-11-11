@@ -113,8 +113,15 @@ public class FeedbackRepository implements IRepository<Feedback> {
         this.entityManager.getTransaction().begin();
 
         Feedback f = this.entityManager.find(Feedback.class, id);
-        if (f != null) this.entityManager.remove(f);
+        if (f != null){
+            Order order = f.getOrder();
+            if (order != null) {
+                order.setFeedback(null);
+            }
+            this.entityManager.remove(f);
+        }
 
+        this.entityManager.flush();
         this.entityManager.getTransaction().commit();
         this.entityManager.clear();
         this.entityManager.close();

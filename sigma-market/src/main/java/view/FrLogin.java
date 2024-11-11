@@ -35,7 +35,7 @@ public class FrLogin extends JDialog {
         super(parent, modal);
         setContentPane(panMain);
         setTitle("Login");
-        setSize(380, 280);
+        setSize(380, 300);
 
         controller = new CustomerController();
         isLogin = false;

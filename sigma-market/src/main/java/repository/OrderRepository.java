@@ -7,6 +7,7 @@ import model.entities.Address;
 import model.entities.Customer;
 import model.entities.Order;
 import repository.interfaces.IRepository;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class OrderRepository implements IRepository<Order> {
@@ -128,10 +129,23 @@ public class OrderRepository implements IRepository<Order> {
         jpql = " SELECT o FROM Order o WHERE o.customer.id = :customer_id ";
         qry = this.entityManager.createQuery(jpql);
         qry.setParameter("customer_id", customer_id);
-        List lst = qry.getResultList();
+        List<Order> lst = qry.getResultList();
         this.entityManager.clear();
         this.entityManager.close();
 
-        return (List<Order>) lst;
+        return lst;
+    }
+
+    public List<Order> findOrdersWithinDateRange(LocalDateTime startDate, LocalDateTime endDate) {
+        this.entityManager = DatabaseJPA.getInstance().getEntityManager();
+        String jpql = "SELECT o FROM Order o WHERE o.date BETWEEN :startDate AND :endDate";
+        qry = this.entityManager.createQuery(jpql, Order.class);
+        qry.setParameter("startDate", startDate);
+        qry.setParameter("endDate", endDate);
+        List<Order> orders = qry.getResultList();
+        this.entityManager.clear();
+        this.entityManager.close();
+
+        return orders;
     }
 }

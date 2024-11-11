@@ -4,6 +4,7 @@ import model.entities.Customer;
 import model.enums.Role;
 import model.exceptions.CustomerException;
 import model.utils.EnumUtils;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class ValidateCustomer{
     public static Customer Validate(String name, String password, String cpf, String email, String role, int profile_id) throws CustomerException {
@@ -15,7 +16,8 @@ public class ValidateCustomer{
 
         if(password.isEmpty() || password.isBlank())
             throw new CustomerException("Error - Campo vazio: 'password'.");
-        c.setPassword(password.strip());
+        String hashedPsw = BCrypt.hashpw(password, BCrypt.gensalt());
+        c.setPassword(hashedPsw);
 
         if(cpf.isEmpty() || cpf.isBlank())
             throw new CustomerException("Error - Campo vazio: 'cpf'.");
@@ -40,7 +42,7 @@ public class ValidateCustomer{
             throw new CustomerException("Error - Campo inválido: 'role'.");
         c.setRole(r);
 
-        if(profile_id < 10)
+        if(profile_id < 12)
             c.setProfileId(profile_id);
         else
             throw new CustomerException("Error - Campo inválido: 'profile'");

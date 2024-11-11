@@ -7,7 +7,6 @@ import model.exceptions.PromotionException;
 import view.dialogs.DlgChooseProduct;
 import view.utils.DecimalInputValidator;
 import view.utils.TableUtils;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -27,9 +26,6 @@ public class FrPromotion extends JDialog {
     private JTextField edtProductId;
     private JLabel lblDiscount;
     private JPanel panBot;
-    private JPanel panSearch;
-    private JTextField edtSearch;
-    private JLabel lblSearch;
     private JLabel lblSearchImg;
     private JFormattedTextField fEdtDiscount;
     private JPanel panMain;
@@ -143,7 +139,6 @@ public class FrPromotion extends JDialog {
     private void initCustomComponents() {
         // set clickable buttons
         Cursor hand = new Cursor(Cursor.HAND_CURSOR);
-        lblSearchImg.setCursor(hand);
         lblSearchProd.setCursor(hand);
 
         fEdtDiscount.addKeyListener(new DecimalInputValidator(fEdtDiscount));
@@ -163,7 +158,6 @@ public class FrPromotion extends JDialog {
         btnEdit.setVisible(!isFormActive);
         btnNew.setVisible(!isFormActive);
         panForm.setVisible(isFormActive);
-        panBot.setVisible(!isFormActive);
     }
 
     private void cleanForm() {

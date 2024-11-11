@@ -4,6 +4,9 @@ import Auth.SessionManager;
 import controller.FeedbackController;
 import controller.OrderController;
 import model.entities.Feedback;
+import model.exceptions.FeedbackException;
+import model.exceptions.PromotionException;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,20 +28,21 @@ public class FrEditFeedback extends JDialog{
     private JLabel lblStar3;
     private JLabel lblStar4;
     private JLabel lblStar5;
+    private JTextArea txtReview;
+    private JPanel panStar;
 
     private FeedbackController feedbackController;
     private OrderController orderController;
     private Feedback feedback;
     private int order_id;
     private int totalStars;
-
     public FrEditFeedback(FrItemOrder parent, boolean modal, int order_id) {
         super(parent, modal);
         setContentPane(panMain);
         setTitle("Feedback");
-        setSize(550, 400);
+        setSize(550, 300);
 
-        this.totalStars = 1;
+        this.totalStars = 0;
         this.order_id = order_id;
         feedbackController = new FeedbackController();
         orderController = new OrderController();
@@ -50,11 +54,11 @@ public class FrEditFeedback extends JDialog{
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                lblStar1.setIcon(new ImageIcon(getClass().getResource("/icons/star-fill.png")));
-                lblStar2.setIcon(new ImageIcon(getClass().getResource("/icons/star-line.png")));
-                lblStar3.setIcon(new ImageIcon(getClass().getResource("/icons/star-line.png")));
-                lblStar4.setIcon(new ImageIcon(getClass().getResource("/icons/star-line.png")));
-                lblStar5.setIcon(new ImageIcon(getClass().getResource("/icons/star-line.png")));
+                lblStar1.setIcon(new ImageIcon(getClass().getResource("/icons/star-fill-yellow.png")));
+                lblStar2.setIcon(new ImageIcon(getClass().getResource("/icons/star-line-yellow.png")));
+                lblStar3.setIcon(new ImageIcon(getClass().getResource("/icons/star-line-yellow.png")));
+                lblStar4.setIcon(new ImageIcon(getClass().getResource("/icons/star-line-yellow.png")));
+                lblStar5.setIcon(new ImageIcon(getClass().getResource("/icons/star-line-yellow.png")));
                 totalStars = 1;
             }
         });
@@ -62,11 +66,11 @@ public class FrEditFeedback extends JDialog{
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                lblStar1.setIcon(new ImageIcon(getClass().getResource("/icons/star-fill.png")));
-                lblStar2.setIcon(new ImageIcon(getClass().getResource("/icons/star-fill.png")));
-                lblStar3.setIcon(new ImageIcon(getClass().getResource("/icons/star-line.png")));
-                lblStar4.setIcon(new ImageIcon(getClass().getResource("/icons/star-line.png")));
-                lblStar5.setIcon(new ImageIcon(getClass().getResource("/icons/star-line.png")));
+                lblStar1.setIcon(new ImageIcon(getClass().getResource("/icons/star-fill-yellow.png")));
+                lblStar2.setIcon(new ImageIcon(getClass().getResource("/icons/star-fill-yellow.png")));
+                lblStar3.setIcon(new ImageIcon(getClass().getResource("/icons/star-line-yellow.png")));
+                lblStar4.setIcon(new ImageIcon(getClass().getResource("/icons/star-line-yellow.png")));
+                lblStar5.setIcon(new ImageIcon(getClass().getResource("/icons/star-line-yellow.png")));
                 totalStars = 2;
             }
         });
@@ -74,11 +78,11 @@ public class FrEditFeedback extends JDialog{
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                lblStar1.setIcon(new ImageIcon(getClass().getResource("/icons/star-fill.png")));
-                lblStar2.setIcon(new ImageIcon(getClass().getResource("/icons/star-fill.png")));
-                lblStar3.setIcon(new ImageIcon(getClass().getResource("/icons/star-fill.png")));
-                lblStar4.setIcon(new ImageIcon(getClass().getResource("/icons/star-line.png")));
-                lblStar5.setIcon(new ImageIcon(getClass().getResource("/icons/star-line.png")));
+                lblStar1.setIcon(new ImageIcon(getClass().getResource("/icons/star-fill-yellow.png")));
+                lblStar2.setIcon(new ImageIcon(getClass().getResource("/icons/star-fill-yellow.png")));
+                lblStar3.setIcon(new ImageIcon(getClass().getResource("/icons/star-fill-yellow.png")));
+                lblStar4.setIcon(new ImageIcon(getClass().getResource("/icons/star-line-yellow.png")));
+                lblStar5.setIcon(new ImageIcon(getClass().getResource("/icons/star-line-yellow.png")));
                 totalStars = 3;
             }
         });
@@ -86,11 +90,11 @@ public class FrEditFeedback extends JDialog{
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                lblStar1.setIcon(new ImageIcon(getClass().getResource("/icons/star-fill.png")));
-                lblStar2.setIcon(new ImageIcon(getClass().getResource("/icons/star-fill.png")));
-                lblStar3.setIcon(new ImageIcon(getClass().getResource("/icons/star-fill.png")));
-                lblStar4.setIcon(new ImageIcon(getClass().getResource("/icons/star-fill.png")));
-                lblStar5.setIcon(new ImageIcon(getClass().getResource("/icons/star-line.png")));
+                lblStar1.setIcon(new ImageIcon(getClass().getResource("/icons/star-fill-yellow.png")));
+                lblStar2.setIcon(new ImageIcon(getClass().getResource("/icons/star-fill-yellow.png")));
+                lblStar3.setIcon(new ImageIcon(getClass().getResource("/icons/star-fill-yellow.png")));
+                lblStar4.setIcon(new ImageIcon(getClass().getResource("/icons/star-fill-yellow.png")));
+                lblStar5.setIcon(new ImageIcon(getClass().getResource("/icons/star-line-yellow.png")));
                 totalStars = 4;
             }
         });
@@ -98,50 +102,56 @@ public class FrEditFeedback extends JDialog{
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                lblStar1.setIcon(new ImageIcon(getClass().getResource("/icons/star-fill.png")));
-                lblStar2.setIcon(new ImageIcon(getClass().getResource("/icons/star-fill.png")));
-                lblStar3.setIcon(new ImageIcon(getClass().getResource("/icons/star-fill.png")));
-                lblStar4.setIcon(new ImageIcon(getClass().getResource("/icons/star-fill.png")));
-                lblStar5.setIcon(new ImageIcon(getClass().getResource("/icons/star-fill.png")));
+                lblStar1.setIcon(new ImageIcon(getClass().getResource("/icons/star-fill-yellow.png")));
+                lblStar2.setIcon(new ImageIcon(getClass().getResource("/icons/star-fill-yellow.png")));
+                lblStar3.setIcon(new ImageIcon(getClass().getResource("/icons/star-fill-yellow.png")));
+                lblStar4.setIcon(new ImageIcon(getClass().getResource("/icons/star-fill-yellow.png")));
+                lblStar5.setIcon(new ImageIcon(getClass().getResource("/icons/star-fill-yellow.png")));
                 totalStars = 5;
             }
         });
         btnSubmit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(edtReview.getText().isBlank()) JOptionPane.showMessageDialog(null, "Deixe uma mensagem em seu feedback!", "Aviso!", JOptionPane.INFORMATION_MESSAGE);
-                else submitFeedback(totalStars);
+                if(txtReview.getText().isBlank()) JOptionPane.showMessageDialog(null, "Deixe uma mensagem em seu feedback!", "Aviso!", JOptionPane.INFORMATION_MESSAGE);
+                else {
+                    try{
+                        submitFeedback(totalStars);
+                    } catch(FeedbackException ex) {
+                        JOptionPane.showMessageDialog(null, ex.getMessage(), "Aviso!", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                }
             }
         });
     }
 
     private void initCustomComponents() {
         if(feedback != null) {
-            edtReview.setText(feedback.getReview());
+            txtReview.setText(feedback.getReview());
 
             int stars = feedback.getStars();
             for(int i = 1; i <= stars; i++) {
-                if(i == 1) lblStar1.setIcon(new ImageIcon(getClass().getResource("/icons/star-fill.png")));
-                else if(i == 2) lblStar2.setIcon(new ImageIcon(getClass().getResource("/icons/star-fill.png")));
-                else if(i == 3) lblStar3.setIcon(new ImageIcon(getClass().getResource("/icons/star-fill.png")));
-                else if(i == 4) lblStar4.setIcon(new ImageIcon(getClass().getResource("/icons/star-fill.png")));
-                else if(i == 5) lblStar5.setIcon(new ImageIcon(getClass().getResource("/icons/star-fill.png")));
+                if(i == 1) lblStar1.setIcon(new ImageIcon(getClass().getResource("/icons/star-fill-yellow.png")));
+                else if(i == 2) lblStar2.setIcon(new ImageIcon(getClass().getResource("/icons/star-fill-yellow.png")));
+                else if(i == 3) lblStar3.setIcon(new ImageIcon(getClass().getResource("/icons/star-fill-yellow.png")));
+                else if(i == 4) lblStar4.setIcon(new ImageIcon(getClass().getResource("/icons/star-fill-yellow.png")));
+                else if(i == 5) lblStar5.setIcon(new ImageIcon(getClass().getResource("/icons/star-fill-yellow.png")));
             }
         }else{
-            edtReview.setText("");
-            lblStar1.setIcon(new ImageIcon(getClass().getResource("/icons/star-fill.png")));
-            lblStar2.setIcon(new ImageIcon(getClass().getResource("/icons/star-line.png")));
-            lblStar3.setIcon(new ImageIcon(getClass().getResource("/icons/star-line.png")));
-            lblStar4.setIcon(new ImageIcon(getClass().getResource("/icons/star-line.png")));
-            lblStar5.setIcon(new ImageIcon(getClass().getResource("/icons/star-line.png")));
+            txtReview.setText("");
+            lblStar1.setIcon(new ImageIcon(getClass().getResource("/icons/star-line-yellow.png")));
+            lblStar2.setIcon(new ImageIcon(getClass().getResource("/icons/star-line-yellow.png")));
+            lblStar3.setIcon(new ImageIcon(getClass().getResource("/icons/star-line-yellow.png")));
+            lblStar4.setIcon(new ImageIcon(getClass().getResource("/icons/star-line-yellow.png")));
+            lblStar5.setIcon(new ImageIcon(getClass().getResource("/icons/star-line-yellow.png")));
         }
     }
 
     private void submitFeedback(int stars) {
         if(feedback == null)
-            feedbackController.createFeedback(edtReview.getText(), String.valueOf(stars), SessionManager.getLoggedUser(), orderController.findById(order_id));
+            feedbackController.createFeedback(txtReview.getText(), String.valueOf(stars), SessionManager.getLoggedUser(), orderController.findById(order_id));
         else
-            feedbackController.updateFeedback(feedback.getId(), edtReview.getText(), String.valueOf(stars), SessionManager.getLoggedUser(), orderController.findById(order_id));
+            feedbackController.updateFeedback(feedback.getId(), txtReview.getText(), String.valueOf(stars), SessionManager.getLoggedUser(), orderController.findById(order_id));
 
         dispose();
     }

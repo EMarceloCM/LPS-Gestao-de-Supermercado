@@ -9,9 +9,11 @@ import model.entities.Order;
 import model.enums.OrderStatus;
 import model.enums.PaymentStatus;
 import model.enums.Role;
+import model.exceptions.OrderException;
 import model.validations.ValidateOrder;
 import repository.OrderRepository;
 import javax.swing.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class OrderController {
@@ -62,5 +64,12 @@ public class OrderController {
         List<Order> list = repository.findByCustomer(customer_id);
         TMOrder model = new TMOrder(list);
         t.setModel(model);
+    }
+
+    public List<Order> findWithinDateRange(LocalDateTime start, LocalDateTime end){
+        if (start.isAfter(end)) {
+            throw new OrderException("Error - a data inicial deve ser anterior a data final");
+        }
+        return repository.findOrdersWithinDateRange(start, end);
     }
 }

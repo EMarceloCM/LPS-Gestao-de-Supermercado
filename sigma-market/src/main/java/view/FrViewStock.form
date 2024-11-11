@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="view.FrViewStock">
+  <grid id="27dc6" binding="panMain" layout-manager="GridLayoutManager" row-count="5" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="10" left="10" bottom="10" right="10"/>
+    <constraints>
+      <xy x="20" y="20" width="790" height="510"/>
+    </constraints>
+    <properties>
+      <background color="-16048293"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <grid id="e3579" binding="panTop" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <minimum-size width="-1" height="70"/>
+          </grid>
+        </constraints>
+        <properties>
+          <background color="-16048293"/>
+          <font name="Arial"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="4877" class="javax.swing.JLabel" binding="lblTitle">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="Arial" size="28"/>
+              <foreground color="-1509633"/>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
+              <text value="Cadastrar Estoque"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="4b18c" binding="panButtons" layout-manager="GridLayoutManager" row-count="1" column-count="7" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="5" left="5" bottom="10" right="5"/>
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-16048293"/>
+          <font name="Arial"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <hspacer id="72328">
+            <constraints>
+              <grid row="0" column="6" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+          <hspacer id="42e11">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+          <component id="8fde7" class="javax.swing.JButton" binding="btnNew">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <actionCommand value=""/>
+              <background color="-16048293"/>
+              <borderPainted value="true"/>
+              <contentAreaFilled value="true"/>
+              <defaultCapable value="true"/>
+              <focusPainted value="false"/>
+              <font name="Arial" size="16"/>
+              <foreground color="-1509633"/>
+              <horizontalTextPosition value="4"/>
+              <icon value="icons/add.png"/>
+              <label value="Novo"/>
+              <text value="Novo"/>
+            </properties>
+          </component>
+          <component id="2cdd9" class="javax.swing.JButton" binding="btnCancel">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <actionCommand value=""/>
+              <background color="-16048293"/>
+              <borderPainted value="true"/>
+              <contentAreaFilled value="true"/>
+              <defaultCapable value="true"/>
+              <focusPainted value="false"/>
+              <font name="Arial" size="16"/>
+              <foreground color="-1509633"/>
+              <horizontalTextPosition value="4"/>
+              <icon value="icons/close.png"/>
+              <label value="Cancelar"/>
+              <text value="Cancelar"/>
+            </properties>
+          </component>
+          <component id="6742c" class="javax.swing.JButton" binding="btnEdit">
+            <constraints>
+              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <actionCommand value=""/>
+              <background color="-16048293"/>
+              <borderPainted value="true"/>
+              <contentAreaFilled value="true"/>
+              <defaultCapable value="true"/>
+              <focusPainted value="false"/>
+              <font name="Arial" size="16"/>
+              <foreground color="-1509633"/>
+              <horizontalTextPosition value="4"/>
+              <icon value="icons/edit.png"/>
+              <label value="Editar"/>
+              <text value="Editar"/>
+            </properties>
+          </component>
+          <component id="606a6" class="javax.swing.JButton" binding="btnDelete">
+            <constraints>
+              <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <actionCommand value=""/>
+              <background color="-16048293"/>
+              <borderPainted value="true"/>
+              <contentAreaFilled value="true"/>
+              <defaultCapable value="true"/>
+              <focusPainted value="false"/>
+              <font name="Arial" size="16"/>
+              <foreground color="-1509633"/>
+              <horizontalTextPosition value="4"/>
+              <icon value="icons/delete.png"/>
+              <label value="Excluir"/>
+              <text value="Excluir"/>
+            </properties>
+          </component>
+          <component id="18534" class="javax.swing.JButton" binding="btnSalvar">
+            <constraints>
+              <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <actionCommand value=""/>
+              <background color="-16048293"/>
+              <borderPainted value="true"/>
+              <contentAreaFilled value="true"/>
+              <defaultCapable value="true"/>
+              <focusPainted value="false"/>
+              <font name="Arial" size="16"/>
+              <foreground color="-1509633"/>
+              <horizontalTextPosition value="4"/>
+              <icon value="icons/save.png"/>
+              <label value="Salvar"/>
+              <text value="Salvar"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="106d8" binding="panForm" layout-manager="GridLayoutManager" row-count="2" column-count="9" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-16048293"/>
+          <font name="Arial"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="b18d3" class="javax.swing.JLabel" binding="lblSupplier">
+            <constraints>
+              <grid row="1" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="Arial" size="14"/>
+              <foreground color="-1509633"/>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
+              <text value="Fornecedor:"/>
+            </properties>
+          </component>
+          <component id="e4d49" class="javax.swing.JTextField" binding="edtSupplier">
+            <constraints>
+              <grid row="1" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <minimum-size width="-1" height="25"/>
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <editable value="false"/>
+              <enabled value="true"/>
+              <font name="Arial" size="12"/>
+            </properties>
+          </component>
+          <component id="11f46" class="javax.swing.JLabel" binding="lblSearchSup">
+            <constraints>
+              <grid row="1" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <horizontalAlignment value="2"/>
+              <horizontalTextPosition value="2"/>
+              <icon value="icons/search.png"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <hspacer id="146da">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+          <hspacer id="f2422">
+            <constraints>
+              <grid row="0" column="8" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+          <component id="f4c55" class="javax.swing.JLabel" binding="lblQuantity">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="Arial" size="14"/>
+              <foreground color="-1509633"/>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
+              <text value="Quantidade:"/>
+            </properties>
+          </component>
+          <component id="2c6fc" class="javax.swing.JSpinner" binding="spnQuantity">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <minimum-size width="-1" height="25"/>
+              </grid>
+            </constraints>
+            <properties/>
+          </component>
+          <hspacer id="7c47b">
+            <constraints>
+              <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <maximum-size width="20" height="-1"/>
+              </grid>
+            </constraints>
+          </hspacer>
+          <component id="a702" class="javax.swing.JLabel" binding="lblProduct">
+            <constraints>
+              <grid row="0" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="1" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="Arial" size="14"/>
+              <foreground color="-1509633"/>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
+              <text value="Produto:"/>
+            </properties>
+          </component>
+          <component id="74b62" class="javax.swing.JTextField" binding="edtProduct">
+            <constraints>
+              <grid row="0" column="6" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <minimum-size width="-1" height="25"/>
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <editable value="false"/>
+              <enabled value="true"/>
+              <font name="Arial" size="12"/>
+            </properties>
+          </component>
+          <component id="91580" class="javax.swing.JLabel" binding="lblSearchProd">
+            <constraints>
+              <grid row="0" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <horizontalAlignment value="2"/>
+              <horizontalTextPosition value="2"/>
+              <icon value="icons/search.png"/>
+              <text value=""/>
+            </properties>
+          </component>
+          <component id="2b52b" class="javax.swing.JLabel" binding="lblTotalPrice">
+            <constraints>
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="Arial" size="14"/>
+              <foreground color="-1509633"/>
+              <horizontalAlignment value="0"/>
+              <horizontalTextPosition value="0"/>
+              <text value="Preço Total:"/>
+            </properties>
+          </component>
+          <component id="e7735" class="javax.swing.JFormattedTextField" binding="fEdtTotalPrice">
+            <constraints>
+              <grid row="1" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <minimum-size width="-1" height="25"/>
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties/>
+          </component>
+        </children>
+      </grid>
+      <scrollpane id="e140f" binding="JScrollPane">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font name="Arial"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="6def9" class="javax.swing.JTable" binding="grd">
+            <constraints/>
+            <properties>
+              <font name="Arial"/>
+            </properties>
+          </component>
+        </children>
+      </scrollpane>
+      <grid id="50a0c" binding="panBot" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-16048293"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <hspacer id="b5a11">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+          <hspacer id="ec639">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+          </hspacer>
+          <grid id="160cc" binding="panSearch" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-16048293"/>
+            </properties>
+            <border type="none"/>
+            <children>
+              <component id="8f95f" class="javax.swing.JTextField" binding="edtSearch">
+                <constraints>
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <minimum-size width="200" height="25"/>
+                    <preferred-size width="150" height="-1"/>
+                    <maximum-size width="350" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties>
+                  <font name="Arial" size="12"/>
+                </properties>
+              </component>
+              <component id="eb190" class="javax.swing.JLabel" binding="lblSearch">
+                <constraints>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <foreground color="-1509633"/>
+                  <labelFor value="7e8d4"/>
+                  <text value="Pesquisar:"/>
+                </properties>
+              </component>
+              <component id="d587b" class="javax.swing.JLabel" binding="lblSearchImg">
+                <constraints>
+                  <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                </constraints>
+                <properties>
+                  <icon value="icons/search.png"/>
+                  <text value=""/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>

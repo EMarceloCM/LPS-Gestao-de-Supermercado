@@ -5,6 +5,7 @@ import Auth.exceptions.AuthException;
 import controller.ShoppingCartController;
 import model.entities.Product;
 import model.entities.Promotion;
+import model.entities.ShoppingCart;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -13,8 +14,10 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.List;
+import java.util.Objects;
 
-public class FrProductDetail extends JDialog{
+public class FrProductDetail extends JDialog {
     private JPanel panTop;
     private JLabel lblName;
     private JButton btnAddToCart;
@@ -43,7 +46,7 @@ public class FrProductDetail extends JDialog{
         this.promotion = promotion;
         cartController = new ShoppingCartController();
         setContentPane(panMain);
-        setSize(880, 490);
+        setSize(880, 475);
         setTitle("Detalhes do Produto");
         LoadForm();
 
@@ -60,41 +63,90 @@ public class FrProductDetail extends JDialog{
 
     private void LoadForm(){
         lblName.setText(product.getName());
-        lblDescriptionValue.setText(product.getDescription());
-        lblStockValue.setText(product.getStock() +" unidades");
+        lblDescriptionValue.setText("<html><body style='width: 250px'>" + product.getDescription() + "</body></html>");
+        lblStockValue.setText(product.getStock() + " unidades");
 
         if(promotion == null){
             lblPriceValue.setText("R$ "+ product.getPrice());
             lblDiscount.setVisible(false);
             lblDiscountValue.setVisible(false);
         } else {
-            lblPriceValue.setText("De R$ "+ product.getPrice() +" Por R$ "+ String.format("%.2f", promotion.getFinalPrice()));
+            lblPriceValue.setText("De R$ "+  String.format("%.2f", product.getPrice()) + " Por R$ "+ String.format("%.2f", promotion.getFinalPrice()));
             lblDiscountValue.setText("R$ "+ String.format("%.2f", (product.getPrice() - promotion.getFinalPrice())));
         }
 
-        try {
-            URI imageUri = new URI(product.getImgUrl());
-            URL imageUrl = imageUri.toURL();
-            ImageIcon icon = new ImageIcon(imageUrl);
-            Image scaledImage = icon.getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH);
+        ImageIcon icon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/image/produto_generico.png")));
+        Image scaledImage = icon.getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH);
+        lblImage.setIcon(new ImageIcon(scaledImage));
+        lblImage.setHorizontalAlignment(JLabel.CENTER);
 
-            lblImage.setIcon(new ImageIcon(scaledImage));
-            lblImage.setHorizontalAlignment(JLabel.CENTER);
-        } catch (URISyntaxException | MalformedURLException | NullPointerException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro!", JOptionPane.ERROR_MESSAGE);
-        }
+        SwingUtilities.invokeLater(() -> {
+            try {
+                URI imageUri = new URI(product.getImgUrl());
+                URL imageUrl = imageUri.toURL();
+                ImageIcon productIcon = new ImageIcon(imageUrl);
+                if (productIcon.getIconWidth() != -1 && productIcon.getIconHeight() != -1) {
+                    int originalWidth = productIcon.getIconWidth();
+                    int originalHeight = productIcon.getIconHeight();
+
+                    int targetWidth = 250;
+                    int targetHeight = 250;
+
+                    double aspectRatio = (double) originalWidth / originalHeight;
+                    int newWidth = targetWidth;
+                    int newHeight = (int) (targetWidth / aspectRatio);
+
+                    if (newHeight > targetHeight) {
+                        newHeight = targetHeight;
+                        newWidth = (int) (targetHeight * aspectRatio);
+                    }
+
+                    Image scaledProductImage = productIcon.getImage().getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+                    lblImage.setIcon(new ImageIcon(scaledProductImage));
+                }
+            } catch (URISyntaxException | MalformedURLException e) {
+                System.err.println("Erro ao carregar a imagem do produto: " + e.getMessage());
+            }
+        });
+
     }
 
+
     private void AddProductToCart(){
+        ShoppingCart existedItemInCart = null;
+
+        List<ShoppingCart> sps = cartController.findByCustomer(SessionManager.getLoggedUserId());
+        for(ShoppingCart sp : sps){
+            if(sp.getProduct().getId() == product.getId()){
+                existedItemInCart = sp;
+                if(sp.getQuantity() + (Integer) spnQuantityValue.getValue() > product.getStock()){
+                    JOptionPane.showMessageDialog(null, "Quantidade do item (" +(Integer) spnQuantityValue.getValue()+ " + " +sp.getQuantity()+ " já no carrinho) está acima do estoque disponível ("+product.getStock()+")!", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+                    return;
+                }
+            }
+        }
+
         float totalAmount = promotion == null ?
                 product.getPrice() * (Integer) spnQuantityValue.getValue() :
                 promotion.getFinalPrice() * (Integer) spnQuantityValue.getValue();
 
-        try{
-            cartController.createShoppingCart(product, SessionManager.getLoggedUser(), (Integer) spnQuantityValue.getValue(), totalAmount);
-            dispose();
-        } catch (AuthException ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "Aviso", JOptionPane.WARNING_MESSAGE);
+        if(existedItemInCart == null){
+            try{
+                cartController.createShoppingCart(product, SessionManager.getLoggedUser(), (Integer) spnQuantityValue.getValue(), totalAmount);
+                dispose();
+            } catch (AuthException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Aviso", JOptionPane.WARNING_MESSAGE);
+            }
+        }else{
+            existedItemInCart.setQuantity(existedItemInCart.getQuantity() + (Integer) spnQuantityValue.getValue());
+            existedItemInCart.setTotalAmount(existedItemInCart.getTotalAmount() + totalAmount);
+
+            try{
+                cartController.updateShoppingCart(existedItemInCart.getId(), product, SessionManager.getLoggedUser(), existedItemInCart.getQuantity(), existedItemInCart.getTotalAmount());
+                dispose();
+            } catch (AuthException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Aviso", JOptionPane.WARNING_MESSAGE);
+            }
         }
     }
 }

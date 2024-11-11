@@ -4,6 +4,7 @@ import Auth.exceptions.AuthException;
 import model.entities.Customer;
 import model.enums.Role;
 import model.exceptions.CustomerException;
+import org.mindrot.jbcrypt.BCrypt;
 import repository.CustomerRepository;
 import java.util.Objects;
 
@@ -17,11 +18,12 @@ public class SessionManager {
 
     public static void Login(String email, String psw) throws AuthException {
         try {
+            email = email.toLowerCase();
             Customer customer = new CustomerRepository().findByEmail(email);
 
             if(customer == null)
                 throw new CustomerException("[Error] - Usuário informado não existe.");
-            if(!Objects.equals(customer.getPassword(), psw))
+            if (!BCrypt.checkpw(psw, customer.getPassword()))
                 throw new CustomerException("[Error] - Credenciais incorretas.");
 
             SessionManager.customer = customer;

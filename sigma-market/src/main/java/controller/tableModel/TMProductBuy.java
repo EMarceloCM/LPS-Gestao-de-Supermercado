@@ -14,8 +14,7 @@ public class TMProductBuy extends AbstractTableModel {
     private final int COL_NAME = 0;
     private final int COL_DESC = 1;
     private final int COL_PRICE = 2;
-    private final int COL_DISCOUNT = 3;
-    private final int COL_DETAILS = 4;
+    private final int COL_DETAILS = 3;
 
     public TMProductBuy(List<Product> list) {
         this.list = list;
@@ -28,7 +27,7 @@ public class TMProductBuy extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 5;
+        return 4;
     }
 
     @Override
@@ -52,11 +51,11 @@ public class TMProductBuy extends AbstractTableModel {
         }
         hasPromotion = p != null;
 
+
         return switch (columnIndex) {
             case COL_NAME -> o.getName();
             case COL_DESC -> o.getDescription();
-            case COL_PRICE -> "R$ " + o.getPrice();
-            case COL_DISCOUNT -> !hasPromotion ? "nenhuma promoção no momento" : "R$ " + (o.getPrice() - p.getDiscountPercentage());
+            case COL_PRICE -> (hasPromotion ? "de " : "") + "R$ " +  String.format("%.2f", o.getPrice()) + (hasPromotion ? " por R$ " + String.format("%.2f", p.getFinalPrice()) : "");
             case COL_DETAILS -> {
                 JLabel label = new JLabel();
                 ImageIcon icon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/eye-line.png")));
@@ -76,7 +75,6 @@ public class TMProductBuy extends AbstractTableModel {
             case COL_NAME -> "Nome";
             case COL_DESC -> "Descrição";
             case COL_PRICE -> "Preço";
-            case COL_DISCOUNT -> "Desconto";
             case COL_DETAILS -> "Ver";
             default -> "";
         };

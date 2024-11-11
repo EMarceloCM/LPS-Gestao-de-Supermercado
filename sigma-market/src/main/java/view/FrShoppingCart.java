@@ -5,6 +5,7 @@ import controller.AddressController;
 import controller.ItemOrderController;
 import controller.OrderController;
 import controller.ShoppingCartController;
+import controller.tableModel.utils.IconLabelRenderer;
 import model.entities.Address;
 import model.entities.Order;
 import model.entities.ShoppingCart;
@@ -13,7 +14,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
+import java.util.Objects;
 
 public class FrShoppingCart extends JDialog{
     private JPanel panTop;
@@ -30,6 +34,7 @@ public class FrShoppingCart extends JDialog{
     private JTable grdItemOrder;
     private JComboBox<String> cbPaymentTypeValue;
     private JComboBox<String> cbAddressValue;
+    private JLabel lblPaymentIcon;
 
     private ShoppingCartController shoppingCartController;
     private AddressController addressController;
@@ -59,6 +64,17 @@ public class FrShoppingCart extends JDialog{
                 placesOrder();
             }
         });
+        cbPaymentTypeValue.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(cbPaymentTypeValue.getSelectedIndex() == 0)
+                    lblPaymentIcon.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/money-dollar-circle-line.png"))));
+                else if(cbPaymentTypeValue.getSelectedIndex() == 1)
+                    lblPaymentIcon.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/pix-line.png"))));
+                else
+                    lblPaymentIcon.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/btc-line.png"))));
+            }
+        });
     }
 
     private void initCustomComponents() {
@@ -72,6 +88,7 @@ public class FrShoppingCart extends JDialog{
         cbPaymentTypeValue.addItem("Dinheiro");
         cbPaymentTypeValue.addItem("PIX");
         cbPaymentTypeValue.addItem("Bitcoin");
+        lblPaymentIcon.setIcon(new ImageIcon(Objects.requireNonNull(getClass().getResource("/icons/money-dollar-circle-line.png"))));
 
         addresses = addressController.findByCustomer(SessionManager.getLoggedUserId());
         if(addresses != null && !addresses.isEmpty()){
@@ -90,6 +107,19 @@ public class FrShoppingCart extends JDialog{
     }
 
     private void configureGrdAfterTModel(){
+        grdItemOrder.getColumnModel().getColumn(5).setCellRenderer(new IconLabelRenderer());
+        grdItemOrder.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int row = grdItemOrder.rowAtPoint(e.getPoint());
+                int column = grdItemOrder.columnAtPoint(e.getPoint());
+
+                if (column == 5 && row >= 0) {
+                    ShoppingCart aux = (ShoppingCart) grdItemOrder.getModel().getValueAt(row, -1);
+                    deleteItem(aux);
+                }
+            }
+        });
         grdItemOrder.getColumnModel().getColumn(0).setMaxWidth(405);
         grdItemOrder.getColumnModel().getColumn(0).setPreferredWidth(350);
         grdItemOrder.getColumnModel().getColumn(1).setMinWidth(120);
@@ -104,6 +134,9 @@ public class FrShoppingCart extends JDialog{
         grdItemOrder.getColumnModel().getColumn(4).setMinWidth(70);
         grdItemOrder.getColumnModel().getColumn(4).setMaxWidth(70);
         grdItemOrder.getColumnModel().getColumn(4).setPreferredWidth(70);
+        grdItemOrder.getColumnModel().getColumn(5).setMinWidth(65);
+        grdItemOrder.getColumnModel().getColumn(5).setMaxWidth(65);
+        grdItemOrder.getColumnModel().getColumn(5).setPreferredWidth(65);
     }
 
     private void placesOrder(){
@@ -127,9 +160,18 @@ public class FrShoppingCart extends JDialog{
             shoppingCartController.deleteShoppingCart(sp.getId());
         }
 
-        FrViewTanks dlg = new FrViewTanks(FrShoppingCart.this, true);
+        FrViewThanks dlg = new FrViewThanks(FrShoppingCart.this, true);
         dlg.setLocationRelativeTo(FrShoppingCart.this);
         dlg.setVisible(true);
         dispose();
+    }
+
+    private void deleteItem(ShoppingCart sp){
+        shoppingCartController.deleteShoppingCart(sp.getId());
+        shoppingCartList = shoppingCartController.findByCustomer(SessionManager.getLoggedUserId());
+        shoppingCartController.refreshTable(grdItemOrder);
+
+        initLabels();
+        configureGrdAfterTModel();
     }
 }

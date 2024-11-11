@@ -20,11 +20,17 @@ public class ValidateAddress {
         if(neighborhood.isBlank() || neighborhood.isEmpty())
             throw new AddressException("Error - Campo vazio: 'bairro'.");
         a.setNeighborhood(neighborhood.strip());
+
+        if(!zipcode.matches("\\d{2}\\.\\d{3}-\\d{3}"))
+            throw new AddressException("Error - Campo inválido: 'zipcode'.");
         a.setZipcode(zipcode.strip());
 
         if(customer == null)
             throw new AddressException("Error - Campo inválido: 'customer_id'.");
         a.setCustomer(customer);
+
+
+
 
         return a;
     }

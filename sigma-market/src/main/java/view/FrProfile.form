@@ -136,44 +136,6 @@
                   <text value="CPF:"/>
                 </properties>
               </component>
-              <component id="4cb4a" class="javax.swing.JLabel" binding="lblNameValue">
-                <constraints>
-                  <grid row="0" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false">
-                    <maximum-size width="-1" height="250"/>
-                  </grid>
-                </constraints>
-                <properties>
-                  <font name="Arial" size="26"/>
-                  <foreground color="-1509633"/>
-                  <horizontalAlignment value="0"/>
-                  <horizontalTextPosition value="0"/>
-                  <text value="seu nome aqui"/>
-                </properties>
-              </component>
-              <component id="52230" class="javax.swing.JLabel" binding="lblPswValue">
-                <constraints>
-                  <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <font name="Arial" size="26"/>
-                  <foreground color="-1509633"/>
-                  <horizontalAlignment value="0"/>
-                  <horizontalTextPosition value="0"/>
-                  <text value="abc123"/>
-                </properties>
-              </component>
-              <component id="f8444" class="javax.swing.JLabel" binding="lblCpfValue">
-                <constraints>
-                  <grid row="2" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <font name="Arial" size="26"/>
-                  <foreground color="-1509633"/>
-                  <horizontalAlignment value="0"/>
-                  <horizontalTextPosition value="0"/>
-                  <text value="123.123.123-12"/>
-                </properties>
-              </component>
               <component id="2615d" class="javax.swing.JLabel" binding="lblEmail">
                 <constraints>
                   <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="5" fill="0" indent="0" use-parent-layout="false"/>
@@ -186,16 +148,41 @@
                   <text value="E-mail:"/>
                 </properties>
               </component>
-              <component id="4e4c5" class="javax.swing.JLabel" binding="lblEmailValue">
+              <component id="740d3" class="javax.swing.JTextField" binding="edtName">
                 <constraints>
-                  <grid row="3" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="9" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="0" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <minimum-size width="-1" height="25"/>
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="1b11b" class="javax.swing.JPasswordField" binding="edtPsw">
+                <constraints>
+                  <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <minimum-size width="-1" height="25"/>
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="52197" class="javax.swing.JTextField" binding="edtEmail">
+                <constraints>
+                  <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <minimum-size width="-1" height="25"/>
+                    <preferred-size width="150" height="-1"/>
+                  </grid>
+                </constraints>
+                <properties/>
+              </component>
+              <component id="e7ed9" class="javax.swing.JFormattedTextField" binding="fEdtCpf">
+                <constraints>
+                  <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                    <minimum-size width="100" height="25"/>
+                  </grid>
                 </constraints>
                 <properties>
-                  <font name="Arial" size="26"/>
-                  <foreground color="-1509633"/>
-                  <horizontalAlignment value="0"/>
-                  <horizontalTextPosition value="0"/>
-                  <text value="eu@gmail.com"/>
+                  <font name="Arial" size="12"/>
                 </properties>
               </component>
             </children>

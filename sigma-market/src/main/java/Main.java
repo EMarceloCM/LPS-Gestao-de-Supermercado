@@ -1,7 +1,7 @@
-import view.FrMainView;
+import view.FrMain;
 
 public class Main {
     public static void main(String[] args) {
-        FrMainView fr = new FrMainView();
+        FrMain fr = new FrMain();
     }
 }

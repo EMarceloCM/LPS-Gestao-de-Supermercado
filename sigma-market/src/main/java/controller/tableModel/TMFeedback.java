@@ -41,7 +41,7 @@ public class TMFeedback extends AbstractTableModel {
             case COL_ORDER_ID -> f.getOrder().getId();
             case COL_DATE -> f.getDate();
             case COL_REVIEW -> f.getReview();
-            case COL_STARS -> f.getStars();
+            case COL_STARS -> f.getStarsAsEmote();
             default -> f;
         };
     }
