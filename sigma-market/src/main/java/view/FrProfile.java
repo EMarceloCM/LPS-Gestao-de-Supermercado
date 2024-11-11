@@ -64,7 +64,7 @@ public class FrProfile extends JDialog{
     private void LoadForm(){
         lblWelcome.setText("Bem-Vindo, " + customer.getName() + "!");
         edtName.setText(customer.getName());
-        edtPsw.setText(customer.getPassword());
+        edtPsw.setText("");
         fEdtCpf.setText(customer.getCpf());
         edtEmail.setText(customer.getEmail());
 
@@ -97,9 +97,15 @@ public class FrProfile extends JDialog{
         int roleId = SessionManager.getLoggedUserRole() == Role.ADMIN ? 0 : 1;
 
         try{
-            controller.updateCustomer(SessionManager.getLoggedUserId(), fEdtCpf.getText(), edtEmail.getText(), edtName.getText(),
-                    edtPsw.getText(), roleId, cbProfile.getSelectedIndex()+1);
-            SessionManager.Login(edtEmail.getText(), edtPsw.getText());
+            if(!edtPsw.getText().isBlank()){
+                controller.updateCustomer(SessionManager.getLoggedUserId(), fEdtCpf.getText(), edtEmail.getText(), edtName.getText(),
+                        edtPsw.getText(), roleId, cbProfile.getSelectedIndex()+1);
+                SessionManager.Login(edtEmail.getText(), edtPsw.getText());
+            }else{
+                controller.updateCustomer(SessionManager.getLoggedUserId(), fEdtCpf.getText(), edtEmail.getText(), edtName.getText(),
+                        customer.getPassword(), roleId, cbProfile.getSelectedIndex()+1);
+                SessionManager.Login(edtEmail.getText(), customer.getPassword());
+            }
             dispose();
         }catch(CustomerException | AuthException ex){
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro", JOptionPane.INFORMATION_MESSAGE);

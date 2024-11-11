@@ -21,7 +21,7 @@ public class FrCustomer extends JDialog {
     private JButton btnCancel;
     private JButton btnEdit;
     private JButton btnDelete;
-    private JButton btnSalvar;
+    private JButton btnSave;
     private javax.swing.JScrollPane JScrollPane;
     private JTable grd;
     private JPanel panForm;
@@ -111,7 +111,7 @@ public class FrCustomer extends JDialog {
                 }
             }
         });
-        btnSalvar.addActionListener(new ActionListener() {
+        btnSave.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -155,7 +155,7 @@ public class FrCustomer extends JDialog {
         isFormActive = !isFormActive;
 
         btnCancel.setVisible(isFormActive);
-        btnSalvar.setVisible(isFormActive);
+        btnSave.setVisible(isFormActive);
         btnDelete.setVisible(!isFormActive);
         btnEdit.setVisible(!isFormActive);
         btnNew.setVisible(!isFormActive);
