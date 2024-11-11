@@ -5,6 +5,7 @@ import controller.FeedbackController;
 import model.entities.Feedback;
 import model.entities.Order;
 import model.exceptions.FeedbackException;
+import org.hibernate.engine.jdbc.spi.SqlExceptionHelper;
 import view.dialogs.DlgChooseOrder;
 import view.utils.TableUtils;
 import javax.swing.*;
@@ -193,8 +194,11 @@ public class FrFeedback extends JDialog {
                     controller.refreshTable(grdFeedbacks);
                     swapForm();
                     cleanForm();
-                } catch (FeedbackException ex) {
-                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro!", JOptionPane.ERROR_MESSAGE);
+                } catch (RuntimeException ex) {
+                    if(editingId == -1)
+                        JOptionPane.showMessageDialog(null, "Este pedido já possui um feedback cadastrado!", "Erro!", JOptionPane.ERROR_MESSAGE);
+                    else
+                        JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro!", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
