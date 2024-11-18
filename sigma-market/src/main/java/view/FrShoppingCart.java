@@ -1,10 +1,7 @@
 package view;
 
 import Auth.SessionManager;
-import controller.AddressController;
-import controller.ItemOrderController;
-import controller.OrderController;
-import controller.ShoppingCartController;
+import controller.*;
 import controller.tableModel.utils.IconLabelRenderer;
 import model.entities.Address;
 import model.entities.Order;
@@ -156,7 +153,8 @@ public class FrShoppingCart extends JDialog{
         Order o = orderController.createOrderAndGet(lblTotalValue.getText().replace("R$ ", "").replace(",", "."), selectedPType.toString(), SessionManager.getLoggedUser(), selectedAddress);
 
         for(ShoppingCart sp : shoppingCartList){
-            itemOrderController.createItemOrder(sp.getProduct(), o, sp.getQuantity(), sp.getTotalAmount());
+            float ioDiscount = new PromotionController().findActiveByProductId(sp.getProduct().getId()) == null ? 0 : (sp.getProduct().getPrice() - new PromotionController().findActiveByProductId(sp.getProduct().getId()).getFinalPrice()) * sp.getQuantity();
+            itemOrderController.createItemOrder(sp.getProduct(), o, sp.getQuantity(), sp.getTotalAmount(), ioDiscount);
             shoppingCartController.deleteShoppingCart(sp.getId());
         }
 
