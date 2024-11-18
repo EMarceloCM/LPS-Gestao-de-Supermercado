@@ -114,8 +114,13 @@ public class FrProductDetail extends JDialog {
 
     private void AddProductToCart(){
         ShoppingCart existedItemInCart = null;
+        List<ShoppingCart> sps = null;
+        try{
+            sps = cartController.findByCustomer(SessionManager.getLoggedUserId());
+        }catch(AuthException ex){
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Aviso", JOptionPane.WARNING_MESSAGE);
+        }
 
-        List<ShoppingCart> sps = cartController.findByCustomer(SessionManager.getLoggedUserId());
         for(ShoppingCart sp : sps){
             if(sp.getProduct().getId() == product.getId()){
                 existedItemInCart = sp;

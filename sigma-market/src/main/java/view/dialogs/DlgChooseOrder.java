@@ -29,7 +29,7 @@ public class DlgChooseOrder extends JDialog {
         setContentPane(panMain);
         setModal(true);
         setTitle("Selecionar Pedido");
-        setSize(1150, 600);
+        setSize(1045, 600);
 
         controller = new OrderController();
         selected = null;
