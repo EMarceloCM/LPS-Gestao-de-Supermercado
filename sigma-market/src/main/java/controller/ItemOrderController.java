@@ -21,14 +21,14 @@ public class ItemOrderController {
         return repository.findByOrder(order_id);
     }
 
-    public void createItemOrder(Product product, Order order, int quantity, float totalAmount) {
-        ItemOrder io = new ItemOrder(0, product, order, quantity, totalAmount);
+    public void createItemOrder(Product product, Order order, int quantity, float totalAmount, float discount) {
+        ItemOrder io = new ItemOrder(0, product, order, quantity, totalAmount, discount);
 
         repository.save(io);
     }
 
-    public void updateItemOrder(int id, Product product, Order order, int quantity, float totalAmount) {
-        ItemOrder io = new ItemOrder(id, product, order, quantity, totalAmount);
+    public void updateItemOrder(int id, Product product, Order order, int quantity, float totalAmount, float discount) {
+        ItemOrder io = new ItemOrder(id, product, order, quantity, totalAmount, discount);
 
         repository.update(io);
     }

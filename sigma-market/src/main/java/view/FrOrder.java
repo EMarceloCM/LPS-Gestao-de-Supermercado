@@ -5,9 +5,7 @@ import controller.ItemOrderController;
 import controller.OrderController;
 import controller.tableModel.utils.IconLabelRenderer;
 import model.enums.Role;
-import view.utils.DecimalInputValidator;
 import view.utils.IntegerInputValidator;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -32,7 +30,7 @@ public class FrOrder extends JDialog {
         super(parent, modal);
         setContentPane(panMain);
         setTitle("Pedidos");
-        setSize(1070, 680);
+        setSize(1180, 680);
 
         orderController = new OrderController();
         itemOrderController = new ItemOrderController();

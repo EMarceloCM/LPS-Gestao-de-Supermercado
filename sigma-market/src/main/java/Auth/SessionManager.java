@@ -6,7 +6,6 @@ import model.enums.Role;
 import model.exceptions.CustomerException;
 import org.mindrot.jbcrypt.BCrypt;
 import repository.CustomerRepository;
-import java.util.Objects;
 
 public class SessionManager {
     private static Customer customer = null;
