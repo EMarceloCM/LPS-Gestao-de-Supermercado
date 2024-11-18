@@ -95,9 +95,11 @@ DELIMITER ;
 ### Cadastro de Endereço
 ![image](https://github.com/user-attachments/assets/b05ccf2b-db8b-44a6-8557-2af227e61bf5)
 
+### Carrinho de Compras
+![image](https://github.com/user-attachments/assets/02eeb36e-0cc8-418e-8b2b-5cec489544b4)
+
 ### Pedidos
 ![image](https://github.com/user-attachments/assets/d7f63bdb-8beb-4492-a828-670e4e42692c)
 
 ### Feedbacks
 ![image](https://github.com/user-attachments/assets/b04fe7b9-b7a6-4ed3-b794-7fa8b92f842e)
-
